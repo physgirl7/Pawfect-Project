@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("user")
@@ -21,9 +19,15 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("useraccount/{userId}")
-    public String displayUserAccountPage() {
-//        model.addAttribute("user", new User());
-        return "user/useraccount";
+    public String displayUserAccountPage(Model model, @PathVariable int userId) {
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+            return "user/useraccount";
+        } else {
+            return "redirect:../";
+        }
     }
 
     @GetMapping("create")
@@ -42,5 +46,17 @@ public class UserController {
         User saved = userRepository.save(newUser);
 
         return "redirect:useraccount/" + saved.getId();
+    }
+
+    @GetMapping("edit/{userId}")
+    public String displayEditUserAccount(Model model, @PathVariable int userId){
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+            return "user/edit";
+        } else {
+            return "redirect:../";
+        }
     }
 }
