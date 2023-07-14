@@ -6,10 +6,8 @@ plugins {
 
 group = 'org.launchcode'
 version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
-java {
-	sourceCompatibility = '11'
-}
 
 repositories {
 	mavenCentral()
@@ -20,6 +18,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'mysql:mysql-connector-java:8.0.15'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
