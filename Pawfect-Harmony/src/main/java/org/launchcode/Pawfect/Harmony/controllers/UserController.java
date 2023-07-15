@@ -38,7 +38,7 @@ public class UserController {
 
     @PostMapping("create")
     public String processCreateUserForm(@ModelAttribute @Valid User newUser,
-                                         Errors errors, Model model) {
+                                        Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             return "user/create";
@@ -49,14 +49,43 @@ public class UserController {
     }
 
     @GetMapping("edit/{userId}")
-    public String displayEditUserAccount(Model model, @PathVariable int userId){
+    public String displayEditUserAccount(Model model, @PathVariable int userId) {
         Optional optUser = userRepository.findById(userId);
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
+
             model.addAttribute("user", user);
             return "user/edit";
         } else {
             return "redirect:../";
         }
     }
+
+    @PostMapping("edit/{userId}")
+    public String processEditUserAccount(User editedUser, Model model, @PathVariable int userId, Errors errors) {
+        if (errors.hasErrors()) {
+            return "user/edit/{userId}";
+        }
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            user.setFirstName(editedUser.getFirstName());
+            user.setLastName(editedUser.getLastName());
+            user.setEmail(editedUser.getEmail());
+            user.setPhone(editedUser.getPhone());
+            model.addAttribute("user", user);
+            userRepository.save(user);
+            return "redirect:../useraccount/" + user.getId();
+
+        }
+        return "redirect:../";
+    }
 }
+
+//    Optional optEmployer = employerRepository.findById(employerId);
+//       if (optEmployer.isPresent()) {
+//               Employer employer = (Employer) optEmployer.get();
+//               model.addAttribute("employer", employer);
+//               return "employers/view";
+//               } else {
+//               return "redirect:../";

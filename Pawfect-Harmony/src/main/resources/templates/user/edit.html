@@ -6,29 +6,32 @@
 </head>
 <body>
 
-<h1>Hi There!</h1>
+<h1>Edit User Account</h1>
 
-<form>
+
 <table>
+    <form method="post">
     <tr>
         <th align = "left">First Name:</th>
-        <td th:text="${user.firstName}">Julie</td>
+        <td><input th:value="${user.firstName}" th:field="${user.firstName}"></td>
     </tr>
     <tr>
         <th align = "left">Last Name:</th>
-        <td th:text="${user.lastName}">Pitney</td>
+        <td><input th:value="${user.lastName}" th:field="${user.lastName}"></td>
     </tr>
 
     <tr>
         <th align = "left">Phone Number:</th>
-        <td th:text="${user.phone}">636-578-4025</td>
+        <td><input th:value="${user.phone}" th:field="${user.phone}"></td>
     </tr>
 
     <tr>
         <th align="left">Email:</th>
-        <td th:text="${user.email}">myemail.com</td>
+        <td><input th:value="${user.email}" th:field="${user.email}"></td>
     </tr>
 </table>
+
+<input type="submit" value="Update Account" />
 </form>
 
 </body>
