@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User extends AbstractEntity{
@@ -27,7 +28,7 @@ public class User extends AbstractEntity{
 
     @NotBlank
     @Size(min=6)
-    private String password;
+    private String pwHash;
 
     public User(){
 
@@ -38,7 +39,7 @@ public class User extends AbstractEntity{
         this.username = username;
         this.email = email;
         this.phone = phone;
-        this.password = password;
+        this.pwHash = encoder.encode(password);
     }
 
     public String getUsername() {
