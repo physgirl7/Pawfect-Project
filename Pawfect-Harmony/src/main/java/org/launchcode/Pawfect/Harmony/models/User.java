@@ -8,6 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User extends AbstractEntity{
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
     @NotBlank
     @Size(min=5, max=15)
     private String username;
@@ -46,10 +49,6 @@ public class User extends AbstractEntity{
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -82,12 +81,8 @@ public class User extends AbstractEntity{
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
     }
 }
 
