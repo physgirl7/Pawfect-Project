@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome to the Home Page</title>
+</head>
+<body>
+<h1 th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
+
+<table>
+    <tr>
+        <th align = "left">First Name:</th>
+        <td th:text="${user.firstName}">Julie</td>
+    </tr>
+    <tr>
+        <th align = "left">Last Name:</th>
+        <td th:text="${user.lastName}">Pitney</td>
+    </tr>
+
+    <tr>
+        <th align = "left">Phone Number:</th>
+        <td th:text="${user.phone}">636-578-4025</td>
+    </tr>
+
+    <tr>
+        <th align="left">Email:</th>
+        <td th:text="${user.email}">myemail.com</td>
+    </tr>
+</table>
+
+<form th:action="@{'/user/edit/' + ${user.id}}">
+    <input type="submit" value="Edit" />
+</form>
+
+
+<h2>My Pets</h2>
+<h3>Pets I Put Up For Adoption</h3>
+    <button type="button">Post a Pet</button>
+<h3>Pets I Want to Meet or Adopt</h3>
+    <ul>
+        <li>Pet Name</li>
+    </ul>
+
+</body>
+</html>

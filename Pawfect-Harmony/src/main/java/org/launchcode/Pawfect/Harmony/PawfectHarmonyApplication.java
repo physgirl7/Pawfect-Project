@@ -2,6 +2,7 @@ package org.launchcode.Pawfect.Harmony;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication
 public class PawfectHarmonyApplication {
@@ -11,3 +12,5 @@ public class PawfectHarmonyApplication {
 	}
 
 }
+
+//(exclude = {DataSourceAutoConfiguration.class })
