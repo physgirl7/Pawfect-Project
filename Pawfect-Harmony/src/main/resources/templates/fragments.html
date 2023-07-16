@@ -18,21 +18,21 @@
 <!--</head>-->
 
 <body>
-<!--This is a Nav bar template-->
-<!--<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">-->
-<!--    <div class="container">-->
-<!--        <div class="navbar-header">-->
-<!--            <a th:href="@{/}" class="navbar-brand">TechJobs</a>-->
-<!--        </div>-->
-<!--        <div class="navbar-collapse collapse">-->
-<!--            <ul class="nav navbar-nav">-->
-<!--                <li><a th:href="@{/list}">List</a></li>-->
-<!--                <li><a th:href="@{/search}">Search</a></li>-->
-<!--                <li><a th:href="@{/add}">Add Jobs</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div th:fragment="navbar" class="">
+    <div class="container">
+        <div class="navbar">
+            <a th:href="@{/}" class="navbar-brand">Pawfect Harmony</a>
+        </div>
+        <div class="navbar-functions">
+            <ul class="navbar-buttons">
+                <li><a th:href="@{/}">Create Account</a></li>
+                <li><a th:href="@{/}">Search</a></li>
+                <li><a th:href="@{/}">Post a Pet</a></li>
+                <li><a th:href="@{/}">Log in</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
