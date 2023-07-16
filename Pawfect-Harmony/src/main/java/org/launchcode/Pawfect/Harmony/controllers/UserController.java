@@ -1,6 +1,7 @@
 package org.launchcode.Pawfect.Harmony.controllers;
 
 import org.launchcode.Pawfect.Harmony.data.UserRepository;
+import org.launchcode.Pawfect.Harmony.models.EditedUser;
 import org.launchcode.Pawfect.Harmony.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,8 +54,13 @@ public class UserController {
         Optional optUser = userRepository.findById(userId);
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
-
+            EditedUser editeduser = new EditedUser();
+            editeduser.setFirstName(user.getFirstName());
+            editeduser.setLastName(user.getLastName());
+            editeduser.setEmail(user.getEmail());
+            editeduser.setPhone(user.getPhone());
             model.addAttribute("user", user);
+            model.addAttribute("editeduser", editeduser);
             return "user/edit";
         } else {
             return "redirect:../";
@@ -62,9 +68,9 @@ public class UserController {
     }
 
     @PostMapping("edit/{userId}")
-    public String processEditUserAccount(User editedUser, Model model, @PathVariable int userId, Errors errors) {
+    public String processEditUserAccount(@ModelAttribute @Valid EditedUser editedUser, Errors errors, Model model, @PathVariable int userId) {
         if (errors.hasErrors()) {
-            return "user/edit/{userId}";
+            return "redirect:" + userId;
         }
         Optional optUser = userRepository.findById(userId);
         if (optUser.isPresent()) {
@@ -82,10 +88,3 @@ public class UserController {
     }
 }
 
-//    Optional optEmployer = employerRepository.findById(employerId);
-//       if (optEmployer.isPresent()) {
-//               Employer employer = (Employer) optEmployer.get();
-//               model.addAttribute("employer", employer);
-//               return "employers/view";
-//               } else {
-//               return "redirect:../";
