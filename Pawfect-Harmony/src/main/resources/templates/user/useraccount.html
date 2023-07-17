@@ -2,12 +2,16 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Welcome to the Home Page</title>
+    <title>Welcome to the User Account Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
-<h1 th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
+<h1 class="display-3" th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
 
-<table>
+<br>
+<table class="table table-striped-columns" style="max-width:500px;">
     <tr>
         <th align = "left">First Name:</th>
         <td th:text="${user.firstName}">Julie</td>
@@ -29,13 +33,17 @@
 </table>
 
 <form th:action="@{'/user/edit/' + ${user.id}}">
-    <input type="submit" value="Edit" />
+    <input type="submit" class = "btn btn-primary" value="Edit" />
 </form>
 
+<br>
 
-<h2>My Pets</h2>
+<h2 class="display-4">My Pets</h2>
+<br>
 <h3>Pets I Put Up For Adoption</h3>
-    <button type="button">Post a Pet</button>
+    <button type="button" class = "btn btn-primary">Post a Pet</button>
+<br>
+<br>
 <h3>Pets I Want to Meet or Adopt</h3>
     <ul>
         <li>Pet Name</li>

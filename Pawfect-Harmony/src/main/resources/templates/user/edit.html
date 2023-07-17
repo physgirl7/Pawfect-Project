@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Welcome to the Edit Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
 
-<h1>Edit User Account</h1>
+<h1 class="display-3">Edit User Account</h1>
 
 
-<table>
+<table class="table table-striped-columns" style="max-width:500px;">
     <form method="post">
     <tr>
         <th align = "left">First Name:</th>
@@ -31,7 +34,7 @@
     </tr>
 </table>
 
-<input type="submit" value="Update Account" />
+<input type="submit" class = "btn btn-primary" value="Update Account" />
 </form>
 
 </body>
