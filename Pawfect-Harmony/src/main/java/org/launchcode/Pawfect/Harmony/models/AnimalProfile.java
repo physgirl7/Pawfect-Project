@@ -1,16 +1,30 @@
 package org.launchcode.Pawfect.Harmony.models;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
-public class AnimalProfileModel extends AbstractEntity {
+public class AnimalProfile extends AbstractEntity {
 
-//fields
+    //fields
+
+
     private String name;
+
+
     private String location;
-    private String breed;
+
+
     private String species;
+
+
+    private String breed;
+
+
     private int age;
+
+
     private String comments;
 
     //figure out how to match if a user is wanting to adopt(match them with available animals)
@@ -19,20 +33,20 @@ public class AnimalProfileModel extends AbstractEntity {
 
 
     //constructor
-    public AnimalProfileModel(String name, String location, String breed, String species, int age, String comments) {
+    public AnimalProfile(String name, String location, String species, String breed, int age, String comments) {
         this.name = name;
         this.location = location;
-        this.breed = breed;
         this.species = species;
+        this.breed = breed;
         this.age = age;
         this.comments = comments;
     }
 
-//no arg constructor
-    public AnimalProfileModel() {
+    //no arg constructor
+    public AnimalProfile() {
     }
 
-// getters setters
+    // getters setters
     public String getName() {
         return name;
     }
@@ -49,20 +63,20 @@ public class AnimalProfileModel extends AbstractEntity {
         this.location = location;
     }
 
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
-
     public String getSpecies() {
         return species;
     }
 
     public void setSpecies(String species) {
         this.species = species;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     public int getAge() {
@@ -81,3 +95,5 @@ public class AnimalProfileModel extends AbstractEntity {
         this.comments = comments;
     }
 }
+
+
