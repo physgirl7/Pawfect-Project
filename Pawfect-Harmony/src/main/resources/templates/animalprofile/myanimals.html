@@ -2,34 +2,39 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
   <meta charset="UTF-8">
-  <title>Animal Profile</title>
+  <title>My Animals</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border: 1px solid black;
+    }
+  </style>
 </head>
 <body>
-<h1>Animal Profile</h1>
+<h1>My Animals</h1>
 <table>
   <tr>
-    <td>Name:</td>
-    <td th:text="${name}">Toby</td>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Species</th>
+    <th>Breed</th>
+    <th>Age</th>
+    <th>Comments</th>
+    <th></th>
   </tr>
-  <tr>
-    <td>Location:</td>
-    <td th:text="${location}">Chesterfield</td>
-  </tr>
-  <tr>
-    <td>Species:</td>
-    <td th:text="${species}">Dog</td>
-  </tr>
-  <tr>
-    <td>Breed:</td>
-    <td th:text="${breed}">Labradoodle</td>
-  </tr>
-  <tr>
-    <td>Age:</td>
-    <td th:text="${age}">6</td>
-  </tr>
-  <tr>
-    <td>Comments:</td>
-    <td th:text="${comments}">He's very a good boy</td>
+  <tr th:each="animalProfile : ${animalProfiles}">
+    <td th:text="${animalProfile.name}"></td>
+    <td th:text="${animalProfile.location}"></td>
+    <td th:text="${animalProfile.species}"></td>
+    <td th:text="${animalProfile.breed}"></td>
+    <td th:text="${animalProfile.age}"></td>
+    <td th:text="${animalProfile.comments}"></td>
+    <td><a th:href="@{/animalprofile/edit/{id}(id=${animalProfile.id})}">Edit</a></td>
   </tr>
 </table>
 

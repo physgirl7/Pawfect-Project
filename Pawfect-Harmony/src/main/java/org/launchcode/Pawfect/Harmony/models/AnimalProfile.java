@@ -1,6 +1,7 @@
 package org.launchcode.Pawfect.Harmony.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -9,9 +10,12 @@ public class AnimalProfile extends AbstractEntity {
 
     //fields
 
+    @ManyToOne
+    private User user;
+
+    private String photo;
 
     private String name;
-
 
     private String location;
 
@@ -27,13 +31,10 @@ public class AnimalProfile extends AbstractEntity {
 
     private String comments;
 
-    //figure out how to match if a user is wanting to adopt(match them with available animals)
-
-    //how to add picture?
-
 
     //constructor
-    public AnimalProfile(String name, String location, String species, String breed, int age, String comments) {
+    public AnimalProfile(String photo, String name, String location, String species, String breed, int age, String comments) {
+        this.photo = photo;
         this.name = name;
         this.location = location;
         this.species = species;
@@ -47,6 +48,16 @@ public class AnimalProfile extends AbstractEntity {
     }
 
     // getters setters
+
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     public String getName() {
         return name;
     }
@@ -93,6 +104,14 @@ public class AnimalProfile extends AbstractEntity {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 
