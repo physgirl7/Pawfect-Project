@@ -1,9 +1,13 @@
 package org.launchcode.Pawfect.Harmony.models;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity{
@@ -28,6 +32,10 @@ public class User extends AbstractEntity{
     @NotBlank
     @Size(min=6)
     private String password;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<AnimalProfile> animalProfile = new ArrayList<>();
 
     public User(){
 

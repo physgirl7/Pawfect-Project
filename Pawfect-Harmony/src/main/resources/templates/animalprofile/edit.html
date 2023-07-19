@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Animal Profile</title>
+</head>
+<body>
+<h1>Edit Animal Profile</h1>
+<form action="#" th:action="@{/animalprofile/edit/{id}(id=${animalProfileId})}" th:object="${animalProfile}" method="post">
+  <input type="hidden" th:field="*{id}">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required>
+  </div>
+  <div>
+    <label for="location">Location:</label>
+    <input type="text" id="location" th:field="*{location}" required>
+  </div>
+  <div>
+    <label for="species">Species:</label>
+    <select id="species" th:field="*{species}">
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="rabbit">Rabbit</option>
+      <option value="bird">Bird</option>
+      <option value="reptile">Reptile</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+  <div>
+    <label for="breed">Breed:</label>
+    <input type="text" id="breed" th:field="*{breed}" required>
+  </div>
+  <div>
+    <label for="age">Age:</label>
+    <select id="age" th:field="*{age}">
+      <th:block th:each="i : ${#numbers.sequence(0, 20)}">
+        <option th:value="${i}" th:text="${i}"></option>
+      </th:block>
+    </select>
+  </div>
+  <div>
+    <label for="comments">Comments:</label>
+    <textarea id="comments" th:field="*{comments}"></textarea>
+  </div>
+  <input type="submit" value="Save Changes">
+</form>
+
+<form action="#" th:action="@{/animalprofile/delete/{id}(id=${animalProfileId})}" method="post">
+  <input type="submit" value="Delete Animal Profile">
+</form>
+
+</body>
+</html>
