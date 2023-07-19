@@ -1,5 +1,6 @@
 package org.launchcode.Pawfect.Harmony.controllers;
 
+import org.launchcode.Pawfect.Harmony.data.UserRepository;
 import org.launchcode.Pawfect.Harmony.models.AnimalProfile;
 import org.launchcode.Pawfect.Harmony.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class AnimalProfileController {
     @Autowired
     private AnimalProfileRepository animalProfileRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
 
     @GetMapping("myanimals")
     public String displayAnimalProfile(Model model) {
@@ -29,19 +33,30 @@ public class AnimalProfileController {
         return "animalprofile/myanimals";
     }
 
-    @GetMapping("/form")
-    public String createAnimalForm(Model model) {
-        model.addAttribute(new AnimalProfile());
+    @GetMapping("/form/{userId}")
+    public String createAnimalForm(Model model, @PathVariable int userId) {
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+        }
+        AnimalProfile animalProfile = new AnimalProfile();
+        model.addAttribute("animalProfile", animalProfile);
         return "animalprofile/form";
     }
 
-    @PostMapping("/form")
-    public String processAnimalForm(@ModelAttribute @Valid AnimalProfile animalProfile, Errors errors, Model model) {
+    @PostMapping("/form/{userId}")
+    public String processAnimalForm(@ModelAttribute @Valid AnimalProfile animalProfile, Errors errors, Model model, @PathVariable int userId) {
         if (errors.hasErrors()) {
             return "/form";
         }
+        Optional<User> result = userRepository.findById(userId);
+        if(result.isPresent()) {
+            User user = result.get();
+            animalProfile.setUser(user);
+        }
         animalProfileRepository.save(animalProfile);
-        return "redirect:/animalprofile/myanimals";
+        return "redirect:../myanimals";
     }
 
     @GetMapping("/edit/{animalProfileId}")
@@ -80,10 +95,4 @@ public class AnimalProfileController {
         }
         return "redirect:/animalprofile/myanimals";
     }
-
-
-
-
 }
-
-
