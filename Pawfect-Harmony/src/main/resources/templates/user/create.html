@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" th:href="@{/styles.css}">
-</head>
-<body class="container  body-content">
+<!--<head>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
+<!--</head>-->
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
 <h1>Create User Account</h1>
 
 <form method="post" style="max-width:600px;">

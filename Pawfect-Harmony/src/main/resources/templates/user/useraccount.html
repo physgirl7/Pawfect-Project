@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Welcome to the User Account Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" th:href="@{/styles.css}">
-</head>
-<body>
+<!--<head>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <title>Welcome to the User Account Page</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
+<!--</head>-->
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
 <h1 class="display-3" th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
 
 <br>

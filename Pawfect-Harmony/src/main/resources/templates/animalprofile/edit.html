@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title>Edit Animal Profile</title>
-</head>
-<body>
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Edit Animal Profile</title>-->
+<!--</head>-->
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
 <h1>Edit Animal Profile</h1>
 <form action="#" th:action="@{/animalprofile/edit/{id}(id=${animalProfileId})}" th:object="${animalProfile}" method="post">
   <input type="hidden" th:field="*{id}">

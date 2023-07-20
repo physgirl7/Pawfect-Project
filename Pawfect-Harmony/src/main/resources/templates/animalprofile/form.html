@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title>Animal Profile Form</title>
-  <style>
-    form {
-      display: table;
-    }
-    div {
-      display: table-row;
-    }
-    label, input, select, textarea {
-      display: table-cell;
-      padding: 5px;
-    }
-    label {
-      text-align: right;
-    }
-  </style>
-</head>
-<body>
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Animal Profile Form</title>-->
+<!--  <style>-->
+<!--    form {-->
+<!--      display: table;-->
+<!--    }-->
+<!--    div {-->
+<!--      display: table-row;-->
+<!--    }-->
+<!--    label, input, select, textarea {-->
+<!--      display: table-cell;-->
+<!--      padding: 5px;-->
+<!--    }-->
+<!--    label {-->
+<!--      text-align: right;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
 <h1>Animal Profile Form</h1>
 
 <form method="post" style="max-width:600px;">
