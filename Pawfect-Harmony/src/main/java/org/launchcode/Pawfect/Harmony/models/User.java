@@ -37,6 +37,10 @@ public class User extends AbstractEntity{
     @JoinColumn(name = "user_id")
     private List<AnimalProfile> animalProfile = new ArrayList<>();
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<UserMeetPet> meetPets = new ArrayList<>();
+
     public User(){
 
     }

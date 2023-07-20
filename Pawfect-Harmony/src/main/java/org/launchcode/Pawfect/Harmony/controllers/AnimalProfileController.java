@@ -1,8 +1,10 @@
 package org.launchcode.Pawfect.Harmony.controllers;
 
+import org.launchcode.Pawfect.Harmony.data.UserMeetPetRepository;
 import org.launchcode.Pawfect.Harmony.data.UserRepository;
 import org.launchcode.Pawfect.Harmony.models.AnimalProfile;
 import org.launchcode.Pawfect.Harmony.models.User;
+import org.launchcode.Pawfect.Harmony.models.UserMeetPet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -24,6 +26,9 @@ public class AnimalProfileController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserMeetPetRepository userMeetPetRepository;
 
 
     @GetMapping("myanimals")
@@ -95,4 +100,35 @@ public class AnimalProfileController {
         }
         return "redirect:/animalprofile/myanimals";
     }
+
+    @GetMapping("animalfile/{animalProfileId}")
+    public String displayAnimalFilePage(Model model, @PathVariable int animalProfileId) {
+        Optional optAnimal = animalProfileRepository.findById(animalProfileId);
+        if (optAnimal.isPresent()) {
+            AnimalProfile animalProfile = (AnimalProfile) optAnimal.get();
+            model.addAttribute("animalProfile", animalProfile);
+            return "animalprofile/animalfile";
+        } else {
+            return "redirect:../";
+        }
+    }
+
+    @GetMapping("requestsent/{animalProfileId}/{userId}")
+    public String displayRequestSentPage(@ModelAttribute @Valid UserMeetPet userMeetPet, Model model, @PathVariable int animalProfileId, @PathVariable int userId) {
+        Optional optAnimal = animalProfileRepository.findById(animalProfileId);
+        Optional optUser = userRepository.findById(userId);
+        if (optAnimal.isPresent() && optUser.isPresent()) {
+            AnimalProfile animalProfile = (AnimalProfile) optAnimal.get();
+            User user = (User) optUser.get();
+            userMeetPet.setAnimalProfile(animalProfile);
+            userMeetPet.setUser(user);
+            userMeetPetRepository.save(userMeetPet);
+            model.addAttribute("animalProfile", animalProfile);
+            model.addAttribute("user", user);
+            model.addAttribute("userMeetPet", userMeetPet);
+            return "animalprofile/requestsent";
+        } else {
+            return "redirect:../";
+        }
+        }
 }
