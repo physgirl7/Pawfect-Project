@@ -21,43 +21,53 @@
 </head>
 <body>
 <h1>Animal Profile Form</h1>
-<form action="/animalprofile/form" method="post">
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+
+<form method="post" style="max-width:600px;">
+  <!--  <div> <input type="hidden" th:field ="${user.id}"></div>-->
+  <div class="form-group">
+    <label th:for="name">Name:</label>
+    <input class="form-control" th:field="${animalProfile.name}" />
+    <span th:errors="${animalProfile.name}" class="error"></span>
   </div>
-  <div>
-    <label for="location">Location:</label>
-    <input type="text" id="location" name="location" required>
+
+  <div class="form-group">
+    <label th:for="location">Location:</label>
+    <input class="form-control" th:field="${animalProfile.location}" />
+    <span th:errors="${animalProfile.location}" class="error"></span>
   </div>
-  <div>
-    <label for="species">Species:</label>
-    <select id="species" name="species">
-      <option value="dog">Dog</option>
-      <option value="cat">Cat</option>
-      <option value="rabbit">Rabbit</option>
-      <option value="bird">Bird</option>
-      <option value="reptile">Reptile</option>
-      <option value="other">Other</option>
+
+  <div class="form-group">
+    <label th:for="species">Species:</label>
+    <select th:field="${animalProfile.species}">
+      <option th:value ="dog">Dog</option>
+      <option th:value ="cat">Cat</option>
+      <option th:value ="rabbit">Rabbit</option>
+      <option th:value ="bird">Bird</option>
+      <option th:value ="reptile">Reptile</option>
+      <option th:value ="other">Other</option>
     </select>
+    <span th:errors="${animalProfile.species}" class="error"></span>
   </div>
-  <div>
-    <label for="breed">Breed:</label>
-    <input type="text" id="breed" name="breed" required>
+
+  <div class="form-group">
+    <label th:for="breed">Breed:</label>
+    <input class="form-control" th:field="${animalProfile.breed}" />
+    <span th:errors="${animalProfile.breed}" class="error"></span>
   </div>
-  <div>
-    <label for="age">Age:</label>
-    <select id="age" name="age">
-      <th:block th:each="i : ${#numbers.sequence(0, 20)}">
-        <option th:value="${i}" th:text="${i}"></option>
-      </th:block>
-    </select>
+
+  <div class="form-group">
+    <label th:for="age">Age:</label>
+    <input class="form-control" th:field="${animalProfile.age}" />
+    <span th:errors="${animalProfile.age}" class="error"></span>
   </div>
-  <div>
-    <label for="comments">Comments:</label>
-    <textarea id="comments" name="comments"></textarea>
+
+  <div class="form-group">
+    <label th:for="comments">Comments:</label>
+    <input class="form-control" th:field="${animalProfile.comments}" />
+    <span th:errors="${animalProfile.comments}" class="error"></span>
   </div>
-  <input type="submit" value="Submit">
+
+  <input type="submit" value="Submit" />
 </form>
 </body>
 </html>
