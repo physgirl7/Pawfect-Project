@@ -3,6 +3,7 @@ package org.launchcode.Pawfect.Harmony.controllers;
 
 import org.launchcode.Pawfect.Harmony.data.UserRepository;
 import org.launchcode.Pawfect.Harmony.models.User;
+import org.launchcode.Pawfect.Harmony.models.dto.CreateUserFormDTO;
 import org.launchcode.Pawfect.Harmony.models.dto.LoginFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ public class AuthenticationController {
     @Autowired
     UserRepository userRepository;
 
+
+
     private static final String userSessionKey = "user";
 
     public User getUserFromSession(HttpSession session) {
@@ -28,21 +31,54 @@ public class AuthenticationController {
         if (userId == null) {
             return null;
         }
-
         Optional<User> user = userRepository.findById(userId);
-
         if (user.isEmpty()) {
             return null;
         }
-
         return user.get();
     }
 
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
     }
+    @GetMapping("user/create")
+    public String displayCreateUserForm(Model model) {
+        model.addAttribute(new CreateUserFormDTO());
+        return "user/create";
+    }
+    @PostMapping("user/create")
+    public String processRegistrationForm(@ModelAttribute @Valid CreateUserFormDTO createUserFormDTO,
+                                          Errors errors, HttpServletRequest request,
+                                          Model model) {
 
+        if (errors.hasErrors()) {
+            return "user/create";
+        }
 
+        User existingUser = userRepository.findByUsername(createUserFormDTO.getUsername());
+
+        if (existingUser != null) {
+            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
+            return "user/create";
+        }
+
+        String password = createUserFormDTO.getPassword();
+        String verifyPassword = createUserFormDTO.getVerifyPassword();
+        if (!password.equals(verifyPassword)) {
+            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
+            return "user/create";
+        }
+            User newUser = new User(createUserFormDTO.getUsername(),
+                                    createUserFormDTO.getFirstName(),
+                                    createUserFormDTO.getLastName(),
+                                    createUserFormDTO.getEmail(),
+                                    createUserFormDTO.getPhone(),
+                                    createUserFormDTO.getPassword());
+        userRepository.save(newUser);
+        setUserInSession(request.getSession(), newUser);
+
+        return "search";
+    }
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
@@ -78,7 +114,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:";
+        return "search";
     }
 
     @GetMapping("/logout")

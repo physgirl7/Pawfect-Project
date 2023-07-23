@@ -30,31 +30,28 @@ public class UserController {
         }
     }
 
-    @GetMapping("create")
-    public String displayCreateUserForm(Model model) {
-        model.addAttribute(new User());
-        return "user/create";
-    }
-
-    @PostMapping("create")
-    public String processCreateUserForm(@ModelAttribute @Valid User newUser,
-                                         Errors errors) {
-
-        if (errors.hasErrors()) {
-            return "user/create";
-        }
-        User existingUser = userRepository.findByUsername(newUser.getUsername());
-
-        if (existingUser != null) {
-            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
-            return "user/create";
-        }
-
-
-        userRepository.save(newUser);
-
-        return "redirect:/search";
-    }
+//    @GetMapping("create")
+//    public String displayCreateUserForm(Model model) {
+//        model.addAttribute(new User());
+//        return "user/create";
+//    }
+//
+//    @PostMapping("create")
+//    public String processCreateUserForm(@ModelAttribute @Valid User newUser,
+//                                         Errors errors) {
+//
+//        if (errors.hasErrors()) {
+//            return "user/create";
+//        }
+//        User existingUser = userRepository.findByUsername(newUser.getUsername());
+//
+//        if (existingUser != null) {
+//            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
+//            return "user/create";
+//        }
+//        userRepository.save(newUser);
+//        return "redirect:/search";
+//    }
 
     @GetMapping("edit/{userId}")
     public String displayEditUserAccount(Model model, @PathVariable int userId){
