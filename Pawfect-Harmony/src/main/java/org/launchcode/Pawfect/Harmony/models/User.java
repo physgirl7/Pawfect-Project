@@ -11,7 +11,7 @@ public class User extends AbstractEntity{
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @NotBlank
+
     @Size(min=5, max=15)
     private String username;
 
@@ -30,23 +30,32 @@ public class User extends AbstractEntity{
     private String phone;
 
     @NotBlank
-    @Size(min=6)
+    @Size(min=6, message = "password must be greater than six characters")
+    private String password;
+
     private String pwHash;
+
 
     public User(){
 
     }
 
-    public User(String username, String email, String phone, String password) {
+    public User(String username, String firstName, String lastName, String email, String phone, String password) {
         this();
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.pwHash = encoder.encode(password);
+        this.password = password;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -79,6 +88,14 @@ public class User extends AbstractEntity{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isMatchingPassword(String password) {

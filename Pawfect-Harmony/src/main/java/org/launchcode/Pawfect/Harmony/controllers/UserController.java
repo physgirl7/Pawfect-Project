@@ -38,14 +38,22 @@ public class UserController {
 
     @PostMapping("create")
     public String processCreateUserForm(@ModelAttribute @Valid User newUser,
-                                         Errors errors, Model model) {
+                                         Errors errors) {
 
         if (errors.hasErrors()) {
             return "user/create";
         }
-        User saved = userRepository.save(newUser);
+        User existingUser = userRepository.findByUsername(newUser.getUsername());
 
-        return "redirect:useraccount/" + saved.getId();
+        if (existingUser != null) {
+            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
+            return "user/create";
+        }
+
+
+        userRepository.save(newUser);
+
+        return "redirect:/search";
     }
 
     @GetMapping("edit/{userId}")

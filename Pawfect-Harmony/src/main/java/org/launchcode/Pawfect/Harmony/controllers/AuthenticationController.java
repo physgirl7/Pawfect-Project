@@ -4,7 +4,6 @@ package org.launchcode.Pawfect.Harmony.controllers;
 import org.launchcode.Pawfect.Harmony.data.UserRepository;
 import org.launchcode.Pawfect.Harmony.models.User;
 import org.launchcode.Pawfect.Harmony.models.dto.LoginFormDTO;
-import org.launchcode.Pawfect.Harmony.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,45 +42,6 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @GetMapping("/register")
-    public String displayRegistrationForm(Model model) {
-        model.addAttribute(new RegisterFormDTO());
-        model.addAttribute("title", "Register");
-        return "register";
-    }
-
-    @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
-                                          Errors errors, HttpServletRequest request,
-                                          Model model) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Register");
-            return "register";
-        }
-
-        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
-
-        if (existingUser != null) {
-            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
-            model.addAttribute("title", "Register");
-            return "register";
-        }
-
-        String password = registerFormDTO.getPassword();
-        String verifyPassword = registerFormDTO.getVerifyPassword();
-        if (!password.equals(verifyPassword)) {
-            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-            model.addAttribute("title", "Register");
-            return "register";
-        }
-
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getEmail(), registerFormDTO.getPhone());
-        userRepository.save(newUser);
-        setUserInSession(request.getSession(), newUser);
-
-        return "search";
-    }
 
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
