@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Animal Profile Form</title>
+  <style>
+    form {
+      display: table;
+    }
+    div {
+      display: table-row;
+    }
+    label, input, select, textarea {
+      display: table-cell;
+      padding: 5px;
+    }
+    label {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<h1>Animal Profile Form</h1>
+
+<form method="post" style="max-width:600px;">
+  <!--  <div> <input type="hidden" th:field ="${user.id}"></div>-->
+  <div class="form-group">
+    <label th:for="name">Name:</label>
+    <input class="form-control" th:field="${animalProfile.name}" />
+    <span th:errors="${animalProfile.name}" class="error"></span>
+  </div>
+
+  <div class="form-group">
+    <label th:for="location">Location:</label>
+    <input class="form-control" th:field="${animalProfile.location}" />
+    <span th:errors="${animalProfile.location}" class="error"></span>
+  </div>
+
+  <div class="form-group">
+    <label th:for="species">Species:</label>
+    <select th:field="${animalProfile.species}">
+      <option th:value ="dog">Dog</option>
+      <option th:value ="cat">Cat</option>
+      <option th:value ="rabbit">Rabbit</option>
+      <option th:value ="bird">Bird</option>
+      <option th:value ="reptile">Reptile</option>
+      <option th:value ="other">Other</option>
+    </select>
+    <span th:errors="${animalProfile.species}" class="error"></span>
+  </div>
+
+  <div class="form-group">
+    <label th:for="breed">Breed:</label>
+    <input class="form-control" th:field="${animalProfile.breed}" />
+    <span th:errors="${animalProfile.breed}" class="error"></span>
+  </div>
+
+  <div class="form-group">
+    <label th:for="age">Age:</label>
+    <input class="form-control" th:field="${animalProfile.age}" />
+    <span th:errors="${animalProfile.age}" class="error"></span>
+  </div>
+
+  <div class="form-group">
+    <label th:for="comments">Comments:</label>
+    <input class="form-control" th:field="${animalProfile.comments}" />
+    <span th:errors="${animalProfile.comments}" class="error"></span>
+  </div>
+
+  <input type="submit" value="Submit" />
+</form>
+</body>
+</html>

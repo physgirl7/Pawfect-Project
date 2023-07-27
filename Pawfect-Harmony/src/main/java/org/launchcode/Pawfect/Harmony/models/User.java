@@ -1,16 +1,25 @@
 package org.launchcode.Pawfect.Harmony.models;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity{
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<AnimalProfile> animalProfile = new ArrayList<>();
+
 
     @NotBlank
     @Size(min=5, max=15)
