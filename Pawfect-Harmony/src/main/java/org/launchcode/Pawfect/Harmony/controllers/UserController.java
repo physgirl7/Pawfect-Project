@@ -30,24 +30,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("create")
-    public String displayCreateUserForm(Model model) {
-        model.addAttribute(new User());
-        return "user/create";
-    }
-
-    @PostMapping("create")
-    public String processCreateUserForm(@ModelAttribute @Valid User newUser,
-                                         Errors errors, Model model) {
-
-        if (errors.hasErrors()) {
-            return "user/create";
-        }
-        User saved = userRepository.save(newUser);
-
-        return "redirect:useraccount/" + saved.getId();
-    }
-
     @GetMapping("edit/{userId}")
     public String displayEditUserAccount(Model model, @PathVariable int userId){
         Optional optUser = userRepository.findById(userId);

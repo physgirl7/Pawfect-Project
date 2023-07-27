@@ -1,12 +1,26 @@
 package org.launchcode.Pawfect.Harmony.models;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity{
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<AnimalProfile> animalProfile = new ArrayList<>();
+
+
     @NotBlank
     @Size(min=5, max=15)
     private String username;
@@ -25,36 +39,31 @@ public class User extends AbstractEntity{
     @Size(min=10, max=10, message = "Phone number must have 10 digits.")
     private String phone;
 
-    @NotBlank
-    @Size(min=6)
-    private String password;
+    @NotNull
+    private String pwHash;
+
 
     public User(){
 
     }
 
-    public User(String username, String email, String phone, String password) {
+    public User(String username, String firstName, String lastName, String email, String phone, String password) {
         this();
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.password = password;
+        this.pwHash = encoder.encode(password);
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -81,12 +90,9 @@ public class User extends AbstractEntity{
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
     }
 }
 
