@@ -6755,3 +6755,32 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0px;
+  background-color:#3D85C6;
+  padding:10px;
+}
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0px;
+  background-color:#3D85C6;
+  padding:10px;
+}
+#margin-navbar {
+    margin-top: 100px;
+}
+
+#margin-footer {
+    margin-bottom: 100px;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
 <body class="container  body-content">
+
+<div th:replace="fragments:: navbar"></div>
+<div id="margin-navbar">
+
 <h1>Create User Account</h1>
 
 <form method="post" style="max-width:600px;">
@@ -56,5 +61,6 @@
     <input type="submit" class="btn btn-primary" value="Create Account" />
 </form>
 
+    <div th:replace="fragments:: footer"></div>
 </body>
 </html>
