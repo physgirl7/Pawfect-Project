@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container  body-content">
+<body class="container  body-content" id="page-container">
 
 <div th:replace="fragments:: navbar"></div>
 <div id="margin-navbar">
@@ -62,5 +62,6 @@
 </form>
 
     <div th:replace="fragments:: footer"></div>
+    <div id="margin-footer"></div>
 </body>
 </html>

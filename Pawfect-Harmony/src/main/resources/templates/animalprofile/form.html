@@ -19,7 +19,10 @@
     }
   </style>
 </head>
-<body>
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+<div id="margin-navbar">
+
 <h1>Animal Profile Form</h1>
 
 <form method="post" style="max-width:600px;">
@@ -69,5 +72,8 @@
 
   <input type="submit" value="Submit" />
 </form>
+
+<div id="margin-footer"></div>
+<div th:replace="fragments:: footer"></div>
 </body>
 </html>
