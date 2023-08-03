@@ -33,10 +33,6 @@ public class User extends AbstractEntity{
     @Size(min=10, max=10, message = "Phone number must have 10 digits.")
     private String phone;
 
-    @NotBlank
-    @Size(min=6, message = "password must be greater than six characters")
-    private String password;
-
     @NotNull
     private String pwHash;
 
@@ -59,7 +55,6 @@ public class User extends AbstractEntity{
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.password = password;
         this.pwHash=encoder.encode(password);
     }
 
@@ -101,14 +96,6 @@ public class User extends AbstractEntity{
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public boolean isMatchingPassword(String password) {

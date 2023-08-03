@@ -30,7 +30,7 @@ public class UserController {
             return "redirect:../";
         }
     }
-    
+
     @GetMapping("edit/{userId}")
     public String displayEditUserAccount(Model model, @PathVariable int userId) {
         Optional optUser = userRepository.findById(userId);
