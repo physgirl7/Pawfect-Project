@@ -1,6 +1,8 @@
 package org.launchcode.Pawfect.Harmony.controllers;
 
+import org.launchcode.Pawfect.Harmony.data.AnimalProfileRepository;
 import org.launchcode.Pawfect.Harmony.data.UserRepository;
+import org.launchcode.Pawfect.Harmony.models.AnimalProfile;
 import org.launchcode.Pawfect.Harmony.models.EditedUser;
 import org.launchcode.Pawfect.Harmony.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
 
     @GetMapping("useraccount/{userId}")
     public String displayUserAccountPage(Model model, @PathVariable int userId) {

@@ -44,11 +44,11 @@
     <label for="comments">Comments:</label>
     <textarea id="comments" th:field="*{comments}"></textarea>
   </div>
-  <input type="submit" value="Save Changes">
+  <input type="submit" class = "btn btn-primary" value="Save Changes">
 </form>
 
 <form action="#" th:action="@{/animalprofile/delete/{id}(id=${animalProfileId})}" method="post">
-  <input type="submit" value="Delete Animal Profile">
+  <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">
 </form>
 
 </body>
