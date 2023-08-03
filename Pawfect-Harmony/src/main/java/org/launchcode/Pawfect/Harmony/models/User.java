@@ -5,12 +5,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User extends AbstractEntity{
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @NotBlank
     @Size(min=5, max=15)
     private String username;
@@ -30,8 +34,11 @@ public class User extends AbstractEntity{
     private String phone;
 
     @NotBlank
-    @Size(min=6)
+    @Size(min=6, message = "password must be greater than six characters")
     private String password;
+
+    @NotNull
+    private String pwHash;
 
     @OneToMany
     @JoinColumn(name = "user_id")
@@ -53,6 +60,7 @@ public class User extends AbstractEntity{
         this.email = email;
         this.phone = phone;
         this.password = password;
+        this.pwHash=encoder.encode(password);
     }
 
     public String getUsername() {
@@ -101,6 +109,10 @@ public class User extends AbstractEntity{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
     }
 }
 

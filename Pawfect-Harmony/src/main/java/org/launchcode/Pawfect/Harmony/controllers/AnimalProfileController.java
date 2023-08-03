@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.launchcode.Pawfect.Harmony.data.AnimalProfileRepository;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +31,9 @@ public class AnimalProfileController {
 
     @Autowired
     private UserMeetPetRepository userMeetPetRepository;
+
+    @Autowired
+    private AuthenticationController authenticationController;
 
 
     @GetMapping("myanimals")
@@ -102,11 +107,17 @@ public class AnimalProfileController {
     }
 
     @GetMapping("animalfile/{animalProfileId}")
-    public String displayAnimalFilePage(Model model, @PathVariable int animalProfileId) {
+    public String displayAnimalFilePage(Model model, @PathVariable int animalProfileId, HttpServletRequest request) {
         Optional optAnimal = animalProfileRepository.findById(animalProfileId);
         if (optAnimal.isPresent()) {
             AnimalProfile animalProfile = (AnimalProfile) optAnimal.get();
             model.addAttribute("animalProfile", animalProfile);
+            HttpSession userSession = request.getSession();
+//            System.out.println(request.getCookies()[0].getValue());
+//            AuthenticationController userAuthentication = new AuthenticationController();
+            User user = authenticationController.getUserFromSession(userSession);
+            model.addAttribute("user", user);
+
             return "animalprofile/animalfile";
         } else {
             return "redirect:../";

@@ -43,9 +43,7 @@
     </tr>
 </table>
 
-<!--th:action="@{'/animalprofile/requestsent/' + ${user.id}}"-->
-
-    <form th:action="@{/animalprofile/requestsent}">
+    <form th:action="@{'/animalprofile/requestsent/' + ${animalProfile.id} +'/' + ${user.id}}">
         <input type="submit" class = "btn btn-primary" value="I Want to Meet/Adopt Them!" />
     </form>
 
