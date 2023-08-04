@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container body-content">
+<body class="container body-content" id="page-container">
+
+<div th:replace="fragments:: navbar"></div>
+<div id="margin-navbar">
 
 <form method="post">
   <div class="form-group">
@@ -22,5 +25,7 @@
 
 <p>Don't have an account? <a href="user/create">Register for one.</a></p>
 
+  <div id="margin-footer"></div>
+  <div th:replace="fragments:: footer"></div>
 </body>
 </html>

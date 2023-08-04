@@ -15,7 +15,10 @@
     }
   </style>
 </head>
-<body>
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+<div id="margin-navbar">
+
 <h1>My Animals</h1>
 <table>
   <tr>
@@ -38,5 +41,7 @@
   </tr>
 </table>
 
+<div id="margin-footer"></div>
+<div th:replace="fragments:: footer"></div>
 </body>
 </html>

@@ -4,7 +4,9 @@
     <meta charset="UTF-8"/>
     <title>Welcome to the Home Page</title>
 </head>
-<body>
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+<div id="margin-navbar">
 <h1 th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
 
 <table>
@@ -41,5 +43,7 @@
         <li>Pet Name</li>
     </ul>
 
+    <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
 </body>
 </html>
