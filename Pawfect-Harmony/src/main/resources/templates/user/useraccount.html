@@ -15,16 +15,16 @@
 <table class="table table-striped-columns" style="max-width:500px;">
     <tr>
         <th align = "left">First Name:</th>
-        <td th:text="${user.firstName}">Julie</td>
+        <td th:text="${user.firstName}">Bing</td>
     </tr>
     <tr>
         <th align = "left">Last Name:</th>
-        <td th:text="${user.lastName}">Pitney</td>
+        <td th:text="${user.lastName}">Carter</td>
     </tr>
 
     <tr>
         <th align = "left">Phone Number:</th>
-        <td th:text="${user.phone}">636-578-4025</td>
+        <td th:text="${user.phone}">555-867-5309</td>
     </tr>
 
     <tr>
@@ -42,15 +42,53 @@
 <h2 class="display-4">My Pets</h2>
 <br>
 <h3>Pets I Put Up For Adoption</h3>
+<div th:if="${!myAnimals.isEmpty()}">
+<table class="table table-striped-columns" style="max-width:500px;">
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Species</th>
+        <th>Breed</th>
+        <th>Age</th>
+        <th>Comments</th>
+        <th></th>
+    </tr>
+    <tr th:each="myAnimal : ${myAnimals}">
+        <td th:text="${myAnimal.name}"></td>
+        <td th:text="${myAnimal.location}"></td>
+        <td th:text="${myAnimal.species}"></td>
+        <td th:text="${myAnimal.breed}"></td>
+        <td th:text="${myAnimal.age}"></td>
+        <td th:text="${myAnimal.comments}"></td>
+    </tr>
+</table>
+</div>
     <a th:href="@{'/animalprofile/form/' + ${user.id}}">
     <button type="button" class = "btn btn-primary">Post a Pet</button>
     </a>
 <br>
 <br>
 <h3>Pets I Want to Meet or Adopt</h3>
-    <ul>
-        <li>Pet Name</li>
-    </ul>
-
+<div th:if="${!meetAnimals.isEmpty()}">
+<table class="table table-striped-columns" style="max-width:700px;">
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Species</th>
+        <th>Breed</th>
+        <th>Age</th>
+        <th>Comments</th>
+        <th></th>
+    </tr>
+    <tr th:each="meetAnimal : ${meetAnimals}">
+        <td th:text="${meetAnimal.name}"></td>
+        <td th:text="${meetAnimal.location}"></td>
+        <td th:text="${meetAnimal.species}"></td>
+        <td th:text="${meetAnimal.breed}"></td>
+        <td th:text="${meetAnimal.age}"></td>
+        <td th:text="${meetAnimal.comments}"></td>
+    </tr>
+</table>
+</div>
 </body>
 </html>
