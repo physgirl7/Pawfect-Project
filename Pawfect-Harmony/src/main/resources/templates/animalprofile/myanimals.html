@@ -16,11 +16,11 @@
 <!--  </style>-->
 <!--</head>-->
 <head th:replace="fragments :: head"></head>
-<body class="container body-content">
+<body class="container body-content" id="page-container">
 <div th:replace="fragments:: navbar"></div>
 <div id="margin-navbar">
 <h1>My Animals</h1>
-<table>
+<table class="table table-striped-columns" style="max-width:700px;">
   <tr>
     <th>Name</th>
     <th>Location</th>
