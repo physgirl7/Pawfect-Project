@@ -9,7 +9,8 @@
 <!--</head>-->
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
-
+<div th:replace="fragments:: navbar"></div>
+<div id="margin-navbar">
 <h1 class="display-3">Edit User Account</h1>
 
 
@@ -37,6 +38,7 @@
 
 <input type="submit" class = "btn btn-primary" value="Update Account" />
 </form>
-
+<div id="margin-footer"></div>
+<div th:replace="fragments:: footer"></div>
 </body>
 </html>

@@ -6,6 +6,8 @@
 <!--</head>-->
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
+<div th:replace="fragments:: navbar"></div>
+<div id="margin-navbar">
 <h1>Edit Animal Profile</h1>
 <form action="#" th:action="@{/animalprofile/edit/{id}(id=${animalProfileId})}" th:object="${animalProfile}" method="post">
   <input type="hidden" th:field="*{id}">
@@ -51,5 +53,7 @@
   <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">
 </form>
 
+<div id="margin-footer"></div>
+<div th:replace="fragments:: footer"></div>
 </body>
 </html>
