@@ -48,6 +48,7 @@ public class AnimalProfileController {
         return "animalprofile/myanimals";
     }
 
+
     @GetMapping("/form/{userId}")
     public String createAnimalForm(Model model, @PathVariable int userId) {
         Optional optUser = userRepository.findById(userId);
@@ -71,22 +72,27 @@ public class AnimalProfileController {
             animalProfile.setUser(user);
         }
         animalProfileRepository.save(animalProfile);
-        return "redirect:../myanimals";
+        return "redirect:/user/useraccount";
     }
 
-    @GetMapping("/edit/{animalProfileId}")
-    public String editAnimalProfile(Model model, @PathVariable int animalProfileId) {
+
+    @GetMapping("/edit/{animalProfileId}/{userId}")
+    public String editAnimalProfile(Model model, @PathVariable int animalProfileId, @PathVariable int userId) {
         Optional<AnimalProfile> result = animalProfileRepository.findById(animalProfileId);
         if (result.isPresent()) {
             AnimalProfile animalProfile = result.get();
             model.addAttribute("animalProfile", animalProfile);
             return "animalprofile/edit";
+        } Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
         }
-        return "animalprofile/myanimals";
+        return "user/useraccount";
     }
 
-    @PostMapping("/edit/{animalProfileId}")
-    public String processEditAnimalProfile(@PathVariable int animalProfileId, @ModelAttribute AnimalProfile animalProfile) {
+    @PostMapping("/edit/{animalProfileId}/{userId}")
+    public String processEditAnimalProfile(@PathVariable int animalProfileId, @PathVariable int userId, @ModelAttribute AnimalProfile animalProfile, Model model) {
         Optional<AnimalProfile> result = animalProfileRepository.findById(animalProfileId);
         if (result.isPresent()) {
             AnimalProfile existingAnimalProfile = result.get();
@@ -97,18 +103,26 @@ public class AnimalProfileController {
             existingAnimalProfile.setAge(animalProfile.getAge());
             existingAnimalProfile.setComments(animalProfile.getComments());
             animalProfileRepository.save(existingAnimalProfile);
+        }Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
         }
-        return "redirect:/animalprofile/myanimals";
+        return "redirect: user/useraccount";
     }
 
-    @PostMapping("/delete/{animalProfileId}")
-    public String processDeleteAnimalProfile(@PathVariable int animalProfileId) {
+    @PostMapping("/delete/{animalProfileId}/{userId}")
+    public String processDeleteAnimalProfile(@PathVariable int animalProfileId, @PathVariable int userId, Model model) {
         Optional<AnimalProfile> result = animalProfileRepository.findById(animalProfileId);
         if (result.isPresent()) {
             AnimalProfile animalProfile = result.get();
             animalProfileRepository.delete(animalProfile);
+        }Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
         }
-        return "redirect:/animalprofile/myanimals";
+        return "redirect: user/useraccount";
     }
 
     @GetMapping("animalfile/{animalProfileId}")

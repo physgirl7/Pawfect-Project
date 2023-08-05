@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<!--<head>-->
-<!--    <meta charset="UTF-8"/>-->
-<!--    <title>Welcome to the User Account Page</title>-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
-<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
-<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
-<!--</head>-->
+
 <head th:replace="fragments :: head"></head>
 <body class="container body-content" id="page-container">
 
@@ -36,7 +30,7 @@
     </tr>
 </table>
 
-<form th:action="@{'/user/edit/' + ${user.id}}">
+<form th:action="@{'/user/edit/' + ${user.id}}" method="post">
     <input type="submit" class = "btn btn-primary" value="Edit" />
 </form>
 
@@ -65,12 +59,15 @@
         <td th:text="${myAnimal.breed}"></td>
         <td th:text="${myAnimal.age}"></td>
         <td th:text="${myAnimal.comments}"></td>
+        <td><a th:href="@{/animalprofile/edit/{id}/{userId}(id=${myAnimal.id}, userId=${user.id})}">Edit</a></td>
+
     </tr>
 </table>
 </div>
     <a th:href="@{'/animalprofile/form/' + ${user.id}}">
     <button type="button" class = "btn btn-primary">Post a Pet</button>
     </a>
+
 <br>
 <br>
 <h3>Pets I Want to Meet or Adopt</h3>
