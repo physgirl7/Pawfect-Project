@@ -1,29 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 
-
-<head th:fragment="head">
+<head th:fragment="head" >
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link th:href="@{/styles.css}"/>
     <title>Pawfect Harmony</title>
 </head>
-
+<!--to add the navbar to a page, add
+<div id="margin-navbar">
+and
+<div th:replace="fragments:: navbar"></div>
+-->
 <body>
-<!--This is a Nav bar template-->
-<!--<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">-->
-<!--    <div class="container">-->
-<!--        <div class="navbar-header">-->
-<!--            <a th:href="@{/}" class="navbar-brand">TechJobs</a>-->
-<!--        </div>-->
-<!--        <div class="navbar-collapse collapse">-->
-<!--            <ul class="nav navbar-nav">-->
-<!--                <li><a th:href="@{/list}">List</a></li>-->
-<!--                <li><a th:href="@{/search}">Search</a></li>-->
-<!--                <li><a th:href="@{/add}">Add Jobs</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div th:fragment="navbar" class="">
+    <div class="container-fluid" >
+        <div class="navbar-functions" id="navbar">
+            <ul class="navbar-buttons" >
+                <a th:href="@{/}"  type="button" class="btn btn-info"  >Pawfect Harmony</a>
+                <a th:href="@{/user/create}" type="button" class="btn btn-info" >Create Account</a>
+                <a th:href="@{/search}" type="button" class="btn btn-info" >Search</a>
+                <a th:href="@{/}" type="button" class="btn btn-info" >Post a Pet</a>
+                <a th:href="@{/login}" type="button" class="btn btn-info" >Log in</a>
+
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<!--to add the footer to a page, add
+<div id="margin-footer"></div>
+and
+<div th:replace="fragments:: footer"></div>
+and
+id="page-container" to the opening body tag
+-->
+<body>
+<div th:fragment="footer" class="">
+    <div class="container-fluid">
+        <footer id="footer">
+            <div class="footer-functions" >
+                <ul class="footer-buttons" >
+                    <a th:href="@{/}" type="button" class="btn btn-info" >Contact Admin</a>
+                    <a th:href="@{/}" type="button" class="btn btn-info" >About Us</a>
+                    <a th:href="@{/}" type="button" class="btn btn-info" >Terms of Service</a>
+                    <a th:href="@{/}" type="button" class="btn btn-info" >Privacy Policy</a>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</div>
 
 </body>
 </html>

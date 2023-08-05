@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-  <meta charset="UTF-8">
-  <title>My Animals</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      text-align: left;
-      padding: 8px;
-      border: 1px solid black;
-    }
-  </style>
-</head>
-<body>
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>My Animals</title>-->
+<!--  <style>-->
+<!--    table {-->
+<!--      border-collapse: collapse;-->
+<!--      width: 100%;-->
+<!--    }-->
+<!--    th, td {-->
+<!--      text-align: left;-->
+<!--      padding: 8px;-->
+<!--      border: 1px solid black;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<head th:replace="fragments :: head"></head>
+<body class="container body-content" id="page-container">
+<div th:replace="fragments:: navbar"></div>
+<div id="margin-navbar">
 <h1>My Animals</h1>
-<table>
+<table class="table table-striped-columns" style="max-width:700px;">
   <tr>
     <th>Name</th>
     <th>Location</th>
@@ -38,5 +41,7 @@
   </tr>
 </table>
 
+<div id="margin-footer"></div>
+<div th:replace="fragments:: footer"></div>
 </body>
 </html>

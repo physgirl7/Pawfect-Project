@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
-<body>
-    <nav></nav>
+<head th:replace="fragments :: head"></head>
+<body id="page-container">
+    <div th:replace="fragments:: navbar"></div>
+    <div id="margin-navbar"></div>
     <div>
         <h1>Welcome to Pawfect Harmony</h1>
         <h2>Your pet adoption Partner</h2>
@@ -11,8 +11,8 @@
     <div>
         <a href="/login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Please Login to begin</a>
     </div>
-
-
+    <div id="margin-footer"></div>
+<div th:replace="fragments:: footer" ></div>
 
 </body>
 </html>
