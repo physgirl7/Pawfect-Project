@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface AnimalProfileRepository extends CrudRepository<AnimalProfile, Integer> {
     List<AnimalProfile> findAllByUser(User user);
+
+    List<AnimalProfile> searchProfiles(String query);
 }
