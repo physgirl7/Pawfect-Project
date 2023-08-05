@@ -26,10 +26,15 @@ public class AnimalProfileController {
     private UserRepository userRepository;
 
 
-    @GetMapping("myanimals")
-    public String displayAnimalProfile(Model model) {
+    @GetMapping("myanimals/{userId}")
+    public String displayAnimalProfile(Model model, @PathVariable int userId) {
         List<AnimalProfile> animalProfiles = (List<AnimalProfile>) animalProfileRepository.findAll();
         model.addAttribute("animalProfiles", animalProfiles);
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+        }
         return "animalprofile/myanimals";
     }
 
