@@ -29,7 +29,7 @@ public class SearchBarController {
         model.addAttribute("location", location);
         model.addAttribute("results", results);
 
-        return "searchresults";
+        return "redirect:/searchbar/results"; // Redirect to the results page
     }
 
     private String[] getDummySearchResults(String breed, String location) {
