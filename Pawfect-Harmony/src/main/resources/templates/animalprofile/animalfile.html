@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<!--<head>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <title>Welcome to the User Account Page</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
+<!--</head>-->
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<h1 class="display-3" th:text = "'About ' + ${animalProfile.name}">About This Animal!</h1>
+
+<br>
+<table class="table table-striped-columns" style="max-width:500px;">
+    <tr>
+        <th align = "left">Name:</th>
+        <td th:text="${animalProfile.name}">Cutie</td>
+    </tr>
+    <tr>
+        <th align = "left">Location:</th>
+        <td th:text="${animalProfile.location}">Animal Location</td>
+    </tr>
+
+    <tr>
+        <th align = "left">Species:</th>
+        <td th:text="${animalProfile.species}">Animal Species</td>
+    </tr>
+
+    <tr>
+        <th align="left">Breed:</th>
+        <td th:text="${animalProfile.breed}">Animal Breed</td>
+    </tr>
+
+    <tr>
+        <th align="left">Age:</th>
+        <td th:text="${animalProfile.age}">Age</td>
+    </tr>
+
+    <tr>
+        <th align="left">Comments:</th>
+        <td th:text="${animalProfile.comments}">Comments</td>
+    </tr>
+</table>
+
+    <form th:action="@{'/animalprofile/requestsent/' + ${animalProfile.id} +'/' + ${user.id}}">
+        <input type="submit" class = "btn btn-primary" value="I Want to Meet/Adopt Them!" />
+    </form>
+
+
+</body>
+</html>

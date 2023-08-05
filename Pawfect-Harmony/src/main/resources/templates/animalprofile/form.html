@@ -6,7 +6,7 @@
   </head>
 
 
-<body id="page-container">
+<body class="container body-content" id="page-container">
 <div th:replace="fragments:: navbar"></div>
 <div id="margin-navbar">
 
@@ -57,7 +57,7 @@
     <span th:errors="${animalProfile.comments}" class="error"></span>
   </div>
 
-  <input type="submit" value="Submit" />
+  <input type="submit" class = "btn btn-primary" value="Submit" />
 </form>
 
 <div id="margin-footer"></div>

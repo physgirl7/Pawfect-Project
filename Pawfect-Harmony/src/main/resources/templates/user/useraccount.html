@@ -4,12 +4,13 @@
     <meta charset="UTF-8"/>
     <title>Welcome to the Home Page</title>
 </head>
-<body id="page-container">
+<body class="container body-content id="page-container">
 <div th:replace="fragments:: navbar"></div>
 <div id="margin-navbar">
-<h1 th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
+<h1 class="display-3" th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
 
-<table>
+<br>
+<table class="table table-striped-columns" style="max-width:500px;">
     <tr>
         <th align = "left">First Name:</th>
         <td th:text="${user.firstName}">Julie</td>
@@ -31,13 +32,19 @@
 </table>
 
 <form th:action="@{'/user/edit/' + ${user.id}}">
-    <input type="submit" value="Edit" />
+    <input type="submit" class = "btn btn-primary" value="Edit" />
 </form>
 
+<br>
 
-<h2>My Pets</h2>
+<h2 class="display-4">My Pets</h2>
+<br>
 <h3>Pets I Put Up For Adoption</h3>
-    <button type="button">Post a Pet</button>
+    <a th:href="@{'/animalprofile/form/' + ${user.id}}">
+    <button type="button" class = "btn btn-primary">Post a Pet</button>
+    </a>
+<br>
+<br>
 <h3>Pets I Want to Meet or Adopt</h3>
     <ul>
         <li>Pet Name</li>
