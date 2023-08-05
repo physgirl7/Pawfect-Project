@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Welcome to the Edit Page</title>
-</head>
-<body id="page-container">
+<!--<head>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <title>Welcome to the Edit Page</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
+<!--</head>-->
+<head th:replace="fragments :: head"></head>
+<body class="container body-content" id="page-container">
+
 <div th:replace="fragments:: navbar"></div>
 <div id="margin-navbar">
-<h1>Hi There!</h1>
+<h1 class="display-3">Edit User Account</h1>
 
-<form>
-<table>
+
+<table class="table table-striped-columns" style="max-width:500px;">
+    <form method="post">
     <tr>
         <th align = "left">First Name:</th>
-        <td th:text="${user.firstName}">Julie</td>
+        <td><input th:field="${editeduser.firstName}"></td>
     </tr>
     <tr>
         <th align = "left">Last Name:</th>
-        <td th:text="${user.lastName}">Pitney</td>
+        <td><input th:field="${editeduser.lastName}"></td>
     </tr>
 
     <tr>
         <th align = "left">Phone Number:</th>
-        <td th:text="${user.phone}">636-578-4025</td>
+        <td><input th:field="${editeduser.phone}"></td>
     </tr>
 
     <tr>
         <th align="left">Email:</th>
-        <td th:text="${user.email}">myemail.com</td>
+        <td><input th:field="${editeduser.email}"></td>
     </tr>
 </table>
+
+<input type="submit" class = "btn btn-primary" value="Update Account" />
 </form>
 <div id="margin-footer"></div>
 <div th:replace="fragments:: footer"></div>

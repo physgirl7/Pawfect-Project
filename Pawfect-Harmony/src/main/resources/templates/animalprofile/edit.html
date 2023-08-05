@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title>Edit Animal Profile</title>
-</head>
-<body id="page-container">
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Edit Animal Profile</title>-->
+<!--</head>-->
+<head th:replace="fragments :: head"></head>
+<body class="container body-content" id="page-container">
 <div th:replace="fragments:: navbar"></div>
 <div id="margin-navbar">
-
 <h1>Edit Animal Profile</h1>
 <form action="#" th:action="@{/animalprofile/edit/{id}(id=${animalProfileId})}" th:object="${animalProfile}" method="post">
   <input type="hidden" th:field="*{id}">
@@ -46,11 +46,11 @@
     <label for="comments">Comments:</label>
     <textarea id="comments" th:field="*{comments}"></textarea>
   </div>
-  <input type="submit" value="Save Changes">
+  <input type="submit" class = "btn btn-primary" value="Save Changes">
 </form>
 
 <form action="#" th:action="@{/animalprofile/delete/{id}(id=${animalProfileId})}" method="post">
-  <input type="submit" value="Delete Animal Profile">
+  <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">
 </form>
 
 <div id="margin-footer"></div>
