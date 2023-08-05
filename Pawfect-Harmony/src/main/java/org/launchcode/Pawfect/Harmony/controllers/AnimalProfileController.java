@@ -118,8 +118,6 @@ public class AnimalProfileController {
             AnimalProfile animalProfile = (AnimalProfile) optAnimal.get();
             model.addAttribute("animalProfile", animalProfile);
             HttpSession userSession = request.getSession();
-//            System.out.println(request.getCookies()[0].getValue());
-//            AuthenticationController userAuthentication = new AuthenticationController();
             User user = authenticationController.getUserFromSession(userSession);
             model.addAttribute("user", user);
 
