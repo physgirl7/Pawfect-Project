@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+<div id="margin-navbar">
+
+  <h1>This is the contact admin page</h1>
+  <ul class="nav" style="float:right;">
+      <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
+  </ul>
+    <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
+</body>
+</html>
