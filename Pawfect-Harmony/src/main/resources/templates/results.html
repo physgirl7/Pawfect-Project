@@ -7,18 +7,25 @@
 <body>
 
 <h2>Search Results for: <span th:text="${query}"></span></h2>
-<ul>
-    <li th:each="profile : ${results}">
 
-        <p>Name: <span th:text="${animalprofile.name}"></span></p>
-        <p>Location: <span th:text="${animalprofile.location}"></span></p>
-        <p>Species: <span th:text="${animalprofile.species}"></span></p>
-        <p>Breed: <span th:text="${animalprofile.breed}"></span></p>
-        <p>Age: <span th:text="${animalprofile.age}"></span></p>
-    </li>
-</ul>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Species</th>
+        <th>Breed</th>
+        <th>Age</th>
+    </tr>
+    <tr th:each="animalProfile : ${results}">
+        <td><a th:href="@{'/animalprofile/animalfile/' + ${animalProfile.id}}" th:text="${animalProfile.name}"></a></td>
+        <td th:text="${animalProfile.location}"></td>
+        <td th:text="${animalProfile.species}"></td>
+        <td th:text="${animalProfile.breed}"></td>
+        <td th:text="${animalProfile.age}"></td>
+    </tr>
+</table>
+
 
 
 </body>
 </html>
-
