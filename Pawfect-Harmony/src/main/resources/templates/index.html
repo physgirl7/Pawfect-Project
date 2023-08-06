@@ -2,11 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body id="page-container">
+
     <div th:replace="fragments:: navbar"></div>
     <div id="margin-navbar"></div>
     <div>
-        <h1>Welcome to Pawfect Harmony</h1>
-        <h2>Your pet adoption Partner</h2>
+        <div class="justify-content-center">
+            <h1>Welcome to Pawfect Harmony</h1>
+            <p>Your pet adoption Partner</p>
+        </div>
+        <h4>
+            Pawfect Harmony Adoptions is an integrated, user-friendly platform for pet owners and shelters to place pets for adoption.
+            This peer-to-peer environment includes the ability to search a database and optimally match pets with loving homes.
+        </h4>
     </div>
     <div>
         <a href="/login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Please Login to begin</a>
