@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link href="/homeStyles.css" rel="stylesheet" />
+    <link th:href="@{/homeStyles.css}" rel="stylesheet" />
     <title>Pawfect Harmony</title>
 </head>
 <body id="page-container">
@@ -10,22 +10,24 @@
     <div th:replace="fragments:: navbar"></div>
     <div id="margin-navbar"></div>
     <div>
-        <div>
+        <div class="welcome">
             <h1>Welcome to Pawfect Harmony</h1>
+        </div>
+        <div class="welcome">
             <p>Your pet adoption Partner</p>
         </div>
-        <div>
+        <div id="blurb">
             <h4>
-                Pawfect Harmony Adoptions is an integrated, user-friendly platform for pet owners and shelters to place pets for adoption.<br>
+                Pawfect Harmony Adoptions is an integrated, user-friendly platform for pet owners and shelters to place pets for adoption.
+                <br>
                 This peer-to-peer environment includes the ability to search a database and optimally match pets with loving homes.
             </h4>
         </div>
-        <div class="container">
+        <div class="imgContainer">
             <img class="homePageImg" src="/PawfectProjectPhotos/Micro.jpg" width="20%" height="20%"/>
             <img class="homePageImg" src="/PawfectProjectPhotos/Stephen's Doggo1.png" width="20%" height="20%">
             <img class="homePageImg" src="/PawfectProjectPhotos/Stephen's Doggo2.png" width="20%" height="20%">
             <img class="homePageImg" src="/PawfectProjectPhotos/Molly.jpg" width="20%" height="20%">
-        </div>
         </div>
     </div>
     <div>
