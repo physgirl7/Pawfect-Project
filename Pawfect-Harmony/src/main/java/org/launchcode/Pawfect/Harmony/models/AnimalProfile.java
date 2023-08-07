@@ -13,32 +13,37 @@ public class AnimalProfile extends AbstractEntity {
     @ManyToOne
     private User user;
 
+    @NotBlank
     private String photo;
-
+    @NotBlank
     private String name;
-
+    @NotBlank
     private String location;
 
-
+    @NotBlank
     private String species;
 
-
+    @NotBlank
     private String breed;
 
+    @NotBlank
+    private String gender;
 
+    @NotBlank
     private int age;
 
-
+    @Size(min=5, max= 100)
     private String comments;
 
 
     //constructor
-    public AnimalProfile(String photo, String name, String location, String species, String breed, int age, String comments) {
+    public AnimalProfile(String photo, String name, String location, String species, String breed, String gender, int age, String comments) {
         this.photo = photo;
         this.name = name;
         this.location = location;
         this.species = species;
         this.breed = breed;
+        this.gender = gender;
         this.age = age;
         this.comments = comments;
     }
@@ -88,6 +93,14 @@ public class AnimalProfile extends AbstractEntity {
 
     public void setBreed(String breed) {
         this.breed = breed;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getAge() {

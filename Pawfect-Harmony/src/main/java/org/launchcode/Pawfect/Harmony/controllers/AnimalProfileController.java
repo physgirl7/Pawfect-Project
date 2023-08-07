@@ -97,9 +97,11 @@ public class AnimalProfileController {
         if (result.isPresent()) {
             AnimalProfile existingAnimalProfile = result.get();
             existingAnimalProfile.setName(animalProfile.getName());
+            existingAnimalProfile.setPhoto(animalProfile.getPhoto());
             existingAnimalProfile.setLocation(animalProfile.getLocation());
             existingAnimalProfile.setSpecies(animalProfile.getSpecies());
             existingAnimalProfile.setBreed(animalProfile.getBreed());
+            existingAnimalProfile.setGender(animalProfile.getGender());
             existingAnimalProfile.setAge(animalProfile.getAge());
             existingAnimalProfile.setComments(animalProfile.getComments());
             animalProfileRepository.save(existingAnimalProfile);
