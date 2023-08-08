@@ -2,6 +2,7 @@ package org.launchcode.Pawfect.Harmony.controllers;
 
 
 import org.launchcode.Pawfect.Harmony.data.UserRepository;
+import org.launchcode.Pawfect.Harmony.models.SearchBar;
 import org.launchcode.Pawfect.Harmony.models.User;
 import org.launchcode.Pawfect.Harmony.models.dto.CreateUserFormDTO;
 import org.launchcode.Pawfect.Harmony.models.dto.LoginFormDTO;
@@ -76,6 +77,7 @@ public class AuthenticationController {
                                     createUserFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
+        model.addAttribute("searchBar", new SearchBar("", ""));
 
         return "search";
     }
@@ -113,6 +115,7 @@ public class AuthenticationController {
         }
 
         setUserInSession(request.getSession(), theUser);
+        model.addAttribute("searchBar", new SearchBar("", ""));
 
         return "search";
     }

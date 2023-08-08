@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +26,9 @@ public class SearchBarController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AuthenticationController authenticationController;
+
     @GetMapping("")
     public String showSearchPage(Model model) {
         model.addAttribute("searchBar", new SearchBar("", ""));
@@ -31,13 +36,16 @@ public class SearchBarController {
     }
 
     @PostMapping("/results")
-    public String performSearch(@ModelAttribute("searchBar") SearchBar searchBar, Model model) {
+    public String performSearch(@ModelAttribute("searchBar") SearchBar searchBar, Model model, HttpServletRequest request) {
         String query = searchBar.getTitle();
 
         List<AnimalProfile> searchResults = searchProfiles(query);
+        HttpSession userSession = request.getSession();
+        User user = authenticationController.getUserFromSession(userSession);
 
         model.addAttribute("query", query);
         model.addAttribute("results", searchResults);
+        model.addAttribute("user", user);
 
         return "results";
     }
@@ -48,15 +56,16 @@ public class SearchBarController {
         return searchResults;
     }
 
-    @GetMapping("animalprofile/animalfile/{animalProfileId}")
-    public String showAnimalProfile(@PathVariable int animalProfileId, Model model) {
-        Optional<AnimalProfile> animalProfile = animalProfileRepository.findById(animalProfileId);
-        if (animalProfile.isPresent()) {
-            User user = userRepository.findByUsername();
-            model.addAttribute("animalProfile", animalProfile.get());
-            model.addAttribute("user", user);
-            return "animalprofile/animalfile";
-        } else {
-            return "search";
-        }
-    }
+//    @GetMapping("animalprofile/animalfile/{animalProfileId}")
+//    public String showAnimalProfile(@PathVariable int animalProfileId, Model model) {
+//        Optional<AnimalProfile> animalProfile = animalProfileRepository.findById(animalProfileId);
+//        if (animalProfile.isPresent()) {
+//            User user = userRepository.findByUsername();
+//            model.addAttribute("animalProfile", animalProfile.get());
+//            model.addAttribute("user", user);
+//            return "animalprofile/animalfile";
+//        } else {
+//            return "search";
+//        }
+//    }
+}

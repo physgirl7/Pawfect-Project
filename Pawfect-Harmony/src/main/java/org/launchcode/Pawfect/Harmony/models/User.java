@@ -33,7 +33,7 @@ public class User extends AbstractEntity{
     @Size(min=10, max=10, message = "Phone number must have 10 digits.")
     private String phone;
 
-//    @NotNull
+    @NotNull
     private String pwHash;
 
     @OneToMany
