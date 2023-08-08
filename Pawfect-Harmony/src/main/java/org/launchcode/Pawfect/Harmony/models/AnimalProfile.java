@@ -13,7 +13,6 @@ public class AnimalProfile extends AbstractEntity {
     @ManyToOne
     private User user;
 
-    @NotBlank
     private String photo;
     @NotBlank
     private String name;
@@ -23,13 +22,12 @@ public class AnimalProfile extends AbstractEntity {
     @NotBlank
     private String species;
 
-    @NotBlank
+
     private String breed;
 
     @NotBlank
     private String gender;
 
-    @NotBlank
     private int age;
 
     @Size(min=5, max= 100)

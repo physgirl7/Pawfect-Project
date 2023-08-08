@@ -64,7 +64,7 @@ public class AnimalProfileController {
     @PostMapping("/form/{userId}")
     public String processAnimalForm(@ModelAttribute @Valid AnimalProfile animalProfile, Errors errors, Model model, @PathVariable int userId) {
         if (errors.hasErrors()) {
-            return "/form";
+            return "/form" + userId;
         }
         Optional<User> result = userRepository.findById(userId);
         if(result.isPresent()) {
@@ -72,7 +72,7 @@ public class AnimalProfileController {
             animalProfile.setUser(user);
         }
         animalProfileRepository.save(animalProfile);
-        return "redirect:/user/useraccount";
+        return "redirect:/user/useraccount/" + userId;
     }
 
 
@@ -82,11 +82,12 @@ public class AnimalProfileController {
         if (result.isPresent()) {
             AnimalProfile animalProfile = result.get();
             model.addAttribute("animalProfile", animalProfile);
-            return "animalprofile/edit";
-        } Optional optUser = userRepository.findById(userId);
-        if (optUser.isPresent()) {
-            User user = (User) optUser.get();
-            model.addAttribute("user", user);
+
+            Optional optUser = userRepository.findById(userId);
+            if (optUser.isPresent()) {
+                User user = (User) optUser.get();
+                model.addAttribute("user", user);
+            } return "animalprofile/edit";
         }
         return "user/useraccount";
     }
@@ -160,5 +161,5 @@ public class AnimalProfileController {
         } else {
             return "redirect:../";
         }
-        }
+    }
 }
