@@ -56,16 +56,5 @@ public class SearchBarController {
         return searchResults;
     }
 
-//    @GetMapping("animalprofile/animalfile/{animalProfileId}")
-//    public String showAnimalProfile(@PathVariable int animalProfileId, Model model) {
-//        Optional<AnimalProfile> animalProfile = animalProfileRepository.findById(animalProfileId);
-//        if (animalProfile.isPresent()) {
-//            User user = userRepository.findByUsername();
-//            model.addAttribute("animalProfile", animalProfile.get());
-//            model.addAttribute("user", user);
-//            return "animalprofile/animalfile";
-//        } else {
-//            return "search";
-//        }
-//    }
+
 }
