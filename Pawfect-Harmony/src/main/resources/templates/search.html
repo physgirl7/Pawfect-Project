@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <title>Animal Search</title>
 </head>
-<body>
+<body id="page-container">
+    <div id="margin-navbar">
+    <div th:replace="fragments:: navbar"></div>
+
 <h1>Search for Animals</h1>
 <form action="/search/results" method="post" th:object="${searchBar}">
     <label for="query">Search by Name, Location, Species, Breed, or Age:</label>
     <input type="text" id="query" name="title" placeholder="Enter search query" th:field="*{title}">
     <button type="submit">Search</button>
 </form>
+
+        <div id="margin-footer"></div>
+        <div th:replace="fragments:: footer"></div>
 </body>
 </html>
