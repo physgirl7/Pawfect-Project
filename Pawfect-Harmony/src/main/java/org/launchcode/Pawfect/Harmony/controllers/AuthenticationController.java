@@ -69,12 +69,12 @@ public class AuthenticationController {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
             return "user/create";
         }
-            User newUser = new User(createUserFormDTO.getUsername(),
-                                    createUserFormDTO.getFirstName(),
-                                    createUserFormDTO.getLastName(),
-                                    createUserFormDTO.getEmail(),
-                                    createUserFormDTO.getPhone(),
-                                    createUserFormDTO.getPassword());
+        User newUser = new User(createUserFormDTO.getUsername(),
+                createUserFormDTO.getFirstName(),
+                createUserFormDTO.getLastName(),
+                createUserFormDTO.getEmail(),
+                createUserFormDTO.getPhone(),
+                createUserFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
         model.addAttribute("searchBar", new SearchBar("", ""));
