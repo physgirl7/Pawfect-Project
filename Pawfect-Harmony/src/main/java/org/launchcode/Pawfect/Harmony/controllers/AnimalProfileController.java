@@ -111,7 +111,7 @@ public class AnimalProfileController {
             User user = (User) optUser.get();
             model.addAttribute("user", user);
         }
-        return "redirect: user/useraccount";
+        return "redirect:../../../user/useraccount/" + userId;
     }
 
     @PostMapping("/delete/{animalProfileId}/{userId}")
@@ -125,7 +125,7 @@ public class AnimalProfileController {
             User user = (User) optUser.get();
             model.addAttribute("user", user);
         }
-        return "redirect: user/useraccount";
+        return "redirect:../../../user/useraccount/" + userId;
     }
 
     @GetMapping("animalfile/{animalProfileId}")

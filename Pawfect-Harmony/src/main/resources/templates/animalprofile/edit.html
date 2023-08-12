@@ -6,7 +6,7 @@
 <div th:replace="fragments:: navbar"></div>
 <div id="margin-navbar">
 <h1>Edit Animal Profile</h1>
-<form action="#" th:action="@{/animalprofile/edit/{id}(id=${animalProfileId}, userId=${user.id})}" th:object="${animalProfile}" method="post">
+  <form th:object="${animalProfile}" method="post">
   <input type="hidden" th:field="*{id}">
   <div>
     <label th:for="name">Name:</label>
@@ -116,7 +116,7 @@
   <input type="submit" class = "btn btn-primary" value="Save Changes">
 </form>
 
-<form action="#" th:action="@{/animalprofile/delete/{id}(id=${animalProfileId})}" method="post">
+<form action="#" th:action="@{/animalprofile/delete/{id1}/{id2}(id1=${animalProfileId}, id2=${userId})}" method="post">
   <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">
 </form>
 
