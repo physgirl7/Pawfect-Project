@@ -64,7 +64,7 @@ public class AnimalProfileController {
     @PostMapping("/form/{userId}")
     public String processAnimalForm(@ModelAttribute @Valid AnimalProfile animalProfile, Errors errors, Model model, @PathVariable int userId) {
         if (errors.hasErrors()) {
-            return "/form" + userId;
+            return "redirect:./"+ userId;
         }
         Optional<User> result = userRepository.findById(userId);
         if(result.isPresent()) {
@@ -74,7 +74,6 @@ public class AnimalProfileController {
         animalProfileRepository.save(animalProfile);
         return "redirect:/user/useraccount/" + userId;
     }
-
 
     @GetMapping("/edit/{animalProfileId}/{userId}")
     public String editAnimalProfile(Model model, @PathVariable int animalProfileId, @PathVariable int userId) {
@@ -162,4 +161,5 @@ public class AnimalProfileController {
             return "redirect:../";
         }
     }
-}
+
+    }

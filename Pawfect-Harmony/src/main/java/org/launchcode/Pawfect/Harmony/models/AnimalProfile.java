@@ -3,7 +3,6 @@ package org.launchcode.Pawfect.Harmony.models;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
 public class AnimalProfile extends AbstractEntity {
@@ -30,7 +29,6 @@ public class AnimalProfile extends AbstractEntity {
 
     private int age;
 
-    @Size(min=5, max= 100)
     private String comments;
 
 

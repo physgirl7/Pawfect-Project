@@ -7,7 +7,7 @@
 <div id="margin-navbar">
   <h1>Animal Profile Form</h1>
 
-  <form th:action="@{/user/useraccount/{userId}(userId=${user.id})}" method="post" style="max-width:600px;">
+  <form method="post" style="max-width:600px;">
 
     <div class="form-group">
       <label th:for="name">Name:</label>
@@ -84,12 +84,12 @@
     <div class="form-group">
       <label th:for="species">Species:</label>
       <select class="form-control" th:field="${animalProfile.species}">
-        <option th:value ="dog">Dog</option>
-        <option th:value ="cat">Cat</option>
-        <option th:value ="rabbit">Rabbit</option>
-        <option th:value ="bird">Bird</option>
-        <option th:value ="reptile">Reptile</option>
-        <option th:value ="other">Other</option>
+        <option th:value ="Dog">Dog</option>
+        <option th:value ="Cat">Cat</option>
+        <option th:value ="Rabbit">Rabbit</option>
+        <option th:value ="Bird">Bird</option>
+        <option th:value ="Reptile">Reptile</option>
+        <option th:value ="Other">Other</option>
       </select>
       <span th:errors="${animalProfile.species}" class="error"></span>
     </div>
@@ -106,7 +106,7 @@
 
     <div class="form-group">
       <label th:for="breed">Breed:</label>
-      <input class="form-control" th:value="${animalProfile.breed} ?: 'Unknown'" />
+      <input class="form-control"  th:field="${animalProfile.breed}"/>
       <span th:errors="${animalProfile.breed}" class="error"></span>
     </div>
 
