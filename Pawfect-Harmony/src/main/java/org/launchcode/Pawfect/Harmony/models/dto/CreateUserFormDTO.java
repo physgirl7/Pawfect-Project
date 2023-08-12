@@ -1,11 +1,21 @@
 package org.launchcode.Pawfect.Harmony.models.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class CreateUserFormDTO extends LoginFormDTO{
 // public User(String username, String firstName, String lastName, String email, String phone, String password) {
-        private String firstName;
-        private String lastName;
-        private String email;
-        private String phone;
+    @NotBlank
+    @Size(max= 25)
+    private String firstName;
+    @NotBlank
+    @Size(max = 25)
+    private String lastName;
+    @Email(message = "Must enter a valid email")
+    private String email;
+    @Size(min=10, max=10, message = "Phone number must have 10 digits. No dashes and no spaces.")
+    private String phone;
         private String verifyPassword;
 
         public String getVerifyPassword() {
