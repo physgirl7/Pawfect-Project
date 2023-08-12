@@ -9,7 +9,7 @@
     <div th:replace="fragments:: navbar"></div>
 
 <h1>Search for Animals</h1>
-<form action="/search/results" method="post" th:object="${searchBar}">
+<form action="/search/results" method="post" th:object="${searchBar}" id="searchForm">
     <label for="query">Search by Name, Location, Species, Breed, or Age:</label>
     <input type="text" id="query" name="title" placeholder="Enter search query" th:field="*{title}">
     <button type="submit">Search</button>
