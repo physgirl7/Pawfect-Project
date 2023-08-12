@@ -1602,9 +1602,13 @@ pre code {
     width: 1170px;
   }
 }
+
+/*REMOVED PADDING*/
 .container-fluid {
-  padding-right: 15px;
-  padding-left: 15px;
+     /*
+     padding-right: 15px;
+     padding-left: 15px;
+     */
   margin-right: auto;
   margin-left: auto;
 }
@@ -6755,9 +6759,14 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+/*
+//All styles below this line are custom
+//All styles below this line are custom
+//All styles below this line are custom
+*/
 
 #navbar {
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
   left: 0px;
@@ -6765,7 +6774,7 @@ button.close {
   padding:10px;
 }
 #footer {
-  position: relative;
+  position: sticky;
   bottom: 0;
   width: 100%;
   left: 0px;
@@ -6784,3 +6793,9 @@ button.close {
   position: relative;
   min-height: 100vh;
 }
+
+.navbar-buttons {
+    display: inline-block !important;
+
+}
+
