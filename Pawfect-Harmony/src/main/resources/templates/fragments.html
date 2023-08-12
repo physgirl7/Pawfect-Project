@@ -15,14 +15,19 @@ and
 <div th:fragment="navbar" class="">
     <div class="container-fluid" >
         <div class="navbar-functions" id="navbar">
+            <ul class="navbar-buttons">
+                <div>
+                    <a th:href="@{/}" ><img src="/PawfectProjectPhotos/pawfectLogo.jpg/" height="50px" width ="50px"></a>
+                    <h1>Pawfect Harmony Adoptions</h1>
+                </div>
+            </ul>
             <ul class="navbar-buttons" >
-                <a th:href="@{/}"  type="button" class="btn btn-info"  >Pawfect Harmony</a>
+                <a th:href="@{/}" type="button" class="btn btn-info">Home</a>
                 <a th:href="@{/user/create}" type="button" class="btn btn-info" >Create Account</a>
                 <a th:href="@{/search}" type="button" class="btn btn-info" >Search</a>
                 <a th:href="@{/}" type="button" class="btn btn-info" >My Account</a>
                 <a th:href="@{/}" type="button" class="btn btn-info" >Post a Pet</a>
                 <a th:href="@{/login}" type="button" class="btn btn-info" >Log in</a>
-
             </ul>
         </div>
     </div>

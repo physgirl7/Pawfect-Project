@@ -9,6 +9,10 @@ body
   margin-right: 0px;
 }
 
-.centering {
+form {
+    margin-left: 80px;
+}
 
+*{
+    background-color: red;
 }

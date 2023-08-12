@@ -6765,7 +6765,7 @@ button.close {
   padding:10px;
 }
 #footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   left: 0px;
