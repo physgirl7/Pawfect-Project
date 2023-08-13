@@ -3007,10 +3007,9 @@ select[multiple].input-lg {
 .btn {
   display: inline-block;
   padding: 6px 12px;
-  margin-bottom: 0;
+  margin: 3px;
   font-size: 14px;
   font-weight: normal;
-  line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -6772,7 +6771,15 @@ button.close {
   left: 0px;
   background-color:#3D85C6;
   padding:10px;
+  color: black;
 }
+
+
+
+
+
+
+
 #footer {
   position: absolute;
   bottom: 0;
@@ -6794,7 +6801,11 @@ button.close {
   min-height: 100vh;
 }
 
-.navbar-buttons {
-    display: inline-block !important;
+.upperLevelNav {
+    display: flex;
+    flex-direction: row;
+}
 
+.sendRight{
+    float: right;
 }

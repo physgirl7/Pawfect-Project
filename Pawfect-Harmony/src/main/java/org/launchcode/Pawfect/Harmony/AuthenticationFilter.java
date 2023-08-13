@@ -3,7 +3,9 @@ package org.launchcode.Pawfect.Harmony;
 import org.launchcode.Pawfect.Harmony.controllers.AuthenticationController;
 import org.launchcode.Pawfect.Harmony.data.UserRepository;
 import org.launchcode.Pawfect.Harmony.models.User;
+import org.launchcode.Pawfect.Harmony.models.dto.LoginFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,17 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
     @Autowired
     AuthenticationController authenticationController;
 
-    private static final List<String> whitelist = Arrays.asList("/login", "/register", "/search", "/home", "/logout", "/css");
+    private static final List<String> whitelist = Arrays.asList(
+            "",
+            "/index",
+            "/login",
+            "/register",
+            "/search",
+            "/logout",
+            "/css",
+            "/PawfectProjectPhotos",
+            "/footerPages"
+            );
 
     private static boolean isWhitelisted(String path) {
         for (String pathRoot : whitelist) {
