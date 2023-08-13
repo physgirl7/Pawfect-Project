@@ -1,26 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<!--<head>-->
-<!--  <meta charset="UTF-8">-->
-<!--  <title>My Animals</title>-->
-<!--  <style>-->
-<!--    table {-->
-<!--      border-collapse: collapse;-->
-<!--      width: 100%;-->
-<!--    }-->
-<!--    th, td {-->
-<!--      text-align: left;-->
-<!--      padding: 8px;-->
-<!--      border: 1px solid black;-->
-<!--    }-->
-<!--  </style>-->
-<!--</head>-->
+
 <head th:replace="fragments :: head"></head>
 <body class="container body-content" id="page-container">
 <div th:replace="fragments:: navbar"></div>
-<div id="margin-navbar">
-<h1>My Animals</h1>
-<table class="table table-striped-columns" style="max-width:700px;">
+  <h1>My Animals</h1>
+  <table class="table table-striped-columns" style="max-width:700px;">
   <tr>
     <th>Name</th>
     <th>Location</th>
@@ -37,11 +22,9 @@
     <td th:text="${animalProfile.breed}"></td>
     <td th:text="${animalProfile.age}"></td>
     <td th:text="${animalProfile.comments}"></td>
-    <td><a th:href="@{/animalprofile/edit/{id}(id=${animalProfile.id})}">Edit</a></td>
+    <td><a th:href="@{/animalprofile/edit/{id}/{userId}(id=${animalProfile.id}, userId=${user.id})}">Edit</a></td>
   </tr>
 </table>
-
-
 </body>
 <footer>
   <div id="margin-footer"></div>

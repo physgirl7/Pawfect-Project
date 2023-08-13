@@ -15,10 +15,17 @@
 
 <br>
 <table class="table table-striped-columns" style="max-width:500px;">
+
+    <tr>
+        <th align = "left">Photo:</th>
+        <td th:text="${animalProfile.photo}">Animal Photo</td>
+    </tr>
+
     <tr>
         <th align = "left">Name:</th>
         <td th:text="${animalProfile.name}">Cutie</td>
     </tr>
+
     <tr>
         <th align = "left">Location:</th>
         <td th:text="${animalProfile.location}">Animal Location</td>
@@ -37,6 +44,11 @@
     <tr>
         <th align="left">Age:</th>
         <td th:text="${animalProfile.age}">Age</td>
+    </tr>
+
+    <tr>
+        <th align = "left">Gender:</th>
+        <td th:text="${animalProfile.gender}">Gender</td>
     </tr>
 
     <tr>

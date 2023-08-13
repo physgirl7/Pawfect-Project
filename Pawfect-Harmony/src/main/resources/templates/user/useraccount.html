@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<!--<head>-->
-<!--    <meta charset="UTF-8"/>-->
-<!--    <title>Welcome to the User Account Page</title>-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
-<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
-<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
-<!--</head>-->
+
 <head th:replace="fragments :: head"></head>
 <body class="container body-content" id="page-container">
-    <div th:replace="fragments:: navbar"></div>
-        <h1 class="display-3" th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
+
+<div th:replace="fragments:: navbar"></div>
+
+    <h1 class="display-3" th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
 
     <br>
     <table class="table table-striped-columns" style="max-width:500px;">
@@ -33,68 +29,75 @@
             <td th:text="${user.email}">myemail.com</td>
         </tr>
     </table>
-    </div>
-    <form th:action="@{'/user/edit/' + ${user.id}}">
+
+    <form th:action="@{'/user/edit/' + ${user.id}}" method="post">
         <input type="submit" class = "btn btn-primary" value="Edit" />
     </form>
 
     <br>
+
     <div>
         <h2 class="display-4">My Pets</h2>
-    <br>
+        <br>
         <h3>Pets I Put Up For Adoption</h3>
     </div>
     <div th:if="${!myAnimals.isEmpty()}">
         <table class="table table-striped-columns" style="max-width:500px;">
-        <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Species</th>
-            <th>Breed</th>
-            <th>Age</th>
-            <th>Comments</th>
-        <th></th>
-        </tr>
-        <tr th:each="myAnimal : ${myAnimals}">
-            <td th:text="${myAnimal.name}"></td>
-            <td th:text="${myAnimal.location}"></td>
-            <td th:text="${myAnimal.species}"></td>
-            <td th:text="${myAnimal.breed}"></td>
-            <td th:text="${myAnimal.age}"></td>
-            <td th:text="${myAnimal.comments}"></td>
-        </tr>
-    </table>
+            <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Age</th>
+                <th>Comments</th>
+                <th></th>
+            </tr>
+            <tr th:each="myAnimal : ${myAnimals}">
+                <td><img th:src="@{/animalProfile/{id}/photo(id=${myAnimal.id})}" style="width:50px;height:50px;"></td>
+                <td th:text="${myAnimal.name}"></td>
+                <td th:text="${myAnimal.location}"></td>
+                <td th:text="${myAnimal.species}"></td>
+                <td th:text="${myAnimal.breed}"></td>
+                <td th:text="${myAnimal.age}"></td>
+                <td th:text="${myAnimal.comments}"></td>
+                <td><a th:href="@{/animalprofile/edit/{id}/{userId}(id=${myAnimal.id}, userId=${user.id})}">Edit</a></td>
+
+            </tr>
+        </table>
     </div>
-        <a th:href="@{'/animalprofile/form/' + ${user.id}}">
+    <a th:href="@{'/animalprofile/form/' + ${user.id}}">
         <button type="button" class = "btn btn-primary">Post a Pet</button>
-        </a>
+    </a>
+
     <br>
     <br>
     <h3>Pets I Want to Meet or Adopt</h3>
     <div th:if="${!meetAnimals.isEmpty()}">
         <table class="table table-striped-columns" style="max-width:700px;">
-        <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Species</th>
-            <th>Breed</th>
-            <th>Age</th>
-            <th>Comments</th>
-            <th></th>
-        </tr>
-        <tr th:each="meetAnimal : ${meetAnimals}">
-            <td th:text="${meetAnimal.name}"></td>
-            <td th:text="${meetAnimal.location}"></td>
-            <td th:text="${meetAnimal.species}"></td>
-            <td th:text="${meetAnimal.breed}"></td>
-            <td th:text="${meetAnimal.age}"></td>
-            <td th:text="${meetAnimal.comments}"></td>
-        </tr>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Age</th>
+                <th>Comments</th>
+                <th></th>
+            </tr>
+            <tr th:each="meetAnimal : ${meetAnimals}">
+                <td th:text="${meetAnimal.name}"></td>
+                <td th:text="${meetAnimal.location}"></td>
+                <td th:text="${meetAnimal.species}"></td>
+                <td th:text="${meetAnimal.breed}"></td>
+                <td th:text="${meetAnimal.age}"></td>
+                <td th:text="${meetAnimal.comments}"></td>
+            </tr>
         </table>
     </div>
+
 </body>
 <footer>
-    <div id="margin-footer"></div>
     <div th:replace="fragments:: footer"></div>
+    <div id="margin-footer"></div>
 </footer>
 </html>
