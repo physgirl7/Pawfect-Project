@@ -4,13 +4,17 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+*{
+    font-family: 'Poppins', sans-serif !important;
+}
 html {
-  font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
 body {
   margin: 0;
+  background-color: rgb(235, 161, 52) !important;
+  color: white !important;
 }
 article,
 aside,
@@ -1183,7 +1187,6 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -1531,7 +1534,6 @@ code,
 kbd,
 pre,
 samp {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 code {
   padding: 2px 4px;
@@ -3007,7 +3009,8 @@ select[multiple].input-lg {
 .btn {
   display: inline-block;
   padding: 6px 12px;
-  margin: 3px;
+  margin: 10px 5px;
+  height: 36px;
   font-size: 14px;
   font-weight: normal;
   text-align: center;
@@ -5993,7 +5996,6 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: normal;
@@ -6112,7 +6114,6 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: normal;
@@ -6381,7 +6382,6 @@ button.close {
 .carousel-control .icon-next {
   width: 20px;
   height: 20px;
-  font-family: serif;
   line-height: 1;
 }
 .carousel-control .icon-prev:before {
@@ -6765,28 +6765,35 @@ button.close {
 */
 
 #navbar {
+  font-family: 'Poppins', sans-serif !important;
   position: relative;
   top: 0;
   width: 100%;
   left: 0px;
   background-color:#3D85C6;
   padding:10px;
-  color: black;
+  color: white;
+  border-bottom-style: 5px solid white !important;
+}
+
+#CompanyName {
+    font-family: 'Poppins', sans-serif !important;
+    margin: 20px 40px 20px 10px;
 }
 
 
 
 
 
-
-
 #footer {
+  font-family: 'Poppins', sans-serif !important;
   position: absolute;
   bottom: 0;
   width: 100%;
   left: 0px;
   background-color:#3D85C6;
   padding:10px;
+    border-top-style: 5px solid white !important;
 }
 #margin-navbar {
     margin-top: 100px;
@@ -6809,3 +6816,4 @@ button.close {
 .sendRight{
     float: right;
 }
+

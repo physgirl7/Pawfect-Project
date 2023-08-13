@@ -7,12 +7,12 @@
 <body id="page-container">
     <div th:replace="fragments:: navbar"></div>
 
-<h1>Search for Animals</h1>
+<h1>Find a Friend</h1>
     <div>
         <form action="/search/results" method="post" th:object="${searchBar}" id="searchForm">
             <label for="query">Search by Name, Location, Species, Breed, or Age:</label>
             <input type="text" id="query" name="title" placeholder="Enter search query" th:field="*{title}">
-            <button type="submit">Search</button>
+            <button class="btn btn-info"  type="submit">Search</button>
         </form>
     </div>
 </body>

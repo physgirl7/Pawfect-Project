@@ -4,6 +4,9 @@
 <head th:fragment="head" >
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link th:href="@{/css/styles.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>Pawfect Harmony</title>
 </head>
 <!--to add the navbar to a page, change the body element to be:
@@ -17,14 +20,13 @@ and then underneath the body tag before any other elements add:
         <div class="navbar-functions" id="navbar">
             <div class="upperLevelNav">
                 <a th:href="@{/}" id="logo"><img src="/PawfectProjectPhotos/potentialLogo1.jpg/" height="80px" width ="80px"></a>
-                <h1>Pawfect Harmony Adoptions</h1>
+                <h1 id="CompanyName">Pawfect Harmony Adoptions</h1>
 
                 <a th:href="@{/}"                   type="button" class="btn btn-info">Home</a>
-                <a th:href="@{/user/create}"        type="button" class="btn btn-info" >Create Account</a>
                 <a th:href="@{/search}"             type="button" class="btn btn-info" >Search</a>
                 <a th:href="@{/user/useraccount}"   type="button" class="btn btn-info" >My Account</a>
                 <a th:href="@{/animalprofile/form}" type="button" class="btn btn-info" >Post a Pet</a>
-                <a th:href="@{/login}"              type="button" class="btn btn-info">Log in</a>
+                <a th:href="@{/login}"              type="button" class="btn btn-info">Sign Up/Login</a>
             </ul>
         </div>
     </div>
