@@ -16,16 +16,16 @@ and then underneath the body tag before any other elements add:
 -->
 <body>
 <div th:fragment="navbar" class="">
-    <div class="container-fluid" >
-        <div class="navbar-functions" id="navbar">
+    <div>
+        <div id="navbar">
             <div class="upperLevelNav">
                 <a th:href="@{/}" id="logo"><img src="/PawfectProjectPhotos/potentialLogo1.jpg/" height="80px" width ="80px"></a>
                 <h1 id="CompanyName">Pawfect Harmony Adoptions</h1>
 
                 <a th:href="@{/}"                   type="button" class="btn btn-info">Home</a>
-                <a th:href="@{/search}"             type="button" class="btn btn-info" >Search</a>
-                <a th:href="@{/user/useraccount}"   type="button" class="btn btn-info" >My Account</a>
-                <a th:href="@{/animalprofile/form}" type="button" class="btn btn-info" >Post a Pet</a>
+                <a th:href="@{/search}"             type="button" class="btn btn-info">Search</a>
+                <a th:href="@{/user/useraccount}"   type="button" class="btn btn-info">My Account</a>
+                <a th:href="@{/animalprofile/form}" type="button" class="btn btn-info">Post a Pet</a>
                 <a th:href="@{/login}"              type="button" class="btn btn-info">Sign Up/Login</a>
             </div>
         </div>

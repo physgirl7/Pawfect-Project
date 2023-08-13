@@ -13,7 +13,7 @@ html {
 }
 body {
   margin: 0;
-  background-color: rgb(235, 161, 52) !important;
+  background-color: rgb(235, 161, 52);
   color: white !important;
 }
 article,
@@ -117,7 +117,7 @@ input,
 optgroup,
 select,
 textarea {
-  margin: 0;
+  margin: 0 auto;
   font: inherit;
   color: inherit;
 }
@@ -1090,7 +1090,6 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-color: #fff;
 }
 input,
 button,
@@ -3009,7 +3008,7 @@ select[multiple].input-lg {
 .btn {
   display: inline-block;
   padding: 6px 12px;
-  margin: 10px 5px;
+  margin: auto 10px;
   height: 36px;
   font-size: 14px;
   font-weight: normal;
@@ -6773,7 +6772,6 @@ button.close {
   background-color:#3D85C6;
   padding:10px;
   color: white;
-  border-bottom-style: 5px solid white !important;
 }
 
 #CompanyName {
@@ -6806,7 +6804,6 @@ button.close {
   left: 0px;
   background-color:#3D85C6;
   padding:10px;
-    border-top-style: 5px solid white !important;
 }
 #margin-navbar {
     margin-top: 100px;
@@ -6826,7 +6823,9 @@ button.close {
     flex-direction: row;
 }
 
-.sendRight{
+.upperLevelNav .btn,{
     float: right;
+    clear: right;
 }
+
 
