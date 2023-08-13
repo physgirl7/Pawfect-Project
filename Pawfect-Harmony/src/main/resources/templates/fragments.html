@@ -6,9 +6,9 @@
     <link th:href="@{/styles.css}"/>
     <title>Pawfect Harmony</title>
 </head>
-<!--to add the navbar to a page, add
-<div id="margin-navbar">
-and
+<!--to add the navbar to a page, change the body element to be:
+<body id="page-container">
+and then underneath the body tag before any other elements add:
 <div th:replace="fragments:: navbar"></div>
 -->
 <body>
@@ -32,11 +32,11 @@ and
 </div>
 </body>
 <!--to add the footer to a page, add
-<div id="margin-footer"></div>
-and
-<div th:replace="fragments:: footer"></div>
-and
-id="page-container" to the opening body tag
+<footer>
+    <div th:replace="fragments:: footer"></div>
+    <div id="margin-footer"></div>
+</footer>
+underneath the closing body tag.
 -->
 <body>
 <div th:fragment="footer" class="">
