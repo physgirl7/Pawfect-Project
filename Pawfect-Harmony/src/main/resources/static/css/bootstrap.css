@@ -109,7 +109,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em;
 }
 button,
@@ -1086,7 +1086,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
@@ -1096,7 +1096,7 @@ input,
 button,
 select,
 textarea {
-  font-family: inherit;
+    font-family: 'Poppins', sans-serif;
   font-size: inherit;
   line-height: inherit;
 }
@@ -6781,9 +6781,22 @@ button.close {
     margin: 20px 40px 20px 10px;
 }
 
+.welcome{
+    display: flex;
+    justify-content: center;
+    margin: 3% 10% 2%;
+}
 
+#blurb{
+    display: flex;
+    justify-content: center;
+    margin: 2% 10%;
+}
 
-
+.imgContainer{
+    display: flex;
+    justify-content: space-around;
+}
 
 #footer {
   font-family: 'Poppins', sans-serif !important;
