@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head"></head>
-<body class="container body-content" id="page-container">
-
-<div th:replace="fragments:: navbar"></div>
-<div id="margin-navbar"></div>
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title>Animal Search</title>
+</head>
+<body id="page-container">
+    <div id="margin-navbar">
+    <div th:replace="fragments:: navbar"></div>
 
 <h1>Search for Animals</h1>
 <form action="/search/results" method="post" th:object="${searchBar}">
@@ -12,7 +14,8 @@
     <input type="text" id="query" name="title" placeholder="Enter search query" th:field="*{title}">
     <button type="submit">Search</button>
 </form>
-<div th:replace="fragments:: footer"></div>
-<div id="margin-footer"></div>
+
+        <div id="margin-footer"></div>
+        <div th:replace="fragments:: footer"></div>
 </body>
 </html>
