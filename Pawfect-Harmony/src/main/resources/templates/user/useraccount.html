@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 
 <head th:replace="fragments :: head"></head>
-<body class="container body-content" id="page-container">
-
+<body id="page-container">
 <div th:replace="fragments:: navbar"></div>
 
     <h1 class="display-3" th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
@@ -94,10 +93,9 @@
             </tr>
         </table>
     </div>
-
 </body>
 <footer>
-    <div th:replace="fragments:: footer"></div>
     <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
 </footer>
 </html>

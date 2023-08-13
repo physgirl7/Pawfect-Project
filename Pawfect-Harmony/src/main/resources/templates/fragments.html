@@ -3,7 +3,7 @@
 
 <head th:fragment="head" >
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link th:href="@{/css/styles.css}"/>
+<!--    <link th:href="@{/css/styles.css}"/>-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -24,9 +24,10 @@ and then underneath the body tag before any other elements add:
 
                 <a th:href="@{/}"                   type="button" class="btn btn-info">Home</a>
                 <a th:href="@{/search}"             type="button" class="btn btn-info">Search</a>
-                <a th:href="@{/user/useraccount}"   type="button" class="btn btn-info">My Account</a>
-                <a th:href="@{/animalprofile/form}" type="button" class="btn btn-info">Post a Pet</a>
+                <a th:href="@{/}"                   type="button" class="btn btn-info">My Account</a>
+                <a th:href="@{/}"                   type="button" class="btn btn-info">Post a Pet</a>
                 <a th:href="@{/login}"              type="button" class="btn btn-info">Sign Up/Login</a>
+                <a th:href="@{/logout}"             type="button" class="btn btn-info">Logout</a>
             </div>
         </div>
     </div>

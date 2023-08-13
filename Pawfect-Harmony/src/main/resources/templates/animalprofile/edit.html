@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+
 <body id="page-container">
-<div th:replace="fragments:: navbar"></div>
-<h1>Edit Animal Profile</h1>
-  <form th:object="${animalProfile}" method="post">
-  <input type="hidden" th:field="*{id}">
+  <div th:replace="fragments:: navbar"></div>
+    <h1>Edit Animal Profile</h1>
+      <form th:object="${animalProfile}" method="post">
+        <input type="hidden" th:field="*{id}">
   <div>
     <label th:for="name">Name:</label>
     <input type="text" id="name" th:field="*{name}" required>

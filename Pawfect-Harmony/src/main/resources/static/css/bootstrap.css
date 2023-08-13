@@ -13,7 +13,9 @@ html {
 }
 body {
   margin: 0;
-  background-color: rgb(235, 161, 52);
+  background-color: rgb(204,100,40);
+  /*background-color: rgb(204, 85, 0);*/
+  /*background-color: rgb(235, 161, 52);*/
   color: white !important;
 }
 article,
@@ -6769,7 +6771,7 @@ button.close {
   top: 0;
   width: 100%;
   left: 0px;
-  background-color:#3D85C6;
+  background-color:#2890CC;
   padding:10px;
   color: white;
 }
@@ -6802,7 +6804,7 @@ button.close {
   bottom: 0;
   width: 100%;
   left: 0px;
-  background-color:#3D85C6;
+  background-color:#2890CC;
   padding:10px;
 }
 #margin-navbar {
