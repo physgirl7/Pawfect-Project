@@ -24,7 +24,7 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
     AuthenticationController authenticationController;
 
     private static final List<String> whitelist = Arrays.asList(
-            "",
+            "/",
             "/index",
             "/login",
             "/register",
