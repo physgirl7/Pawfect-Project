@@ -117,7 +117,7 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), theUser);
         model.addAttribute("searchBar", new SearchBar("", ""));
 
-        return "search";
+        return "redirect:/search";
     }
 
     @GetMapping("/logout")
