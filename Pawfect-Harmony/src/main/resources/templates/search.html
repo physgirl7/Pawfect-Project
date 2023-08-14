@@ -7,9 +7,9 @@
 <body id="page-container">
     <div th:replace="fragments:: navbar"></div>
 
-<h1>Find a Friend</h1>
+<h1 style="margin-left:100px;">Find a Friend</h1>
     <div class="form-group">
-        <form action="/search/results" method="post" th:object="${searchBar}" id="searchForm" style="max-width:600px;">
+        <form action="/search/results" method="post" th:object="${searchBar}" id="searchForm" style="max-width:600px;margin-left:100px;">
             <label for="query">Search by Name, Location, Species, Breed, or Age:</label>
             <input type="text" id="query" class="form-control" name="title" placeholder="Enter search query" th:field="*{title}">
             <button class="btn btn-info"  type="submit">Search</button>
