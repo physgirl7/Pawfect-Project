@@ -10,7 +10,7 @@
 <head th:replace="fragments :: head"></head>
 <body id="page-container">
     <div th:replace="fragments:: navbar"></div>
-    <div>
+    <div class="form-group" style="margin-left:100px;">
         <h1 class="display-3">Edit User Account</h1>
 
         <table class="table table-striped-columns" style="max-width:500px;">
@@ -18,21 +18,21 @@
         <form method="post">
         <tr>
             <th align = "left">First Name:</th>
-            <td><input th:field="${editeduser.firstName}"></td>
+            <td><input class ="form-control" th:field="${editeduser.firstName}"></td>
         </tr>
         <tr>
             <th align = "left">Last Name:</th>
-            <td><input th:field="${editeduser.lastName}"></td>
+            <td><input class ="form-control" th:field="${editeduser.lastName}"></td>
         </tr>
 
         <tr>
             <th align = "left">Phone Number:</th>
-            <td><input th:field="${editeduser.phone}"></td>
+            <td><input class ="form-control" th:field="${editeduser.phone}"></td>
         </tr>
 
         <tr>
             <th align="left">Email:</th>
-            <td><input th:field="${editeduser.email}"></td>
+            <td><input class ="form-control" th:field="${editeduser.email}"></td>
         </tr>
         </table>
 
