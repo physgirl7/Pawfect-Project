@@ -64,10 +64,10 @@ public class AnimalProfileController {
     @PostMapping("/form/{userId}")
     public String processAnimalForm(@ModelAttribute @Valid AnimalProfile animalProfile, Errors errors, Model model, @PathVariable int userId) {
         if (errors.hasErrors()) {
-            return "redirect:./"+ userId;
+            return "redirect:./" + userId;
         }
         Optional<User> result = userRepository.findById(userId);
-        if(result.isPresent()) {
+        if (result.isPresent()) {
             User user = result.get();
             animalProfile.setUser(user);
         }
@@ -86,7 +86,8 @@ public class AnimalProfileController {
             if (optUser.isPresent()) {
                 User user = (User) optUser.get();
                 model.addAttribute("user", user);
-            } return "animalprofile/edit";
+            }
+            return "animalprofile/edit";
         }
         return "user/useraccount";
     }
@@ -105,7 +106,8 @@ public class AnimalProfileController {
             existingAnimalProfile.setAge(animalProfile.getAge());
             existingAnimalProfile.setComments(animalProfile.getComments());
             animalProfileRepository.save(existingAnimalProfile);
-        }Optional optUser = userRepository.findById(userId);
+        }
+        Optional optUser = userRepository.findById(userId);
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
             model.addAttribute("user", user);
@@ -119,7 +121,8 @@ public class AnimalProfileController {
         if (result.isPresent()) {
             AnimalProfile animalProfile = result.get();
             animalProfileRepository.delete(animalProfile);
-        }Optional optUser = userRepository.findById(userId);
+        }
+        Optional optUser = userRepository.findById(userId);
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
             model.addAttribute("user", user);
@@ -162,4 +165,16 @@ public class AnimalProfileController {
         }
     }
 
+    @GetMapping("postpet/button")
+    public String callAnimalProfileFormPage(Model model, HttpServletRequest request) {
+        HttpSession userSession = request.getSession();
+        User user = authenticationController.getUserFromSession(userSession);
+        if (user != null) {
+            model.addAttribute("user", user);
+
+            return "redirect:../form/" + user.getId();
+        }
+        return "redirect:../../login";
     }
+}
+
