@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,9 @@ public class UserController {
     @Autowired
     private UserMeetPetRepository userMeetPetRepository;
 
+    @Autowired
+    private AuthenticationController authenticationController;
+
 
     @GetMapping("useraccount/{userId}")
     public String displayUserAccountPage(Model model, @PathVariable int userId) {
@@ -42,7 +47,7 @@ public class UserController {
             model.addAttribute("myAnimals", myAnimals);
             List<UserMeetPet> userMeetAnimals = userMeetPetRepository.findAllByUser(user);
             List<AnimalProfile> meetAnimals = new ArrayList<>();
-            for(UserMeetPet userMeetPet: userMeetAnimals){
+            for (UserMeetPet userMeetPet : userMeetAnimals) {
                 AnimalProfile onePet = userMeetPet.getAnimalProfile();
                 meetAnimals.add(onePet);
             }
@@ -89,6 +94,18 @@ public class UserController {
 
         }
         return "redirect:../";
+    }
+
+    @GetMapping("useraccount/button")
+    public String callUserAccountPage(Model model, HttpServletRequest request) {
+        HttpSession userSession = request.getSession();
+        User user = authenticationController.getUserFromSession(userSession);
+        if (user != null) {
+            model.addAttribute("user", user);
+
+            return "redirect:../useraccount/" + user.getId();
+        }
+        return "redirect:../../login";
     }
 }
 
