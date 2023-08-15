@@ -45,8 +45,6 @@ public class UserController {
             model.addAttribute("user", user);
             List<AnimalProfile> myAnimals = animalProfileRepository.findAllByUser(user);
             model.addAttribute("myAnimals", myAnimals);
-            System.out.println(myAnimals.size());
-//            System.out.println(myAnimals.get(0).getPhoto());
             List<UserMeetPet> userMeetAnimals = userMeetPetRepository.findAllByUser(user);
             List<AnimalProfile> meetAnimals = new ArrayList<>();
             for (UserMeetPet userMeetPet : userMeetAnimals) {
