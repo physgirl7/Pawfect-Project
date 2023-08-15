@@ -4,64 +4,65 @@
 <body id="page-container">
 
 <div th:replace="fragments:: navbar"></div>
-<div id="margin-navbar">
 
-<h1>Create User Account</h1>
+<h1 style="margin-left:100px;">Create User Account</h1>
+<div>
+    <form method="post" style="max-width:600px;margin-left: 100px;">
 
-<form method="post" style="max-width:600px;">
+        <div class="form-group">
+            <label>Username
+                <input class="form-control" th:field="${createUserFormDTO.username}" />
+            </label>
+            <span th:errors="${createUserFormDTO.username}" class="error"></span>
+        </div>
 
-    <div class="form-group">
-        <label>Username
-            <input class="form-control" th:field="${createUserFormDTO.username}" />
-        </label>
-        <span th:errors="${createUserFormDTO.username}" class="error"></span>
-    </div>
+        <div class="form-group">
+            <label>Password
+                <input type="password" class="form-control" th:field="${createUserFormDTO.password}" />
+            </label>
+            <span th:errors="${createUserFormDTO.password}" class="error"></span>
+        </div>
 
-    <div class="form-group">
-        <label>Password
-            <input type="password" class="form-control" th:field="${createUserFormDTO.password}" />
-        </label>
-        <span th:errors="${createUserFormDTO.password}" class="error"></span>
-    </div>
+        <div class="form-group">
+            <label>Verify Password
+                <input class="form-control" th:field="${createUserFormDTO.verifyPassword}" type="password" />
+            </label>
+        </div>
 
-    <div class="form-group">
-        <label>Verify Password
-            <input class="form-control" th:field="${createUserFormDTO.verifyPassword}" type="password" />
-        </label>
-    </div>
+        <div class="form-group">
+            <label>First Name
+                <input class="form-control" th:field="${createUserFormDTO.firstName}" />
+            </label>
+            <span th:errors="${createUserFormDTO.firstName}" class="error"></span>
+        </div>
 
-    <div class="form-group">
-        <label>First Name
-            <input class="form-control" th:field="${createUserFormDTO.firstName}" />
-        </label>
-        <span th:errors="${createUserFormDTO.firstName}" class="error"></span>
-    </div>
+        <div class="form-group">
+            <label>Last Name
+                <input class="form-control" th:field="${createUserFormDTO.lastName}" />
+            </label>
+            <span th:errors="${createUserFormDTO.lastName}" class="error"></span>
+        </div>
 
-    <div class="form-group">
-        <label>Last Name
-            <input class="form-control" th:field="${createUserFormDTO.lastName}" />
-        </label>
-        <span th:errors="${createUserFormDTO.lastName}" class="error"></span>
-    </div>
+        <div class="form-group">
+            <label>Email
+                <input class="form-control" th:field="${createUserFormDTO.email}" />
+            </label>
+            <span th:errors="${createUserFormDTO.email}" class="error"></span>
+        </div>
 
-    <div class="form-group">
-        <label>Email
-            <input class="form-control" th:field="${createUserFormDTO.email}" />
-        </label>
-        <span th:errors="${createUserFormDTO.email}" class="error"></span>
-    </div>
+        <div class="form-group">
+            <label>Phone
+                <input class="form-control" th:field="${createUserFormDTO.phone}" />
+            </label>
+            <span th:errors="${createUserFormDTO.phone}" class="error"></span>
+        </div>
 
-    <div class="form-group">
-        <label>Phone
-            <input class="form-control" th:field="${createUserFormDTO.phone}" />
-        </label>
-        <span th:errors="${createUserFormDTO.phone}" class="error"></span>
-    </div>
-
-    <input type="submit" class="btn btn-primary" value="Create Account" />
-</form>
-
-    <div th:replace="fragments:: footer"></div>
-    <div id="margin-footer"></div>
+        <input type="submit" class="btn btn-primary" value="Create Account" />
+    </form>
+</div>
 </body>
+<footer>
+    <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
+</footer>
 </html>

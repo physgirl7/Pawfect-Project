@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body class="container body-content" id="page-container">
-
-<div th:replace="fragments:: navbar"></div>
-<div id="margin-navbar">
-
-<h2>Search Results for: <span th:text="${query}"></span></h2>
-
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Species</th>
-        <th>Breed</th>
-        <th>Age</th>
-    </tr>
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <div th:replace="fragments:: navbar"></div>
+    <div>
+        <h2>Search Results for: <span th:text="${query}"></span></h2>
+    </div>
+        <table style="margin-left:100px;">
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Age</th>
+            </tr>
     <tr th:each="animalProfile : ${results}">
         <td><a th:href="@{'/animalprofile/animalfile/' + ${animalProfile.id}}" th:text="${animalProfile.name}"></a></td>
         <td th:text="${animalProfile.location}"></td>
@@ -25,7 +26,11 @@
     </tr>
 </table>
 
-<div th:replace="fragments:: footer"></div>
-<div id="margin-footer"></div>
+
+
 </body>
+<footer>
+    <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
+</footer>
 </html>

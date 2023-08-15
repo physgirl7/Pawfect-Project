@@ -1,0 +1,18 @@
+*{
+    font-family: 'Poppins', sans-serif !important;
+}
+
+body
+{
+  margin-top: 0px;
+  margin-left: 50px;
+  margin-right: 0px;
+}
+
+form {
+    margin-left: 80px;
+}
+
+*{
+    background-color: red;
+}
