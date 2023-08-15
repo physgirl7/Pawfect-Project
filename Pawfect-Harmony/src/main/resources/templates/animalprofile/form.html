@@ -2,9 +2,9 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments :: head"></head>
-<body class="container body-content" id="page-container">
+<body id="page-container">
 <div th:replace="fragments:: navbar"></div>
-<div id="margin-navbar">
+
   <h1>Animal Profile Form</h1>
 
   <form method="post" style="max-width:600px;">
@@ -80,7 +80,6 @@
       <span th:errors="${animalProfile.location}" class="error"></span>
     </div>
 
-
     <div class="form-group">
       <label th:for="species">Species:</label>
       <select class="form-control" th:field="${animalProfile.species}">
@@ -125,8 +124,9 @@
     <input type="submit" class = "btn btn-primary" value="Submit" />
   </form>
 
+</body>
+<footer>
   <div id="margin-footer"></div>
   <div th:replace="fragments:: footer"></div>
-</body>
-
+</footer>
 </html>

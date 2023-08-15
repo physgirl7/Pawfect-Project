@@ -8,11 +8,13 @@
 <!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
 <!--</head>-->
 <head th:replace="fragments :: head"></head>
-<body class="container body-content" id="page-container">
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+
 <h1 class="display-3" th:text = "'About ' + ${animalProfile.name}">About This Animal!</h1>
 
 <br>
-<table class="table table-striped-columns" style="max-width:500px;">
+<table class="table table-striped-columns" style="max-width:500px;margin-left:100px;">
 
     <tr>
         <th align = "left">Photo:</th>
@@ -54,12 +56,12 @@
         <td th:text="${animalProfile.comments}">Comments</td>
     </tr>
 </table>
-
     <form th:action="@{'/animalprofile/requestsent/' + ${animalProfile.id} +'/' + ${user.id}}">
         <input type="submit" class = "btn btn-primary" value="I Want to Meet/Adopt Them!" />
     </form>
-
-<div th:replace="fragments:: footer"></div>
-<div id="margin-footer"></div>
 </body>
+<footer>
+    <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
+</footer>
 </html>

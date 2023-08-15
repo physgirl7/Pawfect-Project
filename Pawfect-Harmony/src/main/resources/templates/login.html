@@ -4,10 +4,11 @@
 <body id="page-container">
 
 <div th:replace="fragments:: navbar"></div>
-<div id="margin-navbar">
 
-<form method="post">
+
+<form method="post" style="margin-left:100px;">
   <div class="form-group">
+    <h2>Please Login</h2>
     <label th:for="username">Username
       <input class="form-control" th:field="${loginFormDTO.username}">
     </label>
@@ -23,9 +24,11 @@
   <input type="submit" class="btn btn-primary" value="Log In" />
 </form>
 
-<p>Don't have an account? <a href="user/create">Register for one.</a></p>
+<p style="margin-left:100px;">Don't have an account? <a href="user/create">Register for one.</a></p>
 
+</body>
+<footer>
   <div id="margin-footer"></div>
   <div th:replace="fragments:: footer"></div>
-</body>
+</footer>
 </html>
