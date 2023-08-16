@@ -1,20 +1,26 @@
 package org.launchcode.Pawfect.Harmony.controllers;
 
+import org.apache.commons.io.IOUtils;
 import org.launchcode.Pawfect.Harmony.data.UserMeetPetRepository;
 import org.launchcode.Pawfect.Harmony.data.UserRepository;
 import org.launchcode.Pawfect.Harmony.models.AnimalProfile;
 import org.launchcode.Pawfect.Harmony.models.User;
 import org.launchcode.Pawfect.Harmony.models.UserMeetPet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.launchcode.Pawfect.Harmony.data.AnimalProfileRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,8 +68,9 @@ public class AnimalProfileController {
     }
 
     @PostMapping("/form/{userId}")
-    public String processAnimalForm(@ModelAttribute @Valid AnimalProfile animalProfile, Errors errors, Model model, @PathVariable int userId) {
+    public String processAnimalForm(@ModelAttribute @Valid AnimalProfile animalProfile, Errors errors, Model model, @PathVariable int userId, @RequestParam("file")MultipartFile photo) throws IOException {
         if (errors.hasErrors()) {
+            System.out.println(errors);
             return "redirect:./" + userId;
         }
         Optional<User> result = userRepository.findById(userId);
@@ -71,6 +78,8 @@ public class AnimalProfileController {
             User user = result.get();
             animalProfile.setUser(user);
         }
+        byte[] animalPhoto = photo.getBytes();
+        animalProfile.setPhoto(animalPhoto);
         animalProfileRepository.save(animalProfile);
         return "redirect:/user/useraccount/" + userId;
     }
@@ -175,6 +184,20 @@ public class AnimalProfileController {
             return "redirect:../form/" + user.getId();
         }
         return "redirect:../../login";
+    }
+
+
+    @GetMapping(path = "{animalProfileId}/photo",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getAnimalPhoto(@PathVariable int animalProfileId) throws IOException{
+        Optional optAnimal = animalProfileRepository.findById(animalProfileId);
+        if(optAnimal.isPresent()){
+            AnimalProfile animalProfile = (AnimalProfile) optAnimal.get();
+            return animalProfile.getPhoto();
+        }
+        InputStream in = getClass()
+                .getResourceAsStream("static/PawfectProjectPhotos/pawfectLogo.jpg");
+        return IOUtils.toByteArray(in);
     }
 }
 

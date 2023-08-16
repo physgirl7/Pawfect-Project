@@ -1,6 +1,8 @@
 package org.launchcode.Pawfect.Harmony.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -12,7 +14,10 @@ public class AnimalProfile extends AbstractEntity {
     @ManyToOne
     private User user;
 
-    private String photo;
+    @Lob
+    @Column(name = "photo", columnDefinition="BLOB")
+    private byte[] photo;
+//    private String photo;
 //    @NotBlank
     private String name;
 //    @NotBlank
@@ -33,7 +38,7 @@ public class AnimalProfile extends AbstractEntity {
 
 
     //constructor
-    public AnimalProfile(String photo, String name, String location, String species, String breed, String gender, int age, String comments) {
+    public AnimalProfile(byte[] photo, String name, String location, String species, String breed, String gender, int age, String comments) {
         this.photo = photo;
         this.name = name;
         this.location = location;
@@ -51,11 +56,11 @@ public class AnimalProfile extends AbstractEntity {
     // getters setters
 
 
-    public String getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 

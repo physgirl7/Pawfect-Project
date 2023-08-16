@@ -39,8 +39,18 @@
     <hr />
 
     <table class="table table-striped-columns" >
+        <tr>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Species</th>
+            <th>Breed</th>
+            <th>Age</th>
+            <th>Comments</th>
+            <th></th>
+        </tr>
         <tr th:each="animal : ${animals}">
-<!--            <td><img th:src="@{/animalProfile/{id}/photo(id=${animal.id})}" style="width:50px;height:50px;"></td>-->
+            <td><img th:src="@{/animalprofile/{id}/photo(id=${animal.id})}" style="width:50px;height:50px;"></td>
             <td th:text="${animal.name}"></td>
             <td th:text="${animal.location}"></td>
             <td th:text="${animal.species}"></td>

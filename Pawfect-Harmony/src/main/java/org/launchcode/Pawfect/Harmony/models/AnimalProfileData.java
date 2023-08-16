@@ -46,12 +46,9 @@ public class AnimalProfileData {
     public static ArrayList<AnimalProfile> findByValue(String value, Iterable<AnimalProfile> allAnimals) {
         String lower_val = value.toLowerCase();
 
-        System.out.println(lower_val);
-
         ArrayList<AnimalProfile> results = new ArrayList<>();
 
         for (AnimalProfile animal : allAnimals) {
-            System.out.println(animal.getName());
             if (animal.getName().toLowerCase().contains(lower_val)) {
                 results.add(animal);
             } else if (animal.getLocation().toLowerCase().contains(lower_val)) {
