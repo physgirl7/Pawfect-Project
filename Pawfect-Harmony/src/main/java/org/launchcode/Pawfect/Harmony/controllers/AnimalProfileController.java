@@ -168,6 +168,14 @@ public class AnimalProfileController {
             User user = (User) optUser.get();
             userMeetPet.setAnimalProfile(animalProfile);
             userMeetPet.setUser(user);
+
+            List<UserMeetPet> userMeetExistingPets = userMeetPetRepository.findAllByUser(user);
+                for(UserMeetPet oneUserMeetExistingPet : userMeetExistingPets){
+                    if(oneUserMeetExistingPet.getAnimalProfile().getId() == userMeetPet.getAnimalProfile().getId()){
+                        return "animalprofile/alreadyrequested";
+                    }
+                }
+
             userMeetPetRepository.save(userMeetPet);
             model.addAttribute("animalProfile", animalProfile);
             model.addAttribute("user", user);
