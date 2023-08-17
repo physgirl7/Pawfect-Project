@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
         @Email
         private String email;
 
-        @Size(min=10, max=10, message = "Phone number must have 10 digits.")
+        @Size(min=10, max=10, message = "Phone number must have 10 digits. No dashes and no spaces")
         private String phone;
 
         public EditedUser(){

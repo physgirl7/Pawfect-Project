@@ -6,7 +6,7 @@
   <div th:replace="fragments:: navbar"></div>
     <div class="form-group">
       <h1 style="margin-left:100px;">Edit Animal Profile</h1>
-        <form th:object="${animalProfile}" method="post" style="max-width:600px;margin-left: 100px;">
+        <form th:object="${animalProfile}" method="post" enctype="multipart/form-data" style="max-width:600px;margin-left: 100px;">
           <input type="hidden" th:field="*{id}">
 
         <div class="form-group">
@@ -15,8 +15,9 @@
         </div>
 
         <div>
-          <label th:for="photo">Photo:</label>
-          <input class="form-control" type="file" id="photo" name="photo" th:field="${animalProfile.photo}" />
+          <label th:for="file">Photo:</label>
+          <img th:src="@{/animalprofile/{id}/photo(id=${animalProfile.id})}" style="width:50px;height:50px;">
+          <input class="form-control" type="file" id="file" name="file"/>
         </div>
 
         <div class="form-group">

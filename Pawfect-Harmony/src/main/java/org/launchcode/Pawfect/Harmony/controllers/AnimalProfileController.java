@@ -70,7 +70,6 @@ public class AnimalProfileController {
     @PostMapping("/form/{userId}")
     public String processAnimalForm(@ModelAttribute @Valid AnimalProfile animalProfile, Errors errors, Model model, @PathVariable int userId, @RequestParam("file")MultipartFile photo) throws IOException {
         if (errors.hasErrors()) {
-            System.out.println(errors);
             return "redirect:./" + userId;
         }
         Optional<User> result = userRepository.findById(userId);
@@ -102,12 +101,17 @@ public class AnimalProfileController {
     }
 
     @PostMapping("/edit/{animalProfileId}/{userId}")
-    public String processEditAnimalProfile(@PathVariable int animalProfileId, @PathVariable int userId, @ModelAttribute AnimalProfile animalProfile, Model model) {
+    public String processEditAnimalProfile(@PathVariable int animalProfileId, @PathVariable int userId, @ModelAttribute AnimalProfile animalProfile, Model model,@RequestParam("file")MultipartFile photo) throws IOException {
         Optional<AnimalProfile> result = animalProfileRepository.findById(animalProfileId);
         if (result.isPresent()) {
             AnimalProfile existingAnimalProfile = result.get();
+            byte[] animalPhoto = existingAnimalProfile.getPhoto();
+            if(!photo.isEmpty()) {
+                animalPhoto = photo.getBytes();
+            }
+
             existingAnimalProfile.setName(animalProfile.getName());
-            existingAnimalProfile.setPhoto(animalProfile.getPhoto());
+            existingAnimalProfile.setPhoto(animalPhoto);
             existingAnimalProfile.setLocation(animalProfile.getLocation());
             existingAnimalProfile.setSpecies(animalProfile.getSpecies());
             existingAnimalProfile.setBreed(animalProfile.getBreed());

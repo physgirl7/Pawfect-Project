@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<!--<head>-->
-<!--    <meta charset="UTF-8"/>-->
-<!--    <title>Welcome to the User Account Page</title>-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
-<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
-<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
-<!--</head>-->
+
 <head th:replace="fragments :: head"></head>
 <body id="page-container">
 <div th:replace="fragments:: navbar"></div>
@@ -18,7 +12,7 @@
 
     <tr>
         <th align = "left">Photo:</th>
-        <td th:text="${animalProfile.photo}">Animal Photo</td>
+        <td><img th:src="@{/animalprofile/{id}/photo(id=${animalProfile.id})}" style="width:50px;height:50px;"></td>
     </tr>
 
     <tr>

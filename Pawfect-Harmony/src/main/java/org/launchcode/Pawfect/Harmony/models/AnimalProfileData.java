@@ -67,25 +67,3 @@ public class AnimalProfileData {
 
 
 
-    /**
-     * Returns the results of searching the Jobs data by field and search term.
-     *
-     * For example, searching for employer "Enterprise" will include results
-     * with "Enterprise Holdings, Inc".
-     *
-     * @param column Job field that should be searched.
-     * @param value Value of the field to search for.
-     * @param allJobs The list of jobs to search.
-     * @return List of all jobs matching the criteria.
-     */
-
-    /**
-     * Search all Job fields for the given term.
-     *
-     * @param value The search term to look for.
-     * @param allJobs The list of jobs to search.
-     * @return      List of all jobs with at least one field containing the value.
-     */
-
-
-

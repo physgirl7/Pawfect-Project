@@ -38,7 +38,8 @@
 
     <hr />
 
-    <table class="table table-striped-columns" >
+    <div th:if="${animals != null}">
+    <table class="table table-striped-columns" th:if = "${!animals.isEmpty()}">
         <tr>
             <th>Photo</th>
             <th>Name</th>
@@ -51,7 +52,7 @@
         </tr>
         <tr th:each="animal : ${animals}">
             <td><img th:src="@{/animalprofile/{id}/photo(id=${animal.id})}" style="width:50px;height:50px;"></td>
-            <td th:text="${animal.name}"></td>
+            <td><a th:text="${animal.name}" th:href="@{/animalprofile/animalfile/{id}(id=${animal.id})}"></a></td>
             <td th:text="${animal.location}"></td>
             <td th:text="${animal.species}"></td>
             <td th:text="${animal.breed}"></td>
