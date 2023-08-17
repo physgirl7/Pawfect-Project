@@ -5,10 +5,12 @@
 <body id="page-container">
 <div th:replace="fragments:: navbar"></div>
 
+<div style="margin-left:100px">
+
 <h1 class="display-3" th:text = "'About ' + ${animalProfile.name}">About This Animal!</h1>
 
 <br>
-<table class="table table-striped-columns" style="max-width:500px;margin-left:100px;">
+<table class="table table-striped-columns" style="max-width:500px;">
 
     <tr>
         <th align = "left">Photo:</th>
@@ -53,6 +55,7 @@
     <form th:action="@{'/animalprofile/requestsent/' + ${animalProfile.id} +'/' + ${user.id}}">
         <input type="submit" class = "btn btn-primary" value="I Want to Meet/Adopt Them!" />
     </form>
+</div>
 </body>
 <footer>
     <div id="margin-footer"></div>

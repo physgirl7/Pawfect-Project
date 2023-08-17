@@ -4,7 +4,7 @@
 <head th:replace="fragments :: head"></head>
 <body id="page-container">
 <div th:replace="fragments:: navbar"></div>
-
+    <div style="margin-left:100px;">
     <h1 class="display-3" th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
 
     <br>
@@ -28,7 +28,8 @@
             <td th:text="${user.email}">myemail.com</td>
         </tr>
     </table>
-
+    </div>
+    <div style="margin-left:100px;">
     <form th:action="@{'/user/edit/' + ${user.id}}" method="post">
         <input type="submit" class = "btn btn-primary" value="Edit" />
     </form>
@@ -64,12 +65,13 @@
             </tr>
         </table>
     </div>
-    <a th:href="@{'/animalprofile/form/' + ${user.id}}">
-        <button type="button" class = "btn btn-primary">Post a Pet</button>
-    </a>
-
-    <br>
-    <br>
+        <a th:href="@{'/animalprofile/form/' + ${user.id}}">
+            <button type="button" class = "btn btn-primary">Post a Pet</button>
+        </a>
+    </div>
+        <br>
+        <br>
+    <div style="margin-left:100px;">
     <h3>Pets I Want to Meet or Adopt</h3>
     <div th:if="${!meetAnimals.isEmpty()}">
         <table class="table table-striped-columns" style="max-width:700px;">
@@ -93,6 +95,7 @@
                 <td th:text="${meetAnimal.comments}"></td>
             </tr>
         </table>
+    </div>
     </div>
 </body>
 <footer>

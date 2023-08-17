@@ -5,6 +5,7 @@
 <body id="page-container">
 <div th:replace="fragments:: navbar"></div>
 
+  <div style="margin-left:100px";>
   <h1>Animal Profile Form</h1>
 
   <form enctype="multipart/form-data" method="post" style="max-width:600px;">
@@ -15,11 +16,6 @@
       <span th:errors="${animalProfile.name}" class="error"></span>
     </div>
 
-<!--    <div class="form-group">-->
-<!--      <label th:for="photo">Photo:</label>-->
-<!--      <input type="file" class="form-control" id="photo" name="photo" th:field="${animalProfile.photo}" />-->
-<!--      <span th:errors="${animalProfile.photo}" class="error"></span>-->
-<!--    </div>-->
 
     <div class="form-group">
       <label>Photo:</label>
@@ -129,7 +125,7 @@
 
     <input type="submit" class = "btn btn-primary" value="Submit" />
   </form>
-
+  </div>
 </body>
 <footer>
   <div id="margin-footer"></div>
