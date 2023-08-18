@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
     <meta charset="UTF-8">
     <title>Animal Search</title>
@@ -7,13 +7,59 @@
 <body id="page-container">
     <div th:replace="fragments:: navbar"></div>
 
-<h1 style="margin-left:100px;">Find a Friend</h1>
-    <div class="form-group">
-        <form action="/search/results" method="post" th:object="${searchBar}" id="searchForm" style="max-width:600px;margin-left:100px;">
-            <label for="query">Search by Name, Location, Species, Breed, or Age:</label>
-            <input type="text" id="query" class="form-control" name="title" placeholder="Enter search query" th:field="*{title}">
-            <button class="btn btn-info"  type="submit">Search</button>
-        </form>
+    <h1 style="margin-left:100px;">Find a Friend</h1>
+<div class=class="form-group">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}" style="margin-left:100px"></h1>
+
+    <form th:action="@{/search/results}" method = "post" style="margin-left:100px; max-width:600px;">
+        <h2>Search by:</h2>
+
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+        </p>
+
+        <p>
+            <label for="searchTerm">Keyword:</label>
+            <input class="form-control" type="text" name="searchTerm" id="searchTerm" />
+        </p>
+
+        <input class="btn btn-info" type="submit" value="Search" />
+    </form>
+    <br>
+
+    <div th:if="${animals != null}" style="margin-left:100px;">
+    <table class="table table-striped-columns" th:if = "${!animals.isEmpty()}">
+        <tr>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Species</th>
+            <th>Breed</th>
+            <th>Age</th>
+            <th>Comments</th>
+            <th></th>
+        </tr>
+        <tr th:each="animal : ${animals}">
+            <td><img th:src="@{/animalprofile/{id}/photo(id=${animal.id})}" style="width:50px;height:50px;"></td>
+            <td><a th:text="${animal.name}" th:href="@{/animalprofile/animalfile/{id}(id=${animal.id})}"></a></td>
+            <td th:text="${animal.location}"></td>
+            <td th:text="${animal.species}"></td>
+            <td th:text="${animal.breed}"></td>
+            <td th:text="${animal.age}"></td>
+            <td th:text="${animal.comments}"></td>
+        </tr>
+    </table>
+     </div>
     </div>
 </body>
 <footer>

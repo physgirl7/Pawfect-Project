@@ -15,8 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class User extends AbstractEntity{
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @NotNull
     @NotBlank
-    @Size(min=5, max=15)
+    @Size(min = 3, max = 20, message = "Invalid username. Must be between 3 and 20 characters.")
     private String username;
 
     @NotBlank
@@ -27,13 +29,13 @@ public class User extends AbstractEntity{
     @Size(max = 25)
     private String lastName;
 
-    @Email
+    @Email(message = "Must enter a valid email")
     private String email;
 
-    @Size(min=10, max=10, message = "Phone number must have 10 digits.")
+    @Size(min=10, max=10, message = "Phone number must have 10 digits. No dashes and no spaces")
     private String phone;
 
-//    @NotNull
+    @NotNull
     private String pwHash;
 
     @OneToMany
