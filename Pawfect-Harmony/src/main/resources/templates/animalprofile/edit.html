@@ -6,7 +6,7 @@
   <div th:replace="fragments:: navbar"></div>
     <div class="form-group">
       <h1 style="margin-left:100px;">Edit Animal Profile</h1>
-        <form th:object="${animalProfile}" method="post" style="max-width:600px;margin-left: 100px;">
+        <form th:object="${animalProfile}" method="post" enctype="multipart/form-data" style="max-width:600px;margin-left: 100px;">
           <input type="hidden" th:field="*{id}">
 
         <div class="form-group">
@@ -15,8 +15,9 @@
         </div>
 
         <div>
-          <label th:for="photo">Photo:</label>
-          <input class="form-control" type="file" id="photo" name="photo" th:field="${animalProfile.photo}" />
+          <label th:for="file">Photo:</label>
+          <img th:src="@{/animalprofile/{id}/photo(id=${animalProfile.id})}" style="width:50px;height:50px;">
+          <input class="form-control" type="file" id="file" name="file"/>
         </div>
 
         <div class="form-group">
@@ -79,13 +80,13 @@
 
         <div>
           <label th:for="species">Species:</label>
-          <select class="form-control" id="species" th:field="*{species}">
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            <option value="rabbit">Rabbit</option>
-            <option value="bird">Bird</option>
-            <option value="reptile">Reptile</option>
-            <option value="other">Other</option>
+          <select class="form-control" id="species" th:field="${animalProfile.species}">
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Rabbit">Rabbit</option>
+            <option value="Bird">Bird</option>
+            <option value="Reptile">Reptile</option>
+            <option value="Other">Other</option>
           </select>
         </div>
 
@@ -102,14 +103,12 @@
     <label th:for="breed">Breed:</label>
     <input class="form-control" type="text" id="breed" th:field="*{breed}" required>
   </div>
-  <div>
-    <label th:for="age">Age:</label>
-    <select id="age" th:field="*{age}">
-      <th:block th:each="i : ${#numbers.sequence(0, 20)}">
-        <option th:value="${i}" th:text="${i}"></option>
-      </th:block>
-    </select>
-  </div>
+
+          <div class="form-group">
+            <label th:for="age">Age:</label>
+            <input class="form-control" id="age" th:field="${animalProfile.age}">
+          </div>
+
   <div>
     <label th:for="comments">Comments:</label>
     <textarea class="form-control" id="comments" th:field="*{comments}"></textarea>

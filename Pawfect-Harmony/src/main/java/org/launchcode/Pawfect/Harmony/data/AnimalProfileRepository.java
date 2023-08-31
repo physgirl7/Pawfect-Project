@@ -12,9 +12,10 @@ import java.util.List;
 @Repository
 public interface AnimalProfileRepository extends CrudRepository<AnimalProfile, Integer> {
     List<AnimalProfile> findAllByUser(User user);
-
-    @Query("SELECT a FROM AnimalProfile a WHERE a.name LIKE %:query%")
-    List<AnimalProfile> searchProfiles(@Param("query") String query);
-
-    List<AnimalProfile> findByName(String name);
+//    List<AnimalProfile> findAll();
+//
+//    @Query("SELECT a FROM AnimalProfile a WHERE a.name LIKE %:query%")
+//    List<AnimalProfile> searchProfiles(@Param("query") String query);
+//
+//    List<AnimalProfile> findByName(String name);
 }

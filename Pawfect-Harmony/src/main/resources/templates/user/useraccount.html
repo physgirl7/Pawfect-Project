@@ -4,7 +4,7 @@
 <head th:replace="fragments :: head"></head>
 <body id="page-container">
 <div th:replace="fragments:: navbar"></div>
-
+    <div style="margin-left:100px;">
     <h1 class="display-3" th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
 
     <br>
@@ -28,7 +28,8 @@
             <td th:text="${user.email}">myemail.com</td>
         </tr>
     </table>
-
+    </div>
+    <div style="margin-left:100px;">
     <form th:action="@{'/user/edit/' + ${user.id}}" method="post">
         <input type="submit" class = "btn btn-primary" value="Edit" />
     </form>
@@ -36,7 +37,6 @@
     <br>
 
     <div>
-        <h2 class="display-4">My Pets</h2>
         <br>
         <h3>Pets I Put Up For Adoption</h3>
     </div>
@@ -53,7 +53,7 @@
                 <th></th>
             </tr>
             <tr th:each="myAnimal : ${myAnimals}">
-                <td><img th:src="@{/animalProfile/{id}/photo(id=${myAnimal.id})}" style="width:50px;height:50px;"></td>
+                <td><img th:src="@{/animalprofile/{id}/photo(id=${myAnimal.id})}" style="width:50px;height:50px;"></td>
                 <td th:text="${myAnimal.name}"></td>
                 <td th:text="${myAnimal.location}"></td>
                 <td th:text="${myAnimal.species}"></td>
@@ -65,16 +65,18 @@
             </tr>
         </table>
     </div>
-    <a th:href="@{'/animalprofile/form/' + ${user.id}}">
-        <button type="button" class = "btn btn-primary">Post a Pet</button>
-    </a>
-
-    <br>
-    <br>
+        <a th:href="@{'/animalprofile/form/' + ${user.id}}">
+            <button type="button" class = "btn btn-primary">Post a Pet</button>
+        </a>
+    </div>
+        <br>
+        <br>
+    <div style="margin-left:100px;">
     <h3>Pets I Want to Meet or Adopt</h3>
     <div th:if="${!meetAnimals.isEmpty()}">
         <table class="table table-striped-columns" style="max-width:700px;">
             <tr>
+                <th>Photo</th>
                 <th>Name</th>
                 <th>Location</th>
                 <th>Species</th>
@@ -84,6 +86,7 @@
                 <th></th>
             </tr>
             <tr th:each="meetAnimal : ${meetAnimals}">
+                <td><img th:src="@{/animalprofile/{id}/photo(id=${meetAnimal.id})}" style="width:50px;height:50px;"></td>
                 <td th:text="${meetAnimal.name}"></td>
                 <td th:text="${meetAnimal.location}"></td>
                 <td th:text="${meetAnimal.species}"></td>
@@ -92,6 +95,7 @@
                 <td th:text="${meetAnimal.comments}"></td>
             </tr>
         </table>
+    </div>
     </div>
 </body>
 <footer>
