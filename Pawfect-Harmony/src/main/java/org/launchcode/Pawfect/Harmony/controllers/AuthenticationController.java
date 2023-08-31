@@ -24,7 +24,6 @@ public class AuthenticationController {
     UserRepository userRepository;
 
 
-
     private static final String userSessionKey = "user";
 
     public User getUserFromSession(HttpSession session) {
@@ -84,7 +83,6 @@ public class AuthenticationController {
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
-        model.addAttribute("title", "Log In");
         return "login";
     }
 
