@@ -48,6 +48,7 @@
                 <th>Location</th>
                 <th>Species</th>
                 <th>Breed</th>
+                <th>Gender</th>
                 <th>Age</th>
                 <th>Comments</th>
                 <th></th>
@@ -58,6 +59,7 @@
                 <td th:text="${myAnimal.location}"></td>
                 <td th:text="${myAnimal.species}"></td>
                 <td th:text="${myAnimal.breed}"></td>
+                <td th:text="${myAnimal.gender}"></td>
                 <td th:text="${myAnimal.age}"></td>
                 <td th:text="${myAnimal.comments}"></td>
                 <td><a th:href="@{/animalprofile/edit/{id}/{userId}(id=${myAnimal.id}, userId=${user.id})}">Edit</a></td>
@@ -81,6 +83,7 @@
                 <th>Location</th>
                 <th>Species</th>
                 <th>Breed</th>
+                <th>Gender</th>
                 <th>Age</th>
                 <th>Comments</th>
                 <th></th>
@@ -91,6 +94,7 @@
                 <td th:text="${meetAnimal.location}"></td>
                 <td th:text="${meetAnimal.species}"></td>
                 <td th:text="${meetAnimal.breed}"></td>
+                <td th:text="${meetAnimal.gender}"></td>
                 <td th:text="${meetAnimal.age}"></td>
                 <td th:text="${meetAnimal.comments}"></td>
             </tr>

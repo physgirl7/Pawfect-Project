@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface AnimalProfileRepository extends CrudRepository<AnimalProfile, Integer> {
     List<AnimalProfile> findAllByUser(User user);
+    List<AnimalProfile> findByLocationLikeAndSpeciesLikeAndGenderLikeAndBreedLikeIgnoreCase(String location, String species, String gender, String breed);
+
 //    List<AnimalProfile> findAll();
 //
 //    @Query("SELECT a FROM AnimalProfile a WHERE a.name LIKE %:query%")

@@ -76,7 +76,7 @@ public class AuthenticationController {
                 createUserFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
-        model.addAttribute("searchBar", new SearchBar("", ""));
+        model.addAttribute("searchBar", new SearchBar());
 
         return "search";
     }
@@ -113,7 +113,7 @@ public class AuthenticationController {
         }
 
         setUserInSession(request.getSession(), theUser);
-        model.addAttribute("searchBar", new SearchBar("", ""));
+        model.addAttribute("searchBar", new SearchBar());
 
         return "redirect:/search";
     }
