@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+
+<h1 style="margin-left:100px;" class="display-3" th:text = "'Welcome Admin ' + ${user.username}">Welcome Admin</h1>
+<div class="form-group">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}" style="margin-left:100px"></h1>
+
+    <form th:action="@{/search/results}" method = "post" style="margin-left:100px; max-width:600px;">
+        <h2>Search For Pet:</h2>
+
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+        </p>
+
+        <p>
+            <label for="searchTerm">Keyword:</label>
+            <input class="form-control" type="text" name="searchTerm" id="searchTerm" />
+        </p>
+
+        <input class="btn btn-info" type="submit" value="Search" />
+        <a style="font-size:20px" th:href="@{/search/advanced}">Advanced Search</a>
+    </form>
+    <br>
+
+    <div th:if="${animals != null}" style="margin-left:100px;">
+        <table class="table table-striped-columns" th:if = "${!animals.isEmpty()}">
+            <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Comments</th>
+                <th></th>
+            </tr>
+            <tr th:each="animal : ${animals}">
+                <td><img th:src="@{/animalprofile/{id}/photo(id=${animal.id})}" style="width:50px;height:50px;"></td>
+                <td><a th:text="${animal.name}" th:href="@{/animalprofile/animalfile/{id}(id=${animal.id})}"></a></td>
+                <td th:text="${animal.location}"></td>
+                <td th:text="${animal.species}"></td>
+                <td th:text="${animal.breed}"></td>
+                <td th:text="${animal.gender}"></td>
+                <td th:text="${animal.age}"></td>
+                <td th:text="${animal.comments}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+<footer>
+    <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
+</footer>
+</html>

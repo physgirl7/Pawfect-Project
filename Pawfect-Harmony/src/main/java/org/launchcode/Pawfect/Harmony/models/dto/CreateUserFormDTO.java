@@ -16,6 +16,9 @@ public class CreateUserFormDTO extends LoginFormDTO{
     private String email;
     @Size(min=10, max=10, message = "Phone number must have 10 digits. No dashes and no spaces.")
     private String phone;
+
+    private Boolean isAdmin = false;
+
         private String verifyPassword;
 
         public String getVerifyPassword() {
@@ -57,4 +60,9 @@ public class CreateUserFormDTO extends LoginFormDTO{
     public void setPhone(String phone) {
         this.phone = phone;
     }
-}
+
+    public Boolean getIsAdmin() { return isAdmin;}
+
+    public void setIsAdmin(Boolean isAdmin){ this.isAdmin = isAdmin;}
+
+    }

@@ -17,12 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
+
 
     @Autowired
     private UserRepository userRepository;
@@ -35,6 +37,17 @@ public class UserController {
 
     @Autowired
     private AuthenticationController authenticationController;
+
+    static HashMap<String, String> columnChoices = new HashMap<>();
+
+    public UserController(){
+        columnChoices.put("all", "All");
+        columnChoices.put("location", "Location");
+        columnChoices.put("species", "Species");
+        columnChoices.put("breed", "Breed");
+    }
+
+
 
 
     @GetMapping("useraccount/{userId}")
@@ -106,6 +119,22 @@ public class UserController {
             return "redirect:../useraccount/" + user.getId();
         }
         return "redirect:../../login";
+    }
+
+    @GetMapping("admin")
+    public String displayAdminAccountPage(Model model, HttpServletRequest request){
+        HttpSession userSession = request.getSession();
+        User user = authenticationController.getUserFromSession(userSession);
+        if (user != null) {
+            model.addAttribute("user", user);
+            model.addAttribute("columns", columnChoices);
+            if(user.getIsAdmin().equals(true)){
+                return "user/admin";
+            }
+
+            return "redirect:useraccount/" + user.getId();
+        }
+        return "redirect:../login";
     }
 }
 

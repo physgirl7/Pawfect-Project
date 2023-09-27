@@ -73,7 +73,8 @@ public class AuthenticationController {
                 createUserFormDTO.getLastName(),
                 createUserFormDTO.getEmail(),
                 createUserFormDTO.getPhone(),
-                createUserFormDTO.getPassword());
+                createUserFormDTO.getPassword(),
+                createUserFormDTO.getIsAdmin());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
         model.addAttribute("searchBar", new SearchBar());
