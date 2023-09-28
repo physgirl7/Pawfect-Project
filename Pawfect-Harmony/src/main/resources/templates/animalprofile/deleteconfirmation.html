@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+
+<div style="margin-left:100px">
+
+    <h1>Your animal profile has been deleted!</h1>
+
+    <br>
+
+    <form action="#" th:action="@{/user/admin}" method="post" style="margin-left:100px;">
+        <input type="submit" class = "btn btn-primary" value="Return to Admin Page">
+    </form>
+</div>
+</body>
+<footer>
+    <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
+</footer>
+</html>

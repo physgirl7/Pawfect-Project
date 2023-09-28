@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+
+<div style="margin-left:100px">
+
+    <h1 class="display-3" th:text = "'About ' + ${existingAnimalProfile.name}">About This Animal!</h1>
+
+    <br>
+    <table class="table table-striped-columns" style="max-width:500px;">
+
+        <tr>
+            <th align = "left">Photo:</th>
+            <td><img th:src="@{/animalprofile/{id}/photo(id=${existingAnimalProfile.id})}" style="width:50px;height:50px;"></td>
+        </tr>
+
+        <tr>
+            <th align = "left">Name:</th>
+            <td th:text="${existingAnimalProfile.name}">Cutie</td>
+        </tr>
+
+        <tr>
+            <th align = "left">Location:</th>
+            <td th:text="${existingAnimalProfile.location}">Animal Location</td>
+        </tr>
+
+        <tr>
+            <th align = "left">Species:</th>
+            <td th:text="${existingAnimalProfile.species}">Animal Species</td>
+        </tr>
+
+        <tr>
+            <th align="left">Breed:</th>
+            <td th:text="${existingAnimalProfile.breed}">Animal Breed</td>
+        </tr>
+
+        <tr>
+            <th align="left">Age:</th>
+            <td th:text="${existingAnimalProfile.age}">Age</td>
+        </tr>
+
+        <tr>
+            <th align = "left">Gender:</th>
+            <td th:text="${existingAnimalProfile.gender}">Gender</td>
+        </tr>
+
+        <tr>
+            <th align="left">Comments:</th>
+            <td th:text="${existingAnimalProfile.comments}">Comments</td>
+        </tr>
+    </table>
+    <form th:action="@{'/animalprofile/adminedit/' + ${existingAnimalProfile.id} +'/' + ${user.id}}">
+        <input type="submit" class = "btn btn-primary" value="Edit Animal Profile" />
+    </form>
+
+    <form action="#" th:action="@{/animalprofile/admindelete/{id1}/{id2}(id1=${existingAnimalProfile.id}, id2=${user.id})}" method="post" style="margin-left:100px;">
+        <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">
+    </form>
+</div>
+</body>
+<footer>
+    <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
+</footer>
+</html>

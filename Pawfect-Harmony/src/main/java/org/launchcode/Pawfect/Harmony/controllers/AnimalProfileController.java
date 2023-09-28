@@ -143,6 +143,69 @@ public class AnimalProfileController {
         return "redirect:../../../user/useraccount/" + userId;
     }
 
+    @GetMapping("/adminedit/{animalProfileId}/{userId}")
+    public String adminEditAnimalProfile(Model model, @PathVariable int animalProfileId, @PathVariable int userId) {
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+
+            if (user.getIsAdmin() == true) {
+
+                Optional<AnimalProfile> result = animalProfileRepository.findById(animalProfileId);
+                if (result.isPresent()) {
+                    AnimalProfile animalProfile = result.get();
+                    model.addAttribute("animalProfile", animalProfile);
+                }
+            }   return "animalprofile/adminedit";
+        }
+        return "user/useraccount";
+    }
+
+    @PostMapping("/adminedit/{animalProfileId}/{userId}")
+    public String processAdminEditAnimalProfile(@PathVariable int animalProfileId, @PathVariable int userId, @ModelAttribute AnimalProfile animalProfile, Model model,@RequestParam("file")MultipartFile photo) throws IOException {
+        Optional<AnimalProfile> result = animalProfileRepository.findById(animalProfileId);
+        if (result.isPresent()) {
+            AnimalProfile existingAnimalProfile = result.get();
+            byte[] animalPhoto = existingAnimalProfile.getPhoto();
+            if(!photo.isEmpty()) {
+                animalPhoto = photo.getBytes();
+            }
+
+            existingAnimalProfile.setName(animalProfile.getName());
+            existingAnimalProfile.setPhoto(animalPhoto);
+            existingAnimalProfile.setLocation(animalProfile.getLocation());
+            existingAnimalProfile.setSpecies(animalProfile.getSpecies());
+            existingAnimalProfile.setBreed(animalProfile.getBreed());
+            existingAnimalProfile.setGender(animalProfile.getGender());
+            existingAnimalProfile.setAge(animalProfile.getAge());
+            existingAnimalProfile.setComments(animalProfile.getComments());
+            animalProfileRepository.save(existingAnimalProfile);
+            model.addAttribute("existingAnimalProfile", existingAnimalProfile);
+        }
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+        }
+        return "animalprofile/adminanimalfile";
+    }
+
+    @PostMapping("/admindelete/{animalProfileId}/{userId}")
+    public String processAdminDeleteAnimalProfile(@PathVariable int animalProfileId, @PathVariable int userId, Model model) {
+        Optional<AnimalProfile> result = animalProfileRepository.findById(animalProfileId);
+        if (result.isPresent()) {
+            AnimalProfile animalProfile = result.get();
+            animalProfileRepository.delete(animalProfile);
+        }
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+        }
+        return "animalprofile/deleteconfirmation";
+    }
+
     @GetMapping("animalfile/{animalProfileId}")
     public String displayAnimalFilePage(Model model, @PathVariable int animalProfileId, HttpServletRequest request) {
         Optional optAnimal = animalProfileRepository.findById(animalProfileId);
