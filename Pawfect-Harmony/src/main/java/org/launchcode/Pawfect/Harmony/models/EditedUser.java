@@ -13,6 +13,9 @@ import javax.validation.constraints.Size;
         @Size(max = 25)
         private String lastName;
 
+        @Size(max=2)
+        private String location;
+
         @Email
         private String email;
 
@@ -23,10 +26,11 @@ import javax.validation.constraints.Size;
 
         }
 
-        public EditedUser(String firstName, String lastName, String email, String phone) {
+        public EditedUser(String firstName, String lastName, String location, String email, String phone) {
             this();
             this.firstName = firstName;
             this.lastName = lastName;
+            this.location = location;
             this.email = email;
             this.phone = phone;
         }
@@ -46,6 +50,10 @@ import javax.validation.constraints.Size;
         public void setLastName(String lastName) {
             this.lastName = lastName;
         }
+
+        public String getLocation(){return location;}
+
+        public void setLocation(String location){this.location = location;}
 
         public String getEmail() {
             return email;

@@ -3,10 +3,7 @@ package org.launchcode.Pawfect.Harmony.controllers;
 import org.launchcode.Pawfect.Harmony.data.AnimalProfileRepository;
 import org.launchcode.Pawfect.Harmony.data.UserMeetPetRepository;
 import org.launchcode.Pawfect.Harmony.data.UserRepository;
-import org.launchcode.Pawfect.Harmony.models.AnimalProfile;
-import org.launchcode.Pawfect.Harmony.models.EditedUser;
-import org.launchcode.Pawfect.Harmony.models.User;
-import org.launchcode.Pawfect.Harmony.models.UserMeetPet;
+import org.launchcode.Pawfect.Harmony.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,12 +36,15 @@ public class UserController {
     private AuthenticationController authenticationController;
 
     static HashMap<String, String> columnChoices = new HashMap<>();
+    static HashMap<String, String> searchByPetUserChoices = new HashMap<>();
 
     public UserController(){
         columnChoices.put("all", "All");
+        columnChoices.put("name", "Name");
         columnChoices.put("location", "Location");
-        columnChoices.put("species", "Species");
-        columnChoices.put("breed", "Breed");
+        searchByPetUserChoices.put("users", "Users");
+        searchByPetUserChoices.put("pets", "Pets");
+
     }
 
 
@@ -79,6 +79,7 @@ public class UserController {
             EditedUser editeduser = new EditedUser();
             editeduser.setFirstName(user.getFirstName());
             editeduser.setLastName(user.getLastName());
+            editeduser.setLocation(user.getLocation());
             editeduser.setEmail(user.getEmail());
             editeduser.setPhone(user.getPhone());
             model.addAttribute("user", user);
@@ -99,6 +100,7 @@ public class UserController {
             User user = (User) optUser.get();
             user.setFirstName(editedUser.getFirstName());
             user.setLastName(editedUser.getLastName());
+            user.setLocation(editedUser.getLocation());
             user.setEmail(editedUser.getEmail());
             user.setPhone(editedUser.getPhone());
             model.addAttribute("user", user);
@@ -121,13 +123,14 @@ public class UserController {
         return "redirect:../../login";
     }
 
-    @GetMapping("admin")
+    @RequestMapping("admin")
     public String displayAdminAccountPage(Model model, HttpServletRequest request){
         HttpSession userSession = request.getSession();
         User user = authenticationController.getUserFromSession(userSession);
         if (user != null) {
             model.addAttribute("user", user);
             model.addAttribute("columns", columnChoices);
+            model.addAttribute("searchTypes", searchByPetUserChoices);
             if(user.getIsAdmin().equals(true)){
                 return "user/admin";
             }
@@ -135,6 +138,40 @@ public class UserController {
             return "redirect:useraccount/" + user.getId();
         }
         return "redirect:../login";
+    }
+
+    @PostMapping("admin/results")
+    public String displayAdminSearchResults(Model model, @RequestParam String searchType, @RequestParam String searchCategory, @RequestParam String searchTerm, HttpServletRequest request){
+        HttpSession userSession = request.getSession();
+        User user = authenticationController.getUserFromSession(userSession);
+        if (user != null) {
+            model.addAttribute("user", user);
+            model.addAttribute("columns", columnChoices);
+            model.addAttribute("searchTypes", searchByPetUserChoices);
+        }
+        Iterable<AnimalProfile> animals;
+        Iterable<User> users;
+        if(searchType.equals("pets")) {
+            if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")) {
+                animals = animalProfileRepository.findAll();
+            } else {
+                animals = AnimalProfileData.findByColumnAndValue(searchCategory, searchTerm, animalProfileRepository.findAll());
+            }
+            model.addAttribute("animals", animals);
+        }
+        if(searchType.equals("users")){
+            if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")) {
+                users = userRepository.findAll();
+            } else {
+                users = UserData.findByColumnAndValue(searchCategory, searchTerm, userRepository.findAll());
+            }
+            model.addAttribute("users", users);
+        }
+        model.addAttribute("columns", columnChoices);
+        model.addAttribute("title", "Pets by " + columnChoices.get(searchType) + ": " + searchTerm);
+
+
+        return "user/admin";
     }
 }
 

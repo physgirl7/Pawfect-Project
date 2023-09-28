@@ -43,14 +43,15 @@ public class AuthenticationController {
     }
     @GetMapping("user/create")
     public String displayCreateUserForm(Model model) {
-        model.addAttribute(new CreateUserFormDTO());
+        model.addAttribute("createUserFormDTO", new CreateUserFormDTO());
         return "user/create";
     }
     @PostMapping("user/create")
     public String processRegistrationForm(@ModelAttribute @Valid CreateUserFormDTO createUserFormDTO,
                                           Errors errors, HttpServletRequest request,
                                           Model model) {
-
+        System.out.println(createUserFormDTO.getFirstName());
+        System.out.println(createUserFormDTO.getLocation());
         if (errors.hasErrors()) {
             return "user/create";
         }
@@ -68,9 +69,12 @@ public class AuthenticationController {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
             return "user/create";
         }
+
+
         User newUser = new User(createUserFormDTO.getUsername(),
                 createUserFormDTO.getFirstName(),
                 createUserFormDTO.getLastName(),
+                createUserFormDTO.getLocation(),
                 createUserFormDTO.getEmail(),
                 createUserFormDTO.getPhone(),
                 createUserFormDTO.getPassword(),

@@ -7,19 +7,33 @@
 <body id="page-container">
 <div th:replace="fragments:: navbar"></div>
 
-<h1 style="margin-left:100px;" class="display-3" th:text = "'Welcome Admin ' + ${user.username}">Welcome Admin</h1>
+<h1 style="margin-left:100px;" class="display-3" th:text = "'Welcome Admin: ' + ${user.username}">Welcome Admin</h1>
 <div class="form-group">
 
-    <h1 th:text="${#strings.capitalizeWords(title)}" style="margin-left:100px"></h1>
+<!--    <h1 th:text="${#strings.capitalizeWords(title)}" style="margin-left:100px"></h1>-->
 
-    <form th:action="@{/search/results}" method = "post" style="margin-left:100px; max-width:600px;">
-        <h2>Search For Pet:</h2>
+    <form th:action="@{/user/admin/results}" method = "post" style="margin-left:100px; max-width:600px;">
+        <h2>I Want to Manage:</h2>
+        <p>
+            <span th:each="searchType : ${searchTypes}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${searchType.key}"
+                        th:value="${searchType.key}"
+                        th:checked="${searchType.key == 'users'}"/>
+                 <label th:for="${searchType.key}" th:text="${searchType.value}"></label>
+                </span>
+        </p>
+
+        <hr>
+        <h2>Search Category:</h2>
 
         <p>
             <span th:each="column : ${columns}">
                 <input
                         type="radio"
-                        name="searchType"
+                        name="searchCategory"
                         th:id="${column.key}"
                         th:value="${column.key}"
                         th:checked="${column.key == 'all'}"/>
@@ -60,9 +74,31 @@
                 <td th:text="${animal.gender}"></td>
                 <td th:text="${animal.age}"></td>
                 <td th:text="${animal.comments}"></td>
+<!--                <td><a th:href="@{/animalprofile/edit/{id}/{userId}(id=${animal.id}, userId=${user.id})}">Edit</a></td>-->
             </tr>
         </table>
     </div>
+
+    <div th:if="${users != null}" style="margin-left:100px;">
+        <table class="table table-striped-columns" th:if = "${!users.isEmpty()}">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Location</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td><a th:text="${user.firstName}" th:href="@{/user/useraccount/{id}(id=${user.id})}"></a></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.location}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.email}"></td>
+            </tr>
+        </table>
+    </div>
+
 </div>
 </body>
 <footer>
