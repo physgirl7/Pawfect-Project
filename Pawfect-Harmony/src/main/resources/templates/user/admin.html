@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+
+<h1 style="margin-left:100px;" class="display-3" th:text = "'Welcome Admin: ' + ${user.username}">Welcome Admin</h1>
+<div class="form-group">
+
+<!--    <h1 th:text="${#strings.capitalizeWords(title)}" style="margin-left:100px"></h1>-->
+
+    <form th:action="@{/user/admin/results}" method = "post" style="margin-left:100px; max-width:600px;">
+        <h2>I Want to Manage:</h2>
+        <p>
+            <span th:each="searchType : ${searchTypes}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${searchType.key}"
+                        th:value="${searchType.key}"
+                        th:checked="${searchType.key == 'pets'}"/>
+                 <label th:for="${searchType.key}" th:text="${searchType.value}"></label>
+                </span>
+        </p>
+
+        <hr>
+        <h2>Search Category:</h2>
+
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchCategory"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+        </p>
+
+        <p>
+            <label for="searchTerm">Keyword:</label>
+            <input class="form-control" type="text" name="searchTerm" id="searchTerm" />
+        </p>
+        <input class="btn btn-info" type="submit" value="Search" />
+        <!--            ** Later put in Advanced Search **-->
+<!--        <a style="font-size:20px" th:href="@{/search/advanced}">Advanced Search</a>-->
+    </form>
+    <br>
+
+    <div th:if="${animals != null}" style="margin-left:100px;">
+        <table class="table table-striped-columns" th:if = "${!animals.isEmpty()}">
+            <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Comments</th>
+                <th></th>
+            </tr>
+            <tr th:each="animal : ${animals}">
+                <td><img th:src="@{/animalprofile/{id}/photo(id=${animal.id})}" style="width:50px;height:50px;"></td>
+                <td><a th:text="${animal.name}" th:href="@{/animalprofile/adminedit/{id1}/{id2}(id1=${animal.id}, id2=${user.id})}"></a></td>
+                <td th:text="${animal.location}"></td>
+                <td th:text="${animal.species}"></td>
+                <td th:text="${animal.breed}"></td>
+                <td th:text="${animal.gender}"></td>
+                <td th:text="${animal.age}"></td>
+                <td th:text="${animal.comments}"></td>
+<!--                <td><a th:href="@{/animalprofile/edit/{id}/{userId}(id=${animal.id}, userId=${user.id})}">Edit</a></td>-->
+            </tr>
+        </table>
+    </div>
+
+    <div   style="margin-left:100px;">
+        <table class="table table-striped-columns" th:if = "${!users.isEmpty()}">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Location</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td><a th:text="${user.firstName}" th:href="@{/user/useraccount/{id}(id=${user.id})}"></a></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.location}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.email}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</body>
+<footer>
+    <div id="margin-footer"></div>
+    <div th:replace="fragments:: footer"></div>
+</footer>
+</html>

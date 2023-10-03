@@ -1,57 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+
 <body id="page-container">
-
 <div th:replace="fragments:: navbar"></div>
-
-<h1 style="margin-left:100px;">Create User Account</h1>
-<div>
-    <form method="post" style="max-width:600px;margin-left: 100px;">
+<div class="form-group">
+    <h1 style="margin-left:100px;">Edit Animal Profile</h1>
+    <form th:object="${animalProfile}" method="post" enctype="multipart/form-data" style="max-width:600px;margin-left: 100px;">
+        <input type="hidden" th:field="*{id}">
 
         <div class="form-group">
-            <label>Username
-                <input class="form-control" th:field="${createUserFormDTO.username}" />
-            </label>
-            <span th:errors="${createUserFormDTO.username}" class="error"></span>
+            <label th:for="name">Name:</label>
+            <input class="form-control" type="text" id="name" th:field="*{name}" required>
+        </div>
+
+        <div>
+            <label th:for="file">Photo:</label>
+            <img th:src="@{/animalprofile/{id}/photo(id=${animalProfile.id})}" style="width:50px;height:50px;">
+            <input class="form-control" type="file" id="file" name="file"/>
         </div>
 
         <div class="form-group">
-            <label>Password
-                <input type="password" class="form-control" th:field="${createUserFormDTO.password}" />
-            </label>
-            <span th:errors="${createUserFormDTO.password}" class="error"></span>
-        </div>
-
-        <div class="form-group">
-            <label>Verify Password
-                <input class="form-control" th:field="${createUserFormDTO.verifyPassword}" type="password" />
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label>First Name
-                <input class="form-control" th:field="${createUserFormDTO.firstName}" />
-            </label>
-            <span th:errors="${createUserFormDTO.firstName}" class="error"></span>
-        </div>
-
-        <div class="form-group">
-            <label>Last Name
-                <input class="form-control" th:field="${createUserFormDTO.lastName}" />
-            </label>
-            <span th:errors="${createUserFormDTO.lastName}" class="error"></span>
-        </div>
-
-<!--        <div class="form-group">-->
-<!--            <label>-->
-<!--                <input class="form-control" th:field="${createUserFormDTO.location}" />-->
-<!--            </label>-->
-<!--        </div>-->
-
-        <div class="form-group">
-            <label>Location:</label>
-            <select class="form-control" th:field="${createUserFormDTO.location}">
+            <label th:for="location">Location:</label>
+            <select class="form-control" th:field="${animalProfile.location}">
                 <option value="">--Select a state--</option>
                 <option value="AL">AL</option>
                 <option value="AK">AK</option>
@@ -105,24 +76,52 @@
                 <option value="WI">WI</option>
                 <option value="WY">WY</option>
             </select>
-            <span th:errors="${createUserFormDTO.location}" class="error"></span>
+        </div>
+
+        <div>
+            <label th:for="species">Species:</label>
+            <select class="form-control" id="species" th:field="${animalProfile.species}">
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Rabbit">Rabbit</option>
+                <option value="Bird">Bird</option>
+                <option value="Reptile">Reptile</option>
+                <option value="Other">Other</option>
+            </select>
         </div>
 
         <div class="form-group">
-            <label>Email
-                <input class="form-control" th:field="${createUserFormDTO.email}" />
-            </label>
-            <span th:errors="${createUserFormDTO.email}" class="error"></span>
+            <label th:for="gender">Gender:</label>
+            <select class="form-control" th:field="${animalProfile.gender}">
+                <option value="">--Select a gender--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <div>
+            <label th:for="breed">Breed:</label>
+            <input class="form-control" type="text" id="breed" th:field="*{breed}" required>
         </div>
 
         <div class="form-group">
-            <label>Phone
-                <input class="form-control" th:field="${createUserFormDTO.phone}" />
-            </label>
-            <span th:errors="${createUserFormDTO.phone}" class="error"></span>
+            <label th:for="age">Age:</label>
+            <input class="form-control" id="age" th:field="${animalProfile.age}">
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Create Account" />
+        <div>
+            <label th:for="comments">Comments:</label>
+            <textarea class="form-control" id="comments" th:field="*{comments}"></textarea>
+        </div>
+        <input type="submit" class = "btn btn-primary" value="Save Changes">
+    </form>
+    <div>
+    <form action="#" th:action="@{/animalprofile/admindelete/{id1}/{id2}(id1=${animalProfileId}, id2=${userId})}" method="post" style="margin-left:100px;">
+        <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">
+    </form>
+    </div>
+    <form action="#" th:action="@{/user/admin}" method="post" style="margin-left:100px;">
+        <input type="submit" class = "btn btn-primary" value="Return to Admin Page">
     </form>
 </div>
 </body>

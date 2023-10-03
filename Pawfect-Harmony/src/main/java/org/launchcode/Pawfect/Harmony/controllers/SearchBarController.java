@@ -11,13 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import  java.util.HashMap;
+
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("search")
@@ -34,11 +33,16 @@ public class SearchBarController {
 
     static HashMap<String, String> columnChoices = new HashMap<>();
 
+    static HashMap<String, String> columnChoicesAdvanced = new HashMap<>();
+
 public SearchBarController(){
     columnChoices.put("all", "All");
     columnChoices.put("location", "Location");
     columnChoices.put("species", "Species");
     columnChoices.put("breed", "Breed");
+    columnChoicesAdvanced.put("location", "Location");
+    columnChoicesAdvanced.put("species", "Species");
+    columnChoicesAdvanced.put("breed", "Breed");
 
 }
 
@@ -63,4 +67,33 @@ public SearchBarController(){
         return "search";
     }
 
+    @RequestMapping("advanced")
+    public String advancedSearch(Model model) {
+        model.addAttribute("columns", columnChoicesAdvanced);
+        SearchBar advancedSearch = new SearchBar();
+        model.addAttribute("advancedSearch", advancedSearch);
+        return "advancedsearch";
+    }
+
+    @PostMapping("advanced/results")
+    public String displayAdvancedSearchResults(Model model, @ModelAttribute SearchBar advancedSearch){
+        List<AnimalProfile> animals = new ArrayList<>();
+        if(advancedSearch.getLocation().equals("all")){
+        advancedSearch.setLocation("%");
+        }
+        if(advancedSearch.getSpecies().equals("all")){
+            advancedSearch.setSpecies("%");
+        }
+        if(advancedSearch.getGender().equals("all")){
+            advancedSearch.setGender("%");
+        }
+        if(advancedSearch.getBreed().equals("")){
+            advancedSearch.setBreed("%");
+        }
+    animals= animalProfileRepository.findByLocationLikeAndSpeciesLikeAndGenderLikeAndBreedLikeIgnoreCase(advancedSearch.getLocation(), advancedSearch.getSpecies(), advancedSearch.getGender(), advancedSearch.getBreed());
+        model.addAttribute("columns", columnChoicesAdvanced);
+        model.addAttribute("advancedSearch", advancedSearch);
+        model.addAttribute("animals", animals);
+        return "advancedsearch";
+    }
 }

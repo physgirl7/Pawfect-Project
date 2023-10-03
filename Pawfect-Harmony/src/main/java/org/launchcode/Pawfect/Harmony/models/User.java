@@ -29,6 +29,9 @@ public class User extends AbstractEntity{
     @Size(max = 25)
     private String lastName;
 
+    @Size(max =2)
+    private String location;
+
     @Email(message = "Must enter a valid email")
     private String email;
 
@@ -37,6 +40,8 @@ public class User extends AbstractEntity{
 
     @NotNull
     private String pwHash;
+
+    private Boolean isAdmin = false;
 
     @OneToMany
     @JoinColumn(name = "user_id")
@@ -50,14 +55,16 @@ public class User extends AbstractEntity{
 
     }
 
-    public User(String username, String firstName, String lastName, String email, String phone, String password) {
+    public User(String username, String firstName, String lastName, String location, String email, String phone, String password, Boolean isAdmin) {
         this();
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.location = location;
         this.email = email;
         this.phone = phone;
         this.pwHash=encoder.encode(password);
+        this.isAdmin = isAdmin;
     }
 
     public String getUsername() {
@@ -84,6 +91,10 @@ public class User extends AbstractEntity{
         this.lastName = lastName;
     }
 
+    public String getLocation(){return location;}
+
+    public void setLocation(String location){this.location = location;}
+
     public String getEmail() {
         return email;
     }
@@ -100,8 +111,13 @@ public class User extends AbstractEntity{
         this.phone = phone;
     }
 
+    public Boolean getIsAdmin() { return isAdmin; }
+
+    public void setIsAdmin(Boolean isAdmin) { this.isAdmin=isAdmin; }
+
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
     }
+
 }
 

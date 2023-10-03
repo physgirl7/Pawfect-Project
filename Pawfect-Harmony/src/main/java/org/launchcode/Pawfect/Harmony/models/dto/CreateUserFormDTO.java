@@ -5,17 +5,26 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class CreateUserFormDTO extends LoginFormDTO{
-// public User(String username, String firstName, String lastName, String email, String phone, String password) {
+
     @NotBlank
     @Size(max= 25)
     private String firstName;
+
     @NotBlank
     @Size(max = 25)
     private String lastName;
+
+    @NotBlank
+    private String location;
+
     @Email(message = "Must enter a valid email")
     private String email;
+
     @Size(min=10, max=10, message = "Phone number must have 10 digits. No dashes and no spaces.")
     private String phone;
+
+    private Boolean isAdmin = false;
+
         private String verifyPassword;
 
         public String getVerifyPassword() {
@@ -42,6 +51,10 @@ public class CreateUserFormDTO extends LoginFormDTO{
         this.lastName = lastName;
     }
 
+    public String getLocation(){return location;}
+
+    public void setLocation(String location) {this.location = location;}
+
     public String getEmail() {
         return email;
     }
@@ -57,4 +70,9 @@ public class CreateUserFormDTO extends LoginFormDTO{
     public void setPhone(String phone) {
         this.phone = phone;
     }
-}
+
+    public Boolean getIsAdmin() { return isAdmin;}
+
+    public void setIsAdmin(Boolean isAdmin){ this.isAdmin = isAdmin;}
+
+    }

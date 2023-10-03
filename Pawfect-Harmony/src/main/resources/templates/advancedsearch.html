@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+  <meta charset="UTF-8">
+  <title>Animal Search</title>
+</head>
+<body id="page-container">
+<div th:replace="fragments:: navbar"></div>
+
+<h1 style="margin-left:100px;">Find a Friend - Advanced Search</h1>
+
+  <form th:action="@{/search/advanced/results}" method = "post" style="margin-left:100px; max-width:600px;">
+    <h2>Search by:</h2>
+    <div class="form-group">
+    <label th:for="location">Location:</label>
+    <select class="form-control" th:field="${advancedSearch.location}">
+      <option value="all">All</option>
+      <option value="AL">AL</option>
+      <option value="AK">AK</option>
+      <option value="AZ">AZ</option>
+      <option value="AR">AR</option>
+      <option value="CA">CA</option>
+      <option value="CO">CO</option>
+      <option value="CT">CT</option>
+      <option value="DE">DE</option>
+      <option value="DC">DC</option>
+      <option value="FL">FL</option>
+      <option value="GA">GA</option>
+      <option value="HI">HI</option>
+      <option value="ID">ID</option>
+      <option value="IL">IL</option>
+      <option value="IN">IN</option>
+      <option value="IA">IA</option>
+      <option value="KS">KS</option>
+      <option value="KY">KY</option>
+      <option value="LA">LA</option>
+      <option value="ME">ME</option>
+      <option value="MD">MD</option>
+      <option value="MA">MA</option>
+      <option value="MI">MI</option>
+      <option value="MN">MN</option>
+      <option value="MS">MS</option>
+      <option value="MO">MO</option>
+      <option value="MT">MT</option>
+      <option value="NE">NE</option>
+      <option value="NV">NV</option>
+      <option value="NH">NH</option>
+      <option value="NJ">NJ</option>
+      <option value="NM">NM</option>
+      <option value="NY">NY</option>
+      <option value="NC">NC</option>
+      <option value="ND">ND</option>
+      <option value="OH">OH</option>
+      <option value="OK">OK</option>
+      <option value="OR">OR</option>
+      <option value="PA">PA</option>
+      <option value="RI">RI</option>
+      <option value="SC">SC</option>
+      <option value="SD">SD</option>
+      <option value="TN">TN</option>
+      <option value="TX">TX</option>
+      <option value="UT">UT</option>
+      <option value="VT">VT</option>
+      <option value="VA">VA</option>
+      <option value="WA">WA</option>
+      <option value="WV">WV</option>
+      <option value="WI">WI</option>
+      <option value="WY">WY</option>
+    </select>
+    <span th:errors="${advancedSearch.location}" class="error"></span>
+</div>
+
+
+<div class="form-group">
+  <label th:for="species">Species:</label>
+  <select class="form-control" th:field="${advancedSearch.species}">
+    <option th:value ="all">All</option>
+    <option th:value ="Dog">Dog</option>
+    <option th:value ="Cat">Cat</option>
+    <option th:value ="Rabbit">Rabbit</option>
+    <option th:value ="Bird">Bird</option>
+    <option th:value ="Reptile">Reptile</option>
+    <option th:value ="Other">Other</option>
+  </select>
+  <span th:errors="${advancedSearch.species}" class="error"></span>
+</div>
+
+    <div class="form-group">
+      <label th:for="gender">Gender:</label>
+      <select class="form-control" th:field="${advancedSearch.gender}">
+        <option value="all">All</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <span th:errors="${advancedSearch.gender}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+      <label th:for="breed">Breed:</label>
+      <input class="form-control"  th:field="${advancedSearch.breed}"/>
+      <span th:errors="${advancedSearch.breed}" class="error"></span>
+    </div>
+
+    <input class="btn btn-info" type="submit" value="Search" />
+  </form>
+  <br>
+
+  <div th:if="${animals != null}" style="margin-left:100px;">
+    <table class="table table-striped-columns" th:if = "${!animals.isEmpty()}">
+      <tr>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Species</th>
+        <th>Breed</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Comments</th>
+        <th></th>
+      </tr>
+      <tr th:each="animal : ${animals}">
+        <td><img th:src="@{/animalprofile/{id}/photo(id=${animal.id})}" style="width:50px;height:50px;"></td>
+        <td><a th:text="${animal.name}" th:href="@{/animalprofile/animalfile/{id}(id=${animal.id})}"></a></td>
+        <td th:text="${animal.location}"></td>
+        <td th:text="${animal.species}"></td>
+        <td th:text="${animal.breed}"></td>
+        <td th:text="${animal.gender}"></td>
+        <td th:text="${animal.age}"></td>
+        <td th:text="${animal.comments}"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>
+<footer>
+  <div id="margin-footer"></div>
+  <div th:replace="fragments:: footer"></div>
+</footer>
+</html>
