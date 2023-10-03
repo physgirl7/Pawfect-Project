@@ -52,13 +52,23 @@
             <td th:text="${existingAnimalProfile.comments}">Comments</td>
         </tr>
     </table>
-    <form th:action="@{'/animalprofile/adminedit/' + ${existingAnimalProfile.id} +'/' + ${user.id}}">
+
+
+
+    <form  th:action="@{'/animalprofile/adminedit/' + ${existingAnimalProfile.id} +'/' + ${user.id}}">
         <input type="submit" class = "btn btn-primary" value="Edit Animal Profile" />
     </form>
 
-    <form action="#" th:action="@{/animalprofile/admindelete/{id1}/{id2}(id1=${existingAnimalProfile.id}, id2=${user.id})}" method="post" style="margin-left:100px;">
-        <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">
+
+<!--    <form action="#" th:action="@{/animalprofile/admindelete/{id1}/{id2}(id1=${existingAnimalProfile.id}, id2=${user.id})}" method="post" style="margin-left:100px;">-->
+<!--        <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">-->
+<!--    </form>-->
+
+
+    <form th:action="@{/user/admin}" method="post" style="margin-left:100px;">
+        <input type="submit" class = "btn btn-primary" value="Return to Admin Page">
     </form>
+
 </div>
 </body>
 <footer>

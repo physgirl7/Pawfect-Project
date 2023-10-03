@@ -115,11 +115,15 @@
         </div>
         <input type="submit" class = "btn btn-primary" value="Save Changes">
     </form>
-
+    <div>
     <form action="#" th:action="@{/animalprofile/admindelete/{id1}/{id2}(id1=${animalProfileId}, id2=${userId})}" method="post" style="margin-left:100px;">
         <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">
     </form>
-    <div>
+    </div>
+    <form action="#" th:action="@{/user/admin}" method="post" style="margin-left:100px;">
+        <input type="submit" class = "btn btn-primary" value="Return to Admin Page">
+    </form>
+</div>
 </body>
 <footer>
     <div id="margin-footer"></div>

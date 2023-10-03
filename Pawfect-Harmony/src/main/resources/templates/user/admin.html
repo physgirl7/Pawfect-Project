@@ -21,7 +21,7 @@
                         name="searchType"
                         th:id="${searchType.key}"
                         th:value="${searchType.key}"
-                        th:checked="${searchType.key == 'users'}"/>
+                        th:checked="${searchType.key == 'pets'}"/>
                  <label th:for="${searchType.key}" th:text="${searchType.value}"></label>
                 </span>
         </p>
@@ -46,9 +46,9 @@
             <label for="searchTerm">Keyword:</label>
             <input class="form-control" type="text" name="searchTerm" id="searchTerm" />
         </p>
-
         <input class="btn btn-info" type="submit" value="Search" />
-        <a style="font-size:20px" th:href="@{/search/advanced}">Advanced Search</a>
+        <!--            ** Later put in Advanced Search **-->
+<!--        <a style="font-size:20px" th:href="@{/search/advanced}">Advanced Search</a>-->
     </form>
     <br>
 
@@ -79,7 +79,7 @@
         </table>
     </div>
 
-    <div th:if="${users != null}" style="margin-left:100px;">
+    <div   style="margin-left:100px;">
         <table class="table table-striped-columns" th:if = "${!users.isEmpty()}">
             <tr>
                 <th>First Name</th>
