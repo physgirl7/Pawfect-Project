@@ -6,7 +6,7 @@
 <div th:replace="fragments:: navbar"></div>
 <div class="form-group">
     <h1 style="margin-left:100px;">Edit Animal Profile</h1>
-    <form th:object="${animalProfile}" method="post" enctype="multipart/form-data" style="max-width:600px;margin-left: 100px;">
+    <form th:object="${animalProfile}" th:action="@{/animalprofile/adminedit/{id1}/{id2}(id1=${animalProfile.id}, id2=${user.id})}" method="post" enctype="multipart/form-data" style="max-width:600px;margin-left: 100px;">
         <input type="hidden" th:field="*{id}">
 
         <div class="form-group">
@@ -120,9 +120,16 @@
         <input type="submit" class = "btn btn-primary" value="Delete Animal Profile">
     </form>
     </div>
+
     <form action="#" th:action="@{/user/admin}" method="post" style="margin-left:100px;">
         <input type="submit" class = "btn btn-primary" value="Return to Admin Page">
     </form>
+
+<!--   Future feature: Put back in after connecting the pet to the user-->
+<!--    <form action="#" th:action="@{/user/adminedit/useraccount/{id}(id=${userId})}" method="get" style="margin-left:100px;">-->
+<!--        <input type="submit" class = "btn btn-primary" value="Return to Manage User Account Page">-->
+<!--    </form>-->
+
 </div>
 </body>
 <footer>

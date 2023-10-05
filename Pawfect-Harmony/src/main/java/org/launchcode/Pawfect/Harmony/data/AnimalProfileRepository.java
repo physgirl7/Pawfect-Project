@@ -14,6 +14,10 @@ public interface AnimalProfileRepository extends CrudRepository<AnimalProfile, I
     List<AnimalProfile> findAllByUser(User user);
     List<AnimalProfile> findByLocationLikeAndSpeciesLikeAndGenderLikeAndBreedLikeIgnoreCase(String location, String species, String gender, String breed);
 
+    @Query (value = "SELECT user_id FROM Animal_Profile a WHERE a.id= :animalId", nativeQuery = true)
+    int findUserIdByAnimalProfileId(@Param("animalId") int animalId);
+
+
 //    List<AnimalProfile> findAll();
 //
 //    @Query("SELECT a FROM AnimalProfile a WHERE a.name LIKE %:query%")

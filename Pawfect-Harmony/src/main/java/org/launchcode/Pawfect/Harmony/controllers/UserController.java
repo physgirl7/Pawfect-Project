@@ -173,5 +173,69 @@ public class UserController {
 
         return "user/admin";
     }
+
+    @GetMapping("adminedit/useraccount/{userId}")
+    public String displayAdminUserAccountPage(Model model, @PathVariable int userId) {
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+            List<AnimalProfile> myAnimals = animalProfileRepository.findAllByUser(user);
+            model.addAttribute("myAnimals", myAnimals);
+            List<UserMeetPet> userMeetAnimals = userMeetPetRepository.findAllByUser(user);
+            List<AnimalProfile> meetAnimals = new ArrayList<>();
+            for (UserMeetPet userMeetPet : userMeetAnimals) {
+                AnimalProfile onePet = userMeetPet.getAnimalProfile();
+                meetAnimals.add(onePet);
+            }
+            model.addAttribute("meetAnimals", meetAnimals);
+            return "user/adminuseraccount";
+        } else {
+            return "redirect:../";
+        }
+    }
+    @GetMapping("adminedit/useraccountedit/{userId}")
+    public String displayAdminEditUserAccount(Model model, @PathVariable int userId) {
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            EditedUser editeduser = new EditedUser();
+            editeduser.setFirstName(user.getFirstName());
+            editeduser.setLastName(user.getLastName());
+            editeduser.setLocation(user.getLocation());
+            editeduser.setEmail(user.getEmail());
+            editeduser.setPhone(user.getPhone());
+            editeduser.setIsAdmin(user.getIsAdmin());
+            model.addAttribute("user", user);
+            model.addAttribute("editeduser", editeduser);
+            return "user/adminedit";
+        } else {
+            return "redirect:../";
+        }
+    }
+
+    @PostMapping("adminedit/useraccountedit/{userId}")
+    public String processAdminEditUserAccount(@ModelAttribute @Valid EditedUser editedUser, Errors errors, Model model, @PathVariable int userId) {
+        if (errors.hasErrors()) {
+            return "redirect:" + userId;
+        }
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            user.setFirstName(editedUser.getFirstName());
+            user.setLastName(editedUser.getLastName());
+            user.setLocation(editedUser.getLocation());
+            user.setEmail(editedUser.getEmail());
+            user.setPhone(editedUser.getPhone());
+            user.setIsAdmin(editedUser.getIsAdmin());
+            model.addAttribute("user", user);
+            userRepository.save(user);
+            return "redirect:../useraccount/" + user.getId();
+
+        }
+        return "redirect:../";
+    }
+
+
 }
 

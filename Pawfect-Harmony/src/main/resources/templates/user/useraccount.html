@@ -102,6 +102,7 @@
                 <td th:text="${meetAnimal.gender}"></td>
                 <td th:text="${meetAnimal.age}"></td>
                 <td th:text="${meetAnimal.comments}"></td>
+                <td><a th:href="@{/animalprofile/removemeet/{id}/{userId}(id=${meetAnimal.id}, userId=${user.id})}">Remove</a></td>
             </tr>
         </table>
     </div>
