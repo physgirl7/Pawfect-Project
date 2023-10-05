@@ -22,17 +22,20 @@ import javax.validation.constraints.Size;
         @Size(min=10, max=10, message = "Phone number must have 10 digits. No dashes and no spaces")
         private String phone;
 
+        private Boolean isAdmin = false;
+
         public EditedUser(){
 
         }
 
-        public EditedUser(String firstName, String lastName, String location, String email, String phone) {
+        public EditedUser(String firstName, String lastName, String location, String email, String phone, Boolean isAdmin) {
             this();
             this.firstName = firstName;
             this.lastName = lastName;
             this.location = location;
             this.email = email;
             this.phone = phone;
+            this.isAdmin = isAdmin;
         }
 
         public String getFirstName() {
@@ -70,4 +73,8 @@ import javax.validation.constraints.Size;
         public void setPhone(String phone) {
             this.phone = phone;
         }
+
+        public Boolean getIsAdmin() { return isAdmin; }
+
+        public void setIsAdmin(Boolean isAdmin) { this.isAdmin=isAdmin; }
     }

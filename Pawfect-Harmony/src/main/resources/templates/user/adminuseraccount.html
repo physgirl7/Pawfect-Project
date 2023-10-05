@@ -4,8 +4,8 @@
 <head th:replace="fragments :: head"></head>
 <body id="page-container">
 <div th:replace="fragments:: navbar"></div>
-    <div style="margin-left:100px;">
-    <h1 class="display-3" th:text = "'Welcome ' + ${user.username}">Welcome to the User Account Page!</h1>
+<div style="margin-left:100px;">
+    <h1 class="display-3" th:text = "'Managing User Account:  ' + ${user.username}">Managing User Account Page!</h1>
 
     <br>
     <table class="table table-striped-columns" style="max-width:500px;">
@@ -32,18 +32,30 @@
             <th align="left">Email:</th>
             <td th:text="${user.email}">myemail.com</td>
         </tr>
+
+        <tr>
+            <th >Administrator:</th>
+            <td>
+                <span th:if="${user.isAdmin == false}">No</span>
+                <span th:if="${user.isAdmin == true}">Yes</span>
+            </td>
+        </tr>
     </table>
-    </div>
-    <div style="margin-left:100px;">
-    <form th:action="@{'/user/edit/' + ${user.id}}" method="post">
+</div>
+<div style="margin-left:100px;">
+    <form th:action="@{'/user/adminedit/useraccountedit/' + ${user.id}}" method="post">
         <input type="submit" class = "btn btn-primary" value="Edit" />
+    </form>
+
+    <form action="#" th:action="@{/user/admin}" method="post">
+        <input type="submit" class = "btn btn-primary" value="Return to Admin Page">
     </form>
 
     <br>
 
     <div>
         <br>
-        <h3>Pets I Put Up For Adoption</h3>
+        <h3>Pets User Put Up For Adoption</h3>
     </div>
     <div th:if="${!myAnimals.isEmpty()}">
         <table class="table table-striped-columns" style="max-width:500px;">
@@ -67,19 +79,19 @@
                 <td th:text="${myAnimal.gender}"></td>
                 <td th:text="${myAnimal.age}"></td>
                 <td th:text="${myAnimal.comments}"></td>
-                <td><a th:href="@{/animalprofile/edit/{id}/{userId}(id=${myAnimal.id}, userId=${user.id})}">Edit</a></td>
+                <td><a th:href="@{/animalprofile/adminedit/{id}/{userId}(id=${myAnimal.id}, userId=${user.id})}">Edit</a></td>
 
             </tr>
         </table>
     </div>
-        <a th:href="@{'/animalprofile/form/' + ${user.id}}">
-            <button type="button" class = "btn btn-primary">Post a Pet</button>
-        </a>
-    </div>
-        <br>
-        <br>
-    <div style="margin-left:100px;">
-    <h3>Pets I Want to Meet or Adopt</h3>
+    <a th:href="@{'/animalprofile/form/' + ${user.id}}">
+        <button type="button" class = "btn btn-primary">Post a Pet</button>
+    </a>
+</div>
+<br>
+<br>
+<div style="margin-left:100px;">
+    <h3>Pets User Wants to Meet or Adopt</h3>
     <div th:if="${!meetAnimals.isEmpty()}">
         <table class="table table-striped-columns" style="max-width:700px;">
             <tr>
@@ -102,11 +114,11 @@
                 <td th:text="${meetAnimal.gender}"></td>
                 <td th:text="${meetAnimal.age}"></td>
                 <td th:text="${meetAnimal.comments}"></td>
-                <td><a th:href="@{/animalprofile/removemeet/{id}/{userId}(id=${meetAnimal.id}, userId=${user.id})}">Remove</a></td>
+                <td><a th:href="@{/animalprofile/adminremovemeet/{id}/{userId}(id=${meetAnimal.id}, userId=${user.id})}">Remove</a></td>
             </tr>
         </table>
     </div>
-    </div>
+</div>
 </body>
 <footer>
     <div id="margin-footer"></div>

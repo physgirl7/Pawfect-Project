@@ -145,19 +145,21 @@ public class AnimalProfileController {
 
     @GetMapping("/adminedit/{animalProfileId}/{userId}")
     public String adminEditAnimalProfile(Model model, @PathVariable int animalProfileId, @PathVariable int userId) {
-        Optional optUser = userRepository.findById(userId);
+        int optUserId = animalProfileRepository.findUserIdByAnimalProfileId(animalProfileId);
+        System.out.println(optUserId);
+//        Optional<User> optUser = Optional.ofNullable(userRepository.findByAnimalProfile(animalProfileId));
+        Optional optUser = userRepository.findById(optUserId);
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
+            System.out.println(user.getUsername());
             model.addAttribute("user", user);
 
-            if (user.getIsAdmin() == true) {
-
-                Optional<AnimalProfile> result = animalProfileRepository.findById(animalProfileId);
-                if (result.isPresent()) {
-                    AnimalProfile animalProfile = result.get();
-                    model.addAttribute("animalProfile", animalProfile);
-                }
-            }   return "animalprofile/adminedit";
+            Optional<AnimalProfile> result = animalProfileRepository.findById(animalProfileId);
+            if (result.isPresent()) {
+                AnimalProfile animalProfile = result.get();
+                model.addAttribute("animalProfile", animalProfile);
+            }
+                return "animalprofile/adminedit";
         }
         return "user/useraccount";
     }
@@ -183,6 +185,7 @@ public class AnimalProfileController {
             animalProfileRepository.save(existingAnimalProfile);
             model.addAttribute("existingAnimalProfile", existingAnimalProfile);
         }
+
         Optional optUser = userRepository.findById(userId);
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
@@ -244,6 +247,46 @@ public class AnimalProfileController {
             model.addAttribute("user", user);
             model.addAttribute("userMeetPet", userMeetPet);
             return "animalprofile/requestsent";
+        } else {
+            return "redirect:../";
+        }
+    }
+
+    @GetMapping("removemeet/{animalProfileId}/{userId}")
+    public String displayRemoveMeetPage(@ModelAttribute @Valid UserMeetPet userMeetPet, Model model, @PathVariable int animalProfileId, @PathVariable int userId) {
+        Optional optAnimal = animalProfileRepository.findById(animalProfileId);
+        Optional optUser = userRepository.findById(userId);
+        if (optAnimal.isPresent() && optUser.isPresent()) {
+            AnimalProfile animalProfile = (AnimalProfile) optAnimal.get();
+            User user = (User) optUser.get();
+            List<UserMeetPet> userMeetPets = userMeetPetRepository.findAllByUser(user);
+
+            for(UserMeetPet userMeetOnePet : userMeetPets){
+                if(userMeetOnePet.getAnimalProfile().getId() == animalProfile.getId()){
+                    userMeetPetRepository.delete(userMeetOnePet);
+                }
+            }
+            return "redirect:../../../user/useraccount/" + userId;
+        } else {
+            return "redirect:../";
+        }
+    }
+
+    @GetMapping("adminremovemeet/{animalProfileId}/{userId}")
+    public String displayAdminRemoveMeetPage(@ModelAttribute @Valid UserMeetPet userMeetPet, Model model, @PathVariable int animalProfileId, @PathVariable int userId) {
+        Optional optAnimal = animalProfileRepository.findById(animalProfileId);
+        Optional optUser = userRepository.findById(userId);
+        if (optAnimal.isPresent() && optUser.isPresent()) {
+            AnimalProfile animalProfile = (AnimalProfile) optAnimal.get();
+            User user = (User) optUser.get();
+            List<UserMeetPet> userMeetPets = userMeetPetRepository.findAllByUser(user);
+
+            for(UserMeetPet userMeetOnePet : userMeetPets){
+                if(userMeetOnePet.getAnimalProfile().getId() == animalProfile.getId()){
+                    userMeetPetRepository.delete(userMeetOnePet);
+                }
+            }
+            return "redirect:../../../user/adminedit/useraccount/" + userId;
         } else {
             return "redirect:../";
         }

@@ -69,6 +69,10 @@
         <input type="submit" class = "btn btn-primary" value="Return to Admin Page">
     </form>
 
+    <form action="#" th:action="@{/user/adminedit/useraccount/{id}(id=${userId})}" method="get" style="margin-left:100px;">
+        <input type="submit" class = "btn btn-primary" value="Return to Manage User Account Page">
+    </form>
+
 </div>
 </body>
 <footer>

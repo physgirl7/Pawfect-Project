@@ -79,7 +79,7 @@
         </table>
     </div>
 
-    <div   style="margin-left:100px;">
+    <div  th:if="${users != null}" style="margin-left:100px;">
         <table class="table table-striped-columns" th:if = "${!users.isEmpty()}">
             <tr>
                 <th>First Name</th>
@@ -90,7 +90,7 @@
                 <th></th>
             </tr>
             <tr th:each="user : ${users}">
-                <td><a th:text="${user.firstName}" th:href="@{/user/useraccount/{id}(id=${user.id})}"></a></td>
+                <td><a th:text="${user.firstName}" th:href="@{/user/adminedit/useraccount/{id}(id=${user.id})}"></a></td>
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.location}"></td>
                 <td th:text="${user.phone}"></td>
